@@ -1,6 +1,24 @@
 name: documentation
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branches:
+      - main   # push commit to the main branch
+  pull_request:
+    branches:
+      - main   # pull request to the main branch
+  workflow_dispatch:   # allow manual triggering
+    inputs:
+      deploy:
+        description: 'Deploy wiki documentation'
+        type: boolean
+        required: true
+        default: false
+      upload:
+        description: 'Upload documentation (pdfs in _static/)'
+        type: boolean
+        required: true
+        default: false
 
 permissions:
   contents: write
