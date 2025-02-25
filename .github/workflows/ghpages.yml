@@ -63,15 +63,37 @@ jobs:
       - name: Build Wiki
         run: |
           make html
-          ls -lAFgh docs/build/html/index.html
-          #mkdir -p docs
-          #mv docs/build/html/* docs
-          
+          ls -lAFgh source/build/html/index.html
+          #mkdir -p source
+          #mv source/build/html/* source
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}adjusted docume
-          publish_dir: docs/
+          publish_dir: source/build/html/
           force_orphan: true
+
+#      - name: Build User Manual
+#        run: |
+#          make pdf
+#          make html
+#          ls -lAFgh source/build/manual/build/html/index.html
+#          mkdir -p build/html
+#          mv source/build/manual/build/html/* build/html
+#
+#      - name: Deploy the Wiki
+#        if: ${{ github.event.inputs.deploy && env.python_version == env.python_deploy_version }}
+#        uses: JamesIves/github-pages-deploy-action@v4
+#        with:
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          folder: build/html
+#
+#      - name: Upload the Wiki
+#        if: ${{ github.event.inputs.upload && env.python_version == env.python_deploy_version }}
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: nexus-wiki-source
+#          path: build/html
