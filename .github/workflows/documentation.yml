@@ -6,18 +6,48 @@ permissions:
   contents: write
 
 jobs:
-  docs:
+  build-linux:
+    name: CI py${{ matrix.python-version }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12']
+      max-parallel: 5
+    env:
+      python_version: ${{ matrix.python-version }}
+      python_deploy_version: '3.8' # version to use for deployment
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-      - name: Install dependencies
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+
+#      - name: Deploy Information
+#        if: ${{ github.event.inputs.deploy && env.python_version == env.python_deploy_version }}
+#        run: |
+#          echo "The HTML NeXus Wiki will be pushed to"
+#          echo " https://github.com/nexusformat/wiki/tree/gh-pages"
+#          echo "The HTML NeXus Wiki will be deployed on"
+#          echo " https://nexusformat.github.io/wiki/"
+
+      - name: Install Requirements
         run: |
-          pip install sphinx sphinx_rtd_theme myst_parser
-      - name: Sphinx build
+          python3 -m pip install --upgrade pip setuptools
+          make install
+          python3 -m pip list
+
+      - name: Build Wiki
         run: |
-          #sphinx-build doc build
           make html
+          ls -lAFgh wiki/source/build/html/index.html
+          mkdir -p build/html
+          mv wiki/source/build/html/* build/html
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
