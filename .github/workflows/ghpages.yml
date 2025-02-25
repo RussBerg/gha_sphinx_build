@@ -63,9 +63,9 @@ jobs:
       - name: Build Wiki
         run: |
           make html
-          ls -lAFgh source/build/html/index.html
-          mkdir -p docs
-          mv source/build/html/* docs
+          ls -lAFgh docs/build/html/index.html
+          #mkdir -p docs
+          #mv docs/build/html/* docs
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

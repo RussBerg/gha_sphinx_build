@@ -30,10 +30,10 @@ install ::
 	$(PYTHON) -m pip install -r requirements.txt
 
 clean ::
-	$(RM) -rf ./source/$(BUILD_DIR)
+	$(RM) -rf ./docs/$(BUILD_DIR)
 
 html:
-	$(SPHINX) -b html -W ./source/ ./source/$(BUILD_DIR)/html
+	$(SPHINX) -b html -W ./docs/ ./docs/$(BUILD_DIR)/html
 
 # for developer's use on local build host
 local ::
