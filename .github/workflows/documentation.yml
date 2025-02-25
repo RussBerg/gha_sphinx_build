@@ -3,10 +3,10 @@ name: documentation
 on:
   push:
     branches:
-      - main   # push commit to the main branch
+      - gh-pages   # push commit to the main branch
   pull_request:
     branches:
-      - main   # pull request to the main branch
+      - gh-pages   # pull request to the main branch
   workflow_dispatch:   # allow manual triggering
     inputs:
       deploy:
