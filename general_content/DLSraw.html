@@ -1,0 +1,667 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>DLSraw &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Download" href="Download.html" />
+    <link rel="prev" title="Detector Geometry" href="Detector_Geometry.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Download.html" title="Download"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Detector_Geometry.html" title="Detector Geometry"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DLSraw</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="dlsraw">
+<h1>DLSraw<a class="headerlink" href="#dlsraw" title="Link to this heading">¶</a></h1>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">URL:      http://www.nexus.anl.gov/</span>
+<span class="cm">Editor:   Stuart Campbell, DLS</span>
+<span class="cm">$Id$</span>
+<span class="cm">Draft definition of a Diamond Light Source raw Nexus file.</span>
+<span class="cm">--&gt;</span>
+<span class="nt">&lt;NXroot</span><span class="w"> </span><span class="na">file_name=</span><span class="s">&quot;{File name of original NeXus file}&quot;</span>
+<span class="w">        </span><span class="na">file_time=</span><span class="s">&quot;{Date and time of file creation}&quot;</span>
+<span class="w">        </span><span class="na">file_update_time=</span><span class="s">&quot;{Date and time of last file change at close}&quot;</span>
+<span class="w">        </span><span class="na">NeXus_version=</span><span class="s">&quot;{Version of NeXus API used in writing the file}&quot;</span>
+<span class="w">        </span><span class="na">HDF_version=</span><span class="s">&quot;?&quot;</span>
+<span class="w">        </span><span class="na">HDF5_version=</span><span class="s">&quot;?&quot;</span>
+<span class="w">        </span><span class="na">XML_version=</span><span class="s">&quot;?&quot;</span>
+<span class="w">        </span><span class="na">initial_format=</span><span class="s">&quot;{Initial format for file}&quot;</span>
+<span class="w">        </span><span class="na">creator=</span><span class="s">&quot;{facility or program where file originated}?&quot;</span>
+<span class="w">        </span><span class="na">unique_id=</span><span class="s">&quot;{unique file identifier}&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">   </span><span class="nt">&lt;NXentry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of entry}&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!--Identification metadata --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;title&gt;</span>{Extended<span class="w"> </span>title<span class="w"> </span>for<span class="w"> </span>entry}?<span class="nt">&lt;/title&gt;</span>
+<span class="w">        </span><span class="nt">&lt;experiment_identifier</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR[]&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{unique<span class="w"> </span>identifier<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>experiment,<span class="w"> </span>defined<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>facility,<span class="w"> </span>possibly
+<span class="w">            </span>linked<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>proposals}?
+<span class="w">        </span><span class="nt">&lt;/experiment_identifier&gt;</span>
+<span class="w">        </span><span class="nt">&lt;run_number</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Number<span class="w"> </span>of<span class="w"> </span>run<span class="w"> </span>or<span class="w"> </span>scan<span class="w"> </span>stored<span class="w"> </span>in<span class="w"> </span>this<span class="w"> </span>entry}?
+<span class="w">        </span><span class="nt">&lt;/run_number&gt;</span>
+<span class="w">        </span><span class="nt">&lt;run_cycle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR[]&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{}?
+<span class="w">        </span><span class="nt">&lt;/run_cycle&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!-- Data Management metadata--&gt;</span>
+<span class="w">        </span><span class="nt">&lt;release_date</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{<span class="w"> </span>Date<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>public<span class="w"> </span>release<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>data.<span class="w"> </span>(file_time<span class="w"> </span>+<span class="w"> </span>X<span class="w"> </span>years)}
+<span class="w">        </span><span class="nt">&lt;/release_date&gt;</span>
+<span class="w">        </span><span class="nt">&lt;revision</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{<span class="w"> </span>Revision<span class="w"> </span>id<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>due<span class="w"> </span>to<span class="w"> </span>re-calibration,<span class="w"> </span>reprocessing
+<span class="w">            </span>new<span class="w"> </span>analysis,<span class="w"> </span>new<span class="w"> </span>instrument<span class="w"> </span>definition<span class="w"> </span>format,<span class="w"> </span>...<span class="w"> </span>}
+<span class="w">        </span><span class="nt">&lt;/revision&gt;</span>
+<span class="w">        </span><span class="nt">&lt;revision_comment</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{<span class="w"> </span>Reason<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>new<span class="w"> </span>revision.<span class="w"> </span>(e.g.<span class="w"> </span>first<span class="w"> </span>revision,<span class="w"> </span>re-calibration,<span class="w"> </span>)<span class="w"> </span>}
+<span class="w">        </span><span class="nt">&lt;/revision_comment&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!--NeXus format information--&gt;</span>
+<span class="w">        </span><span class="nt">&lt;definition</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;{DTD version number}&quot;</span><span class="w"> </span><span class="na">URL=</span><span class="s">&quot;{URL of DTD file}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Name<span class="w"> </span>of<span class="w"> </span>entry<span class="w"> </span>DTD}?
+<span class="w">        </span><span class="nt">&lt;/definition&gt;</span>
+<span class="w">        </span><span class="nt">&lt;archive_definition</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;{DTD version number}&quot;</span><span class="w"> </span><span class="na">URL=</span><span class="s">&quot;{URL of DTD file}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Name<span class="w"> </span>of<span class="w"> </span>entry<span class="w"> </span>DTD}?
+<span class="w">        </span><span class="nt">&lt;/archive_definition&gt;</span>
+<span class="w">        </span><span class="nt">&lt;local_definition</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;{DTD version number}&quot;</span><span class="w"> </span><span class="na">URL=</span><span class="s">&quot;{URL of DTD file}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Name<span class="w"> </span>of<span class="w"> </span>entry<span class="w"> </span>DTD}?
+<span class="w">        </span><span class="nt">&lt;/local_definition&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!--Timing metadata</span>
+<span class="cm">                start_time and end_time are mandatory</span>
+<span class="cm">                duration and/or collection_time would be nice to have</span>
+<span class="cm">        --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;start_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Starting<span class="w"> </span>time<span class="w"> </span>of<span class="w"> </span>measurement}?
+<span class="w">        </span><span class="nt">&lt;/start_time&gt;</span>
+<span class="w">        </span><span class="nt">&lt;end_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Ending<span class="w"> </span>time<span class="w"> </span>of<span class="w"> </span>measurement}?
+<span class="w">        </span><span class="nt">&lt;/end_time&gt;</span>
+<span class="w">        </span><span class="nt">&lt;duration</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;seconds&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Duration<span class="w"> </span>of<span class="w"> </span>measurement<span class="w"> </span>(end_time<span class="w"> </span>-<span class="w"> </span>start_time)}?
+<span class="w">        </span><span class="nt">&lt;/duration&gt;</span>
+<span class="w">        </span><span class="nt">&lt;collection_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;seconds&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Time<span class="w"> </span>transpired<span class="w"> </span>actually<span class="w"> </span>collecting<span class="w"> </span>data<span class="w"> </span>i.e.<span class="w"> </span>taking<span class="w"> </span>out<span class="w"> </span>time<span class="w"> </span>when
+<span class="w">            </span>collection<span class="w"> </span>was<span class="w"> </span>suspended<span class="w"> </span>due<span class="w"> </span>to<span class="w"> </span>e.g.<span class="w"> </span>temperature<span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span>range}?
+<span class="w">        </span><span class="nt">&lt;/collection_time&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!--Reliability metadata</span>
+<span class="cm">                Having the wrong information may be worst than having no information.</span>
+<span class="cm">                The accuracy of the information provided by the experimenter may be</span>
+<span class="cm">                difficult to determine. The minimum we can do is determine in which</span>
+<span class="cm">                condition the information was filled.</span>
+<span class="cm">        --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;info_reliability</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{information<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>reliability/source<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>information<span class="w"> </span>provided<span class="w"> </span>by
+<span class="w">            </span>the<span class="w"> </span>experimenter.<span class="w"> </span>(e.g.:<span class="w"> </span>From<span class="w"> </span>proposal,<span class="w"> </span>updated<span class="w"> </span>at<span class="w"> </span>experiment<span class="w"> </span>time,<span class="w"> </span>...}
+<span class="w">        </span><span class="nt">&lt;/info_reliability&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!--Experiment metadata--&gt;</span>
+<span class="w">        </span><span class="nt">&lt;discipline</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Keyword<span class="w"> </span>domain<span class="w"> </span>(e.g.<span class="w"> </span>chemistry,<span class="w"> </span>astronomy,<span class="w"> </span>ecology,<span class="w"> </span>...)}?
+<span class="w">        </span><span class="nt">&lt;/discipline&gt;</span>
+<span class="w">        </span><span class="nt">&lt;keyword</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Keywords<span class="w"> </span>defined<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>study}?
+<span class="w">        </span><span class="nt">&lt;/keyword&gt;</span>
+<span class="w">        </span><span class="nt">&lt;keyword_source</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{A<span class="w"> </span>pointer<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>reference<span class="w"> </span>work<span class="w"> </span>providing<span class="w"> </span>the<span class="w"> </span>definition<span class="w"> </span>of<span class="w"> </span>the
+<span class="w">            </span>restricted<span class="w"> </span>vocabulary<span class="w"> </span>of<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>keyword<span class="w"> </span>list<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>subset}?
+<span class="w">        </span><span class="nt">&lt;/keyword_source&gt;</span>
+<span class="w">        </span><span class="nt">&lt;subject</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Subject<span class="w"> </span>categorisations<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>study}?
+<span class="w">        </span><span class="nt">&lt;/subject&gt;</span>
+<span class="w">        </span><span class="nt">&lt;description_summary</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Brief<span class="w"> </span>summary<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>experiment,<span class="w"> </span>including<span class="w"> </span>key<span class="w"> </span>objectives}?
+<span class="w">        </span><span class="nt">&lt;/description_summary&gt;</span>
+<span class="w">        </span><span class="nt">&lt;description</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NXnote&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Description<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>full<span class="w"> </span>experiment<span class="w"> </span>(document<span class="w"> </span>in<span class="w"> </span>pdf,<span class="w"> </span>latex,<span class="w"> </span>...)}?
+<span class="w">        </span><span class="nt">&lt;/description&gt;</span>
+<span class="w">        </span><span class="nt">&lt;requirement</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Special<span class="w"> </span>requirements<span class="w"> </span>of<span class="w"> </span>instrument}?
+<span class="w">        </span><span class="nt">&lt;/requirement&gt;</span>
+<span class="w">        </span><span class="nt">&lt;publications</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{List<span class="w"> </span>of<span class="w"> </span>publications<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>proposal}?
+<span class="w">        </span><span class="nt">&lt;/publications&gt;</span>
+<span class="w">        </span><span class="nt">&lt;facility_access_type</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Facility<span class="w"> </span>access<span class="w"> </span>type<span class="w"> </span>(normal,<span class="w"> </span>rapid<span class="w"> </span>access,<span class="w"> </span>program<span class="w"> </span>access,<span class="w"> </span>...)}?
+<span class="w">        </span><span class="nt">&lt;/facility_access_type&gt;</span>
+<span class="w">        </span><span class="nt">&lt;grant_id</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Identifier<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>funding<span class="w"> </span>grant}?
+<span class="w">        </span><span class="nt">&lt;/grant_id&gt;</span>
+
+
+<span class="w">        </span><span class="cm">&lt;!--Software metadata</span>
+<span class="cm">                may be useful to retrieve all data from a versioning case of problem</span>
+<span class="cm">                related to a specific version of the acquisition/analysis program.</span>
+<span class="cm">        --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;program_name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;{Program version number}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Name<span class="w"> </span>of<span class="w"> </span>program<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>this<span class="w"> </span>file}?
+<span class="w">        </span><span class="nt">&lt;/program_name&gt;</span>
+<span class="w">        </span><span class="nt">&lt;command_line</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{Name<span class="w"> </span>of<span class="w"> </span>command<span class="w"> </span>line<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>this<span class="w"> </span>file}?
+<span class="w">        </span><span class="nt">&lt;/command_line&gt;</span>
+
+
+<span class="w">        </span><span class="cm">&lt;!-- External reference</span>
+<span class="cm">                To archive processed data, you need to be able to point to the input</span>
+<span class="cm">                data that were used.</span>
+
+<span class="cm">                This class is not an official neXus class. When the NIAC decide for</span>
+<span class="cm">                a way to link to external resources. ; it will have to be replaced by</span>
+<span class="cm">                its official equivalent.</span>
+<span class="cm">        --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;external_reference</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;input data XX&quot;</span><span class="nt">&gt;</span>+
+<span class="w">            </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<span class="w">                </span>{Descriptive<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input<span class="w"> </span>data}
+<span class="w">            </span><span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;uri</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Uniform<span class="w"> </span>Resource<span class="w"> </span>Identifier<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>input<span class="w"> </span>data}
+<span class="w">            </span><span class="nt">&lt;/uri&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/external_reference&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;notes&gt;</span>
+<span class="w">            </span>{Notes<span class="w"> </span>describing<span class="w"> </span>entry}?
+<span class="w">        </span><span class="nt">&lt;/notes&gt;</span>
+<span class="w">        </span><span class="nt">&lt;thumbnail</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NXnote&quot;</span><span class="w"> </span><span class="na">mime_type=</span><span class="s">&quot;{image/*}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{An<span class="w"> </span>small<span class="w"> </span>image<span class="w"> </span>that<span class="w"> </span>is<span class="w"> </span>representative<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>entry.}<span class="w"> </span>{An<span class="w"> </span>example<span class="w"> </span>of
+<span class="w">            </span>this<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>640x480<span class="w"> </span>jpeg<span class="w"> </span>image<span class="w"> </span>automatically<span class="w"> </span>produced<span class="w"> </span>by<span class="w"> </span>a<span class="w"> </span>low<span class="w"> </span>resolution
+<span class="w">            </span>plot<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>NXdata.}?
+<span class="w">        </span><span class="nt">&lt;/thumbnail&gt;</span>
+
+
+<span class="w">        </span><span class="cm">&lt;!-- User metadata</span>
+<span class="cm">                At least one user with role &#39;principal_investigator&#39; must be present to</span>
+<span class="cm">                define the owner of the data.</span>
+
+<span class="cm">                Other important roles are :</span>
+<span class="cm">                    &#39;experimenter&#39; to know who physically made the experiment,</span>
+<span class="cm">                    &#39;local_contact&#39; for any instrument configuration questions,</span>
+
+<span class="cm">                Nice to have would be &#39;funding_agency&#39;, it may help to get money for</span>
+<span class="cm">                the next experiments.</span>
+
+<span class="cm">                I think that the users with role &#39;principal_investigator&#39;, &#39;proposer&#39;</span>
+<span class="cm">                and &#39;experimenter&#39; should be given access to the data.</span>
+<span class="cm">                To be define in the data right policy of the facility.</span>
+<span class="cm">        --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXuser</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{user}&quot;</span><span class="nt">&gt;</span>1+
+<span class="w">            </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Name<span class="w"> </span>of<span class="w"> </span>user<span class="w"> </span>responsible<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>entry}
+<span class="w">            </span><span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;role</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{role<span class="w"> </span>of<span class="w"> </span>user<span class="w"> </span>responsible<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>entry,<span class="w"> </span>comma<span class="w"> </span>separated<span class="w"> </span>list}
+<span class="w">                </span>{Suggested<span class="w"> </span>roles<span class="w"> </span>are<span class="w"> </span>&quot;local_contact&quot;,<span class="w"> </span>&quot;principal_investigator&quot;,
+<span class="w">                </span>&quot;proposer&quot;,<span class="w"> </span>&quot;experimenter&quot;,<span class="w"> </span>&quot;funding_agency&quot;}
+<span class="w">            </span><span class="nt">&lt;/role&gt;</span>
+<span class="w">            </span><span class="nt">&lt;affiliation</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Affiliation<span class="w"> </span>of<span class="w"> </span>user}?
+<span class="w">            </span><span class="nt">&lt;/affiliation&gt;</span>
+<span class="w">            </span><span class="nt">&lt;address</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Address<span class="w"> </span>of<span class="w"> </span>user}?
+<span class="w">            </span><span class="nt">&lt;/address&gt;</span>
+<span class="w">            </span><span class="nt">&lt;telephone_number</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Telephone<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>user}?
+<span class="w">            </span><span class="nt">&lt;/telephone_number&gt;</span>
+<span class="w">            </span><span class="nt">&lt;fax_number</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Fax<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>user}?
+<span class="w">            </span><span class="nt">&lt;/fax_number&gt;</span>
+<span class="w">            </span><span class="nt">&lt;email</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Email<span class="w"> </span>of<span class="w"> </span>user}?
+<span class="w">            </span><span class="nt">&lt;/email&gt;</span>
+<span class="w">            </span><span class="nt">&lt;facility_user_id</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Facility<span class="w"> </span>based<span class="w"> </span>unique<span class="w"> </span>identifier<span class="w"> </span>for<span class="w"> </span>this<span class="w"> </span>person<span class="w"> </span>e.g.<span class="w"> </span>their
+<span class="w">                </span>identification<span class="w"> </span>code<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>facility<span class="w"> </span>address/contact<span class="w"> </span>database,
+<span class="w">                </span>should<span class="w"> </span>allow<span class="w"> </span>owner<span class="w"> </span>identification<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>archive<span class="w"> </span>system.}
+<span class="w">            </span><span class="nt">&lt;/facility_user_id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;affiliation_id</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Affiliation<span class="w"> </span>unique<span class="w"> </span>identifier.}?
+<span class="w">            </span><span class="nt">&lt;/affiliation_id&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXuser&gt;</span>
+
+
+<span class="w">        </span><span class="nt">&lt;NXsample</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{sample}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Descriptive<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>sample}
+<span class="w">            </span><span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;sample_id</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Sample<span class="w"> </span>identifier}
+<span class="w">            </span><span class="nt">&lt;/sample_id&gt;</span>
+<span class="w">            </span><span class="nt">&lt;chemical_formula</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{The<span class="w"> </span>chemical<span class="w"> </span>formula<span class="w"> </span>specified<span class="w"> </span>using<span class="w"> </span>CIF<span class="w"> </span>conventions.}{Abbreviated
+<span class="w">                </span>version<span class="w"> </span>of<span class="w"> </span>CIF<span class="w"> </span>standard:
+<span class="w">                </span>1.<span class="w"> </span>Only<span class="w"> </span>recognized<span class="w"> </span>element<span class="w"> </span>symbols<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>used.
+<span class="w">                </span>2.<span class="w"> </span>Each<span class="w"> </span>element<span class="w"> </span>symbol<span class="w"> </span>is<span class="w"> </span>followed<span class="w"> </span>by<span class="w"> </span>a<span class="w"> </span>&#39;count&#39;<span class="w"> </span>number.<span class="w"> </span>A<span class="w"> </span>count
+<span class="w">                   </span>of<span class="w"> </span>&#39;1&#39;<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>omitted.
+<span class="w">                </span>3.<span class="w"> </span>A<span class="w"> </span>space<span class="w"> </span>or<span class="w"> </span>parenthesis<span class="w"> </span>must<span class="w"> </span>separate<span class="w"> </span>each<span class="w"> </span>cluster<span class="w"> </span>of<span class="w"> </span>(element
+<span class="w">                   </span>symbol<span class="w"> </span>+<span class="w"> </span>count).
+<span class="w">                </span>4.<span class="w"> </span>Where<span class="w"> </span>a<span class="w"> </span>group<span class="w"> </span>of<span class="w"> </span>elements<span class="w"> </span>is<span class="w"> </span>enclosed<span class="w"> </span>in<span class="w"> </span>parentheses,<span class="w"> </span>the
+<span class="w">                   </span>multiplier<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>group<span class="w"> </span>must<span class="w"> </span>follow<span class="w"> </span>the<span class="w"> </span>closing<span class="w"> </span>parentheses.<span class="w"> </span>That
+<span class="w">                   </span>is,<span class="w"> </span>all<span class="w"> </span>element<span class="w"> </span>and<span class="w"> </span>group<span class="w"> </span>multipliers<span class="w"> </span>are<span class="w"> </span>assumed<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>printed<span class="w"> </span>as
+<span class="w">                   </span>subscripted<span class="w"> </span>numbers.
+<span class="w">                </span>5.<span class="w"> </span>Unless<span class="w"> </span>the<span class="w"> </span>elements<span class="w"> </span>are<span class="w"> </span>ordered<span class="w"> </span>in<span class="w"> </span>a<span class="w"> </span>manner<span class="w"> </span>that<span class="w"> </span>corresponds<span class="w"> </span>to
+<span class="w">                   </span>their<span class="w"> </span>chemical<span class="w"> </span>structure,<span class="w"> </span>the<span class="w"> </span>order<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>elements<span class="w"> </span>within<span class="w"> </span>any<span class="w"> </span>group
+<span class="w">                   </span>or<span class="w"> </span>moiety<span class="w"> </span>depends<span class="w"> </span>on<span class="w"> </span>whether<span class="w"> </span>or<span class="w"> </span>not<span class="w"> </span>carbon<span class="w"> </span>is<span class="w"> </span>present.<span class="w"> </span>If<span class="w"> </span>carbon<span class="w"> </span>is
+<span class="w">                   </span>present,<span class="w"> </span>the<span class="w"> </span>order<span class="w"> </span>should<span class="w"> </span>be:<span class="w"> </span>C,<span class="w"> </span>then<span class="w"> </span>H,<span class="w"> </span>then<span class="w"> </span>the<span class="w"> </span>other<span class="w"> </span>elements<span class="w"> </span>in
+<span class="w">                   </span>alphabetical<span class="w"> </span>order<span class="w"> </span>of<span class="w"> </span>their<span class="w"> </span>symbol.<span class="w"> </span>If<span class="w"> </span>carbon<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>present,<span class="w"> </span>the
+<span class="w">                   </span>elements<span class="w"> </span>are<span class="w"> </span>listed<span class="w"> </span>purely<span class="w"> </span>in<span class="w"> </span>alphabetic<span class="w"> </span>order<span class="w"> </span>of<span class="w"> </span>their<span class="w"> </span>symbol.<span class="w"> </span>This
+<span class="w">                   </span>is<span class="w"> </span>the<span class="w"> </span>&#39;Hill&#39;<span class="w"> </span>system<span class="w"> </span>used<span class="w"> </span>by<span class="w"> </span>Chemical<span class="w"> </span>Abstracts.}
+<span class="w">            </span><span class="nt">&lt;/chemical_formula&gt;</span>
+<span class="w">            </span><span class="nt">&lt;description</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Description<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>sample}?
+<span class="w">            </span><span class="nt">&lt;/description&gt;</span>
+<span class="w">            </span><span class="nt">&lt;short_title</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{20<span class="w"> </span>character<span class="w"> </span>fixed<span class="w"> </span>length<span class="w"> </span>sample<span class="w"> </span>description<span class="w"> </span>for<span class="w"> </span>legends}?
+<span class="w">            </span><span class="nt">&lt;/short_title&gt;</span>
+
+<span class="w">            </span><span class="cm">&lt;!-- Sample Environment metadata</span>
+<span class="cm">                    These parameters are to give an idea of the sample environment.</span>
+<span class="cm">                    One value may seems too limited but it is mostly to understand under</span>
+<span class="cm">                    which type of condition the experiment occurs (high, low, very</span>
+<span class="cm">                    high, very low temperature, pressure, ...) Very few experiment will</span>
+<span class="cm">                    go from 5 to 5000 Kelvin in one scan.</span>
+<span class="cm">                    For actual analysis, time dependent measurement, the</span>
+<span class="cm">                    data are stored in an NXlog (e.g temperature_log, ..).</span>
+<span class="cm">            --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;temperature</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">param_type=</span><span class="s">&quot;fixed|scanned|free&quot;</span>
+<span class="w">                         </span><span class="na">sampled=</span><span class="s">&quot;start|end|middle|average&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Sample<span class="w"> </span>temperature.}?
+<span class="w">            </span><span class="nt">&lt;/temperature&gt;</span>
+<span class="w">            </span><span class="nt">&lt;electric_field</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">param_type=</span><span class="s">&quot;fixed|scanned|free&quot;</span>
+<span class="w">                            </span><span class="na">direction=</span><span class="s">&quot;x|y|z&quot;</span><span class="w"> </span><span class="na">sampled=</span><span class="s">&quot;start|end|middle|average&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Applied<span class="w"> </span>electric<span class="w"> </span>field}?
+<span class="w">            </span><span class="nt">&lt;/electric_field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;magnetic_field</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">param_type=</span><span class="s">&quot;fixed|scanned|free&quot;</span>
+<span class="w">                            </span><span class="na">direction=</span><span class="s">&quot;x|y|z&quot;</span><span class="w"> </span><span class="na">sampled=</span><span class="s">&quot;start|end|middle|average&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Applied<span class="w"> </span>magnetic<span class="w"> </span>field}?
+<span class="w">            </span><span class="nt">&lt;/magnetic_field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;stress_field</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">param_type=</span><span class="s">&quot;fixed|scanned|free&quot;</span>
+<span class="w">                          </span><span class="na">direction=</span><span class="s">&quot;x|y|z&quot;</span><span class="w"> </span><span class="na">sampled=</span><span class="s">&quot;start|end|middle|average&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{External<span class="w"> </span>stress}?
+<span class="w">            </span><span class="nt">&lt;/stress_field&gt;</span>
+<span class="w">            </span><span class="nt">&lt;pressure</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">param_type=</span><span class="s">&quot;fixed|scanned|free&quot;</span>
+<span class="w">                      </span><span class="na">sampled=</span><span class="s">&quot;start|end|middle|average&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Applied<span class="w"> </span>pressure}?
+<span class="w">            </span><span class="nt">&lt;/pressure&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXsample&gt;</span>
+
+
+<span class="w">        </span><span class="cm">&lt;!-- Instruments metadata</span>
+<span class="cm">                The instrument name should be descriptive as much as possible,</span>
+<span class="cm">                telling in which mode the instrument was working.</span>
+<span class="cm">        --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXinstrument</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of instrument}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="w"> </span><span class="na">short_name=</span><span class="s">&quot;{addreviated name of instrument}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Name<span class="w"> </span>of<span class="w"> </span>instrument}
+<span class="w">            </span><span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;NXsource</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of facility}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Name<span class="w"> </span>of<span class="w"> </span>source}?
+<span class="w">                </span><span class="nt">&lt;/name&gt;</span>
+<span class="w">                </span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>&quot;Spallation<span class="w"> </span>Neutron<span class="w"> </span>Source&quot;|&quot;Pulsed<span class="w"> </span>Reactor<span class="w"> </span>Neutron<span class="w"> </span>Source&quot;|
+<span class="w">                    </span>&quot;Reactor<span class="w"> </span>Neutron<span class="w"> </span>Source&quot;|&quot;Synchrotron<span class="w"> </span>X-ray<span class="w"> </span>Source&quot;|
+<span class="w">                    </span>&quot;Pulsed<span class="w"> </span>Muon<span class="w"> </span>Source&quot;|&quot;Rotating<span class="w"> </span>Anode<span class="w"> </span>X-ray&quot;|Fixed<span class="w"> </span>Tube<span class="w"> </span>X-ray&quot;
+<span class="w">                </span><span class="nt">&lt;/type&gt;</span>
+<span class="w">                </span><span class="nt">&lt;probe</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>neutron|x-ray|muon|electron?
+<span class="w">                </span><span class="nt">&lt;/probe&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;distance</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;m&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Effective<span class="w"> </span>distance<span class="w"> </span>from<span class="w"> </span>sample}{Distance<span class="w"> </span>as<span class="w"> </span>seen<span class="w"> </span>by<span class="w"> </span>radiation<span class="w"> </span>from
+<span class="w">                    </span>sample.<span class="w">  </span>This<span class="w"> </span>number<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>negative<span class="w"> </span>to<span class="w"> </span>signify<span class="w"> </span>that<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>upstream
+<span class="w">                    </span>of<span class="w"> </span>the<span class="w"> </span>sample.}?
+<span class="w">                </span><span class="nt">&lt;/distance&gt;</span>
+<span class="w">                </span><span class="nt">&lt;power</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;MW&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Source<span class="w"> </span>power}?
+<span class="w">                </span><span class="nt">&lt;/power&gt;</span>
+<span class="w">                </span><span class="nt">&lt;current</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;milliamps&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Accelerator<span class="w"> </span>current}?
+<span class="w">                </span><span class="nt">&lt;/current&gt;</span>
+<span class="w">                </span><span class="nt">&lt;voltage</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;MeV&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Accelerator<span class="w"> </span>voltage}?
+<span class="w">                </span><span class="nt">&lt;/voltage&gt;</span>
+<span class="w">                </span><span class="nt">&lt;notes</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{any<span class="w"> </span>source/facility<span class="w"> </span>related<span class="w"> </span>messages/events<span class="w"> </span>that<span class="w"> </span>occurred<span class="w"> </span>during<span class="w"> </span>the
+<span class="w">                    </span>experiment}?
+<span class="w">                </span><span class="nt">&lt;/notes&gt;</span>
+<span class="w">                </span><span class="nt">&lt;mode</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{synchrotron<span class="w"> </span>operating<span class="w"> </span>mode}{&quot;Single<span class="w"> </span>Bunch&quot;|&quot;Multi<span class="w"> </span>Bunch&quot;}?
+<span class="w">                </span><span class="nt">&lt;/mode&gt;</span>
+<span class="w">                </span><span class="nt">&lt;top_up</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_BOOLEAN&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Is<span class="w"> </span>the<span class="w"> </span>synchrotron<span class="w"> </span>operating<span class="w"> </span>in<span class="w"> </span>top_up<span class="w"> </span>mode}?
+<span class="w">                </span><span class="nt">&lt;/top_up&gt;</span>
+<span class="w">                </span><span class="nt">&lt;NXgeometry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{&quot;Engineering&quot;<span class="w"> </span>location<span class="w"> </span>of<span class="w"> </span>source}?
+<span class="w">                </span><span class="nt">&lt;/NXgeometry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXsource&gt;</span>
+
+<span class="w">            </span><span class="cm">&lt;!--</span>
+<span class="cm">                Usually we will either include NXbending_magnet or NXinsertion_device.</span>
+<span class="cm">            --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;NXbending_magnet</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{name of bending magnet}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;critical_energy</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span>{critical<span class="w"> </span>energy}?
+<span class="w">                    </span><span class="nt">&lt;/critical_energy&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;bending_radius</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span>{bending<span class="w"> </span>radius}?
+<span class="w">                    </span><span class="nt">&lt;/bending_radius&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;spectrum</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NXdata&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span>{spectrum<span class="w"> </span>of<span class="w"> </span>bending<span class="w"> </span>magnet}?
+<span class="w">                    </span><span class="nt">&lt;/spectrum&gt;</span>
+<span class="w">                    </span><span class="nt">&lt;NXgeometry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                        </span>{&quot;Engineering&quot;<span class="w"> </span>position<span class="w"> </span>of<span class="w"> </span>bending<span class="w"> </span>magnet}?
+<span class="w">                    </span><span class="nt">&lt;/NXgeometry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXbending_magnet&gt;</span>
+
+<span class="w">            </span><span class="nt">&lt;NXinsertion_device</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of insertion device}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{&quot;undulator&quot;|&quot;wiggler&quot;|...}?
+<span class="w">                </span><span class="nt">&lt;/type&gt;</span>
+<span class="w">                </span><span class="nt">&lt;gap</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;milimetre&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{gap}?
+<span class="w">                </span><span class="nt">&lt;/gap&gt;</span>
+<span class="w">                </span><span class="nt">&lt;taper</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;milimetre&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{taper}?
+<span class="w">                </span><span class="nt">&lt;/taper&gt;</span>
+<span class="w">                </span><span class="nt">&lt;phase</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degrees&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{phase}?
+<span class="w">                </span><span class="nt">&lt;/phase&gt;</span>
+<span class="w">                </span><span class="nt">&lt;poles</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{number<span class="w"> </span>of<span class="w"> </span>poles}?
+<span class="w">                </span><span class="nt">&lt;/poles&gt;</span>
+<span class="w">                </span><span class="nt">&lt;length</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;mili*metre&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{length<span class="w"> </span>of<span class="w"> </span>insertion<span class="w"> </span>device}?
+<span class="w">                </span><span class="nt">&lt;/length&gt;</span>
+<span class="w">                </span><span class="nt">&lt;power</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{total<span class="w"> </span>power<span class="w"> </span>delivered<span class="w"> </span>by<span class="w"> </span>insertion<span class="w"> </span>device}?
+<span class="w">                </span><span class="nt">&lt;/power&gt;</span>
+<span class="w">                </span><span class="nt">&lt;energy</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{energy<span class="w"> </span>of<span class="w"> </span>peak}?
+<span class="w">                </span><span class="nt">&lt;/energy&gt;</span>
+<span class="w">                </span><span class="nt">&lt;bandwidth</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{bandwidth<span class="w"> </span>of<span class="w"> </span>peak<span class="w"> </span>energy}?
+<span class="w">                </span><span class="nt">&lt;/bandwidth&gt;</span>
+<span class="w">                </span><span class="nt">&lt;harmonic</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{harmonic<span class="w"> </span>of<span class="w"> </span>peak}?
+<span class="w">                </span><span class="nt">&lt;/harmonic&gt;</span>
+<span class="w">                </span><span class="nt">&lt;spectrum</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NXdata&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{spectrum<span class="w"> </span>of<span class="w"> </span>insertion<span class="w"> </span>device}?
+<span class="w">                </span><span class="nt">&lt;/spectrum&gt;</span>
+<span class="w">                </span><span class="nt">&lt;NXgeometry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{&quot;Engineering&quot;<span class="w"> </span>position<span class="w"> </span>of<span class="w"> </span>insertion<span class="w"> </span>device}?
+<span class="w">                </span><span class="nt">&lt;/NXgeometry&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXinsertion_device&gt;</span>
+
+<span class="w">            </span><span class="cm">&lt;!--</span>
+<span class="cm">                We would include a different NXmotor entry for each &#39;scannable&#39; or</span>
+<span class="cm">                motor/variable that we want to record the position of at each scan point.</span>
+<span class="cm">            --&gt;</span>
+<span class="w">            </span><span class="nt">&lt;NXpositioner</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of scannable}&quot;</span><span class="nt">&gt;</span>+
+<span class="w">                </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[n]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;{}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{value<span class="w"> </span>of<span class="w"> </span>motor<span class="w"> </span>-<span class="w"> </span>need<span class="w"> </span>[n]<span class="w"> </span>as<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>scanned}
+<span class="w">                </span><span class="nt">&lt;/value&gt;</span>
+<span class="w">                </span><span class="nt">&lt;controller_record</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Hardware<span class="w"> </span>device<span class="w"> </span>record,<span class="w"> </span>e.g.<span class="w"> </span>EPICS<span class="w"> </span>process<span class="w"> </span>variable,<span class="w"> </span>taco/tango<span class="w"> </span>...}
+<span class="w">                </span><span class="nt">&lt;/controller_record&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXpositioner&gt;</span>
+
+
+<span class="w">            </span><span class="nt">&lt;NXdetector</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of detector}&quot;</span><span class="nt">&gt;</span>1+
+<span class="w">                </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[nx?,ny?,n]|NX_INT[nx?,ny?,n]&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;number&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;{...}&quot;</span>
+<span class="w">                      </span><span class="na">check_sum=</span><span class="s">&quot;{Integral of data as check of data integrity} (NX_INT)?&quot;</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;{absolute path to location}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Data<span class="w"> </span>values}
+<span class="w">                </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">                </span><span class="nt">&lt;data_error</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i,j,k?,l?]|NX_INT[i,j,k?,l?]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;number&quot;</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;{absolute path to location}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Data<span class="w"> </span>values}
+<span class="w">                </span><span class="nt">&lt;/data_error&gt;</span>
+<span class="w">                </span><span class="nt">&lt;description</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{name/manufacturer/model/etc.<span class="w"> </span>information}?
+<span class="w">                </span><span class="nt">&lt;/description&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;type</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>&quot;He3<span class="w"> </span>gas<span class="w"> </span>cylinder&quot;|He3<span class="w"> </span>PSD&quot;|&quot;He3<span class="w"> </span>planar<span class="w"> </span>multidetector&quot;|<span class="w"> </span>&quot;He3<span class="w"> </span>curved<span class="w"> </span>multidetector&quot;|
+<span class="w">                    </span>&quot;multi-tube<span class="w"> </span>He3<span class="w"> </span>PSD&quot;|&quot;BF3<span class="w"> </span>gas&quot;|&quot;scintillator&quot;|&quot;fission<span class="w"> </span>chamber&quot;|&quot;CCD&quot;|...?
+<span class="w">                </span><span class="nt">&lt;/type&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;detector_number</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT[i]&quot;</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;2&quot;</span><span class="w"> </span><span class="na">primary=</span><span class="s">&quot;1?&quot;</span><span class="w"> </span><span class="na">long_name=</span><span class="s">&quot;{Axis label}&quot;</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;{absolute path to location}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Identifier<span class="w"> </span>for<span class="w"> </span>detector}?
+<span class="w">                </span><span class="nt">&lt;/detector_number&gt;</span>
+<span class="w">                </span><span class="nt">&lt;x_offset</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;3&quot;</span><span class="w"> </span><span class="na">primary=</span><span class="s">&quot;1?&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[k+1]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;10^-3 meter|10^-2 meter&quot;</span>
+<span class="w">                            </span><span class="na">long_name=</span><span class="s">&quot;{Axis label}&quot;</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;{absolute path to location in NXdetector}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{offset<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>detector<span class="w"> </span>center<span class="w"> </span>in<span class="w"> </span>x-direction}?
+<span class="w">                </span><span class="nt">&lt;/x_offset&gt;</span>
+<span class="w">                </span><span class="nt">&lt;y_offset</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;4&quot;</span><span class="w"> </span><span class="na">primary=</span><span class="s">&quot;1?&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[l+1]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;10^-3 meter|10^-2 meter&quot;</span>
+<span class="w">                            </span><span class="na">long_name=</span><span class="s">&quot;{Axis label}&quot;</span><span class="w"> </span><span class="na">link=</span><span class="s">&quot;{absolute path to location in NXdetector}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{offset<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>detector<span class="w"> </span>center<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>y-direction}?
+<span class="w">                </span><span class="nt">&lt;/y_offset&gt;</span>
+<span class="w">                </span><span class="nt">&lt;x_pixelsize</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i?]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;mili*metre&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Size<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>detector<span class="w"> </span>pixel.<span class="w"> </span>If<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>scalar<span class="w"> </span>all<span class="w"> </span>pixels<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>size}?
+<span class="w">                </span><span class="nt">&lt;/x_pixelsize&gt;</span>
+<span class="w">                </span><span class="nt">&lt;y_pixelsize</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i?]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;mili*metre&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Size<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span>detector<span class="w"> </span>pixel.<span class="w"> </span>If<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>scalar<span class="w"> </span>all<span class="w"> </span>pixels<span class="w"> </span>are<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>size}?
+<span class="w">                </span><span class="nt">&lt;/y_pixelsize&gt;</span>
+
+
+<span class="w">                </span><span class="nt">&lt;distance</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[j,k?,l?]&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;detector_number,x_offset?,y_offset?&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Distance}?
+<span class="w">                </span><span class="nt">&lt;/distance&gt;</span>
+<span class="w">                </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[j,k?,l?]&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;detector_number,x_offset?,y_offset?&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Polar<span class="w"> </span>Angle}?
+<span class="w">                </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">                </span><span class="nt">&lt;azimuthal_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[j,k?,l?]&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;detector_number,x_offset?,y_offset?&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Azimuthal<span class="w"> </span>Angle}?
+<span class="w">                </span><span class="nt">&lt;/azimuthal_angle&gt;</span>
+<span class="w">                </span><span class="nt">&lt;NXgeometry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Position<span class="w"> </span>and<span class="w"> </span>orientation<span class="w"> </span>of<span class="w"> </span>detector<span class="w"> </span>element}?
+<span class="w">                </span><span class="nt">&lt;/NXgeometry&gt;</span>
+<span class="w">                </span><span class="nt">&lt;translation</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[2]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;centimeter&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{translation<span class="w"> </span>normal<span class="w"> </span>to<span class="w"> </span>direct<span class="w"> </span>beam}?
+<span class="w">                </span><span class="nt">&lt;/translation&gt;</span>
+<span class="w">                </span><span class="nt">&lt;solid_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;steradians&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Solid<span class="w"> </span>angle<span class="w"> </span>subtended<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>detector<span class="w"> </span>at<span class="w"> </span>the<span class="w"> </span>sample}?
+<span class="w">                </span><span class="nt">&lt;/solid_angle&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;dead_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i]&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Detector<span class="w"> </span>dead<span class="w"> </span>time}?
+<span class="w">                </span><span class="nt">&lt;/dead_time&gt;</span>
+<span class="w">                </span><span class="nt">&lt;hold_off</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;micro.second&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Delay<span class="w"> </span>in<span class="w"> </span>detector<span class="w"> </span>registering<span class="w"> </span>an<span class="w"> </span>event}?
+<span class="w">                </span><span class="nt">&lt;/hold_off&gt;</span>
+<span class="w">                </span><span class="nt">&lt;gas_pressure</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;bars&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Detector<span class="w"> </span>gas<span class="w"> </span>pressure}?
+<span class="w">                </span><span class="nt">&lt;/gas_pressure&gt;</span>
+<span class="w">                </span><span class="nt">&lt;detection_gas_path</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;cm&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{maximum<span class="w"> </span>drift<span class="w"> </span>space<span class="w"> </span>dimension}?
+<span class="w">                </span><span class="nt">&lt;/detection_gas_path&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;crate</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT[i]&quot;</span><span class="w"> </span><span class="na">local_name=</span><span class="s">&quot;{Equivalent local term}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Crate<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>detector}?
+<span class="w">                </span><span class="nt">&lt;/crate&gt;</span>
+<span class="w">                </span><span class="nt">&lt;slot</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT[i]&quot;</span><span class="w"> </span><span class="na">local_name=</span><span class="s">&quot;{Equivalent local term}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Slot<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>detector}?
+<span class="w">                </span><span class="nt">&lt;/slot&gt;</span>
+<span class="w">                </span><span class="nt">&lt;input</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT[i]&quot;</span><span class="w"> </span><span class="na">local_name=</span><span class="s">&quot;{Equivalent local term}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Input<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>detector}?
+<span class="w">                </span><span class="nt">&lt;/input&gt;</span>
+
+
+<span class="w">                </span><span class="nt">&lt;NXdata</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;efficiency&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{Efficiency<span class="w"> </span>of<span class="w"> </span>detector<span class="w"> </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>e.g.<span class="w"> </span>wavelength}?
+<span class="w">                </span><span class="nt">&lt;/NXdata&gt;</span>
+<span class="w">                </span><span class="nt">&lt;calibration_date</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{date<span class="w"> </span>of<span class="w"> </span>last<span class="w"> </span>calibration<span class="w"> </span>(geometry<span class="w"> </span>and/or<span class="w"> </span>efficiency)<span class="w"> </span>measurements}?
+<span class="w">                </span><span class="nt">&lt;/calibration_date&gt;</span>
+<span class="w">                </span><span class="nt">&lt;calibration_method</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NXnote&quot;</span><span class="nt">&gt;</span>
+<span class="w">                    </span>{summary<span class="w"> </span>of<span class="w"> </span>conversion<span class="w"> </span>of<span class="w"> </span>array<span class="w"> </span>data<span class="w"> </span>to<span class="w"> </span>pixels<span class="w"> </span>(e.g.<span class="w"> </span>polynomial<span class="w"> </span>approximations)<span class="w"> </span>and<span class="w"> </span>location<span class="w"> </span>of<span class="w"> </span>details<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>calibrations}?
+<span class="w">                </span><span class="nt">&lt;/calibration_method&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXdetector&gt;</span>
+
+
+<span class="w">        </span><span class="nt">&lt;/NXinstrument&gt;</span>
+
+<span class="w">        </span><span class="cm">&lt;!--</span>
+<span class="cm">            The data section contains links back to the actual data which is contained within the</span>
+<span class="cm">            NXdetector and NXmotor entries.</span>
+<span class="cm">        --&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXdata</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of data block}&quot;</span><span class="nt">&gt;</span>1+
+
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;{absolute path to location in NXdetector}&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span>
+<span class="w">                  </span><span class="na">axes=</span><span class="s">&quot;{...}&quot;</span><span class="w"> </span><span class="na">long_name=</span><span class="s">&quot;{Title of data}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Data<span class="w"> </span>Values}?
+<span class="w">            </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">            </span><span class="nt">&lt;errors</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[:...]&quot;</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;{absolute path to location in NXdetector}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Standard<span class="w"> </span>deviations<span class="w"> </span>of<span class="w"> </span>data<span class="w"> </span>values<span class="w"> </span>-<span class="w"> </span>the<span class="w"> </span>data<span class="w"> </span>array<span class="w"> </span>is<span class="w"> </span>identified<span class="w"> </span>by<span class="w"> </span>the<span class="w"> </span>attribute<span class="w"> </span>signal=&quot;1&quot;.<span class="w"> </span>This<span class="w"> </span>array<span class="w"> </span>must<span class="w"> </span>have<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>dimensions<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>data}?
+<span class="w">            </span><span class="nt">&lt;/errors&gt;</span>
+<span class="w">            </span><span class="nt">&lt;variable</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[:]|NX_INT[:]&quot;</span><span class="w"> </span><span class="na">long_name=</span><span class="s">&quot;{Axis label}&quot;</span><span class="w"> </span><span class="na">distribution=</span><span class="s">&quot;0|1&quot;</span><span class="w"> </span><span class="na">first_good=</span><span class="s">&quot;{Index of first good value}&quot;</span>
+<span class="w">                      </span><span class="na">last_good=</span><span class="s">&quot;{Index of last good value}&quot;</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;{absolute path to location}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Dimension<span class="w"> </span>scale<span class="w"> </span>defining<span class="w"> </span>an<span class="w"> </span>axis<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>data}?
+<span class="w">            </span><span class="nt">&lt;/variable&gt;</span>
+<span class="w">            </span><span class="nt">&lt;variable_errors</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[:]|NX_INT[:]&quot;</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;{absolute path to location}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Errors<span class="w"> </span>associated<span class="w"> </span>with<span class="w"> </span>axis<span class="w"> </span>&quot;variable&quot;}?
+<span class="w">            </span><span class="nt">&lt;/variable_errors&gt;</span>
+
+<span class="w">        </span><span class="nt">&lt;/NXdata&gt;</span>
+
+
+
+<span class="w">   </span><span class="nt">&lt;/NXentry&gt;</span>
+<span class="nt">&lt;/NXroot&gt;</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Detector_Geometry.html"
+                          title="previous chapter">Detector Geometry</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Download.html"
+                          title="next chapter">Download</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/DLSraw.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Download.html" title="Download"
+             >next</a></li>
+        <li class="right" >
+          <a href="Detector_Geometry.html" title="Detector Geometry"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">DLSraw</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

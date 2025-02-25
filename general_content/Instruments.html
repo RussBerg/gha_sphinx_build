@@ -1,0 +1,306 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Instruments &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IssueReporting" href="IssueReporting.html" />
+    <link rel="prev" title="Indirect Time-of-Flight and Coordinates" href="Indirect_Time-of-Flight_and_Coordinates.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="IssueReporting.html" title="IssueReporting"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Indirect_Time-of-Flight_and_Coordinates.html" title="Indirect Time-of-Flight and Coordinates"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Instruments</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="instruments">
+<h1>Instruments<a class="headerlink" href="#instruments" title="Link to this heading">¶</a></h1>
+<p>The NeXus Design page lists the group classes from which a NeXus file is constructed. They provide the glossary of items that could, in principle, be stored in a standard-conforming NeXus file (other items may be inserted into the file if the author wishes, but they won’t be part of the standard). If you are going to include a particular piece of metadata, consult the <cite>class definitions &lt;Design&gt;</cite> to find out what to call it. However, to assist those writing data analysis software, it is useful to provide more than a glossary; it is important to define the required contents of NeXus files that contain data from particular classes of neutron, x-ray, or muon instruments.
+As part of the NeXus standard, we have identified a number of generic instruments that describe an appreciable number of existing instruments around the world. Although not identical in every detail, they share enough common characteristics, and more importantly, they require sufficiently similar modes of data analysis, to make a standard description useful. They are in the process of being defined for the NeXus standard. The definitions will be in XML using the NXDL (NeXus Definition Language) format.</p>
+<section id="instrument-definitions-list">
+<h2>Instrument Definitions List<a class="headerlink" href="#instrument-definitions-list" title="Link to this heading">¶</a></h2>
+<p># TRAC
+<em>Pete</em> 15:49, 14 December 2009 (UTC): <a class="reference external" href="http://trac.nexusformat.org/definitions/ticket/3">NeXus definitions TRAC ticket #3</a> was created to describe the items on this page. Classes that were not already described in NXDL have TRAC tickets created. The status of each of these classes is described in the comments on that page. All new propositions for classes should be described with a <a class="reference external" href="http://trac.nexusformat.org/definitions/newticket">new TRAC ticket</a>.</p>
+<p># Ratified
+These have been voted on by the <a class="reference external" href="../niac/niac.html">NIAC</a> and so are official NeXus definitions:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference external" href="TOFRaw.html">NXTOFRaw: Time-of-Flight Raw Data</a></dt><dd><p>Editors: <em>Freddie Akeroyd</em>, <em>Peter Peterson</em></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html">Monochromatic Neutron and X-ray Powder Diffraction</a></dt><dd><p>Editor: <em>Mark Knnecke</em>, PSI</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="GenericScan.html">Generic Scanning Instrument</a></dt><dd><p>Editor: <em>Mark Knnecke</em>, PSI</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Monochromatic Neutron and X-ray Triple-Axis Spectrometer &lt;Monochromatic_Neutron_and_X-ray_Triple-Axis_Spectrometer.html&gt;</dt><dd><p>Editor: <em>Nicholas Maliszewskyj</em> (NIST Center for Neutron Research, USA).</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>### Proposed
+These definitions are being worked on and could still undergo modification before being voted on by the <a class="reference external" href="../niac/niac.html">NIAC</a>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference external" href="Monochromatic_Neutron_and_X-ray_Single_Crystal_Diffractometer.html">Monochromatic Neutron and X-ray Single Crystal Diffractometer</a></dt><dd><p>Editor: <em>Mark Knnecke</em>, PSI</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="Archive_Definition.html">Archive Definition</a></dt><dd><p>Editor: <em>Laurent Lerusse</em> (CCLRC - Rutherford Appleton Laboratory, e-Science, UK)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="SAS.html">Monochromatic Neutron and X-ray Small Angle Scattering</a></dt><dd><p>Editor: <em>Ron Ghosh</em> (Institut Laue Langevin, France)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Processed Data &lt;Processed_Data.html&gt;</dt><dd><p>Editor: <em>Ray Osborn</em> (Argonne National Laboratory, USA)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="XESraw.html">X-Ray Synchrotron Raw</a></dt><dd><p>Editor: <em>Stuart Campbell</em> (Diamond Light Source, UK)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="Muon_Time_Differential.html">Muon Time Differential</a></dt><dd><p>Editor: <em>Steve Cottrell</em> (ISIS, UK)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>### Planned
+These definitions are currently being worked on and so could still undergo major revisions. When they near completion, they will be moved into the <em>Proposed</em> category above.</p>
+<ul class="simple">
+<li><p>Diffraction</p></li>
+<li><p>Protein Crystallography</p></li>
+<li><dl class="simple">
+<dt><a class="reference external" href="Time-of-Flight_Neutron_Powder_Diffraction.html">Time-of-Flight Neutron Powder Diffraction</a></dt><dd><p>Editor: <em>Peter Peterson</em> (Spallation Neutron Source, USA).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Time-of-Flight Neutron Single Crystal Diffractometer &lt;Time-of-Flight_Neutron_Single_Crystal_Diffractometer.html&gt;</dt><dd><p>Editor: TBA</p>
+</dd>
+</dl>
+</li>
+<li><p>Reflectometry</p></li>
+<li><dl class="simple">
+<dt>Time-of-Flight Neutron Reflectometry &lt;Time-of-Flight_Neutron_Reflectometry.html&gt;</dt><dd><p>Editor: <em>Robert Dalgliesh</em> (ISIS Pulsed Neutron and Muon Source, UK)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><a class="reference external" href="Monochromatic_Neutron_and_X-ray_Reflectometry.html">Monochromatic Neutron and X-ray Reflectometry</a></dt><dd><p>Editor: <em>Paul Kienzle</em> (NIST Center for Neutron Research, USA)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Imaging</dt><dd><ul>
+<li><p>X-ray Tomography</p></li>
+<li><p>Small-Angle Scattering</p></li>
+<li><p>Grazing Incidence Small-Angle X-ray Scattering (Editor: TBA)</p></li>
+<li><dl class="simple">
+<dt>Time-of-Flight Small Angle Scattering &lt;Time-of-Flight_Small_Angle_Scattering.html&gt;</dt><dd><p>Editor: <em>Stephen King</em> (ISIS Pulsed Neutron and Muon Source, UK)</p>
+</dd>
+</dl>
+</li>
+<li><p>Ultra-Small-Angle Neutron Scattering (Editor: TBA)</p></li>
+<li><dl class="simple">
+<dt>Ultra-Small-Angle X-ray Scattering</dt><dd><p>Editor: <em>Pete Jemian</em> (Advanced Photon Source, USA)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Spectrometers</dt><dd><ul>
+<li><dl class="simple">
+<dt>Time-of-Flight Neutron Direct Geometry Spectrometer &lt;Time-of-Flight_Neutron_Direct_Geometry_Spectrometer.html&gt;</dt><dd><p>Editor: <em>Toby Perring</em> (ISIS Pulsed Neutron and Muon Source, UK)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Time-of-Flight Neutron Indirect Geometry Spectrometer &lt;Time-of-Flight_Neutron_Indirect_Geometry_Spectrometer.html&gt;</dt><dd><p>Editor: <em>Martyn Bull</em> (ISIS Pulsed Neutron and Muon Source, UK)</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>XAS: X-ray Absorption Spectroscopy</p></li>
+<li><p>XPCS: X-ray Photon Correlation Spectroscopy</p></li>
+<li><dl class="simple">
+<dt>Spin-Echo</dt><dd><ul>
+<li><dl class="simple">
+<dt><cite>Neutron Spin Echo &lt;Neutron_Spin_Echo&gt;</cite></dt><dd><p>Editor: <em>Robert Georgii</em> (FRM-II, Germany)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Time-of-Flight Neutron Spin Echo &lt;Time-of-Flight_Neutron_Spin_Echo.html&gt;</dt><dd><p>Editor: TBA</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Instruments</a><ul>
+<li><a class="reference internal" href="#instrument-definitions-list">Instrument Definitions List</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Indirect_Time-of-Flight_and_Coordinates.html"
+                          title="previous chapter">Indirect Time-of-Flight and Coordinates</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="IssueReporting.html"
+                          title="next chapter">IssueReporting</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/Instruments.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="IssueReporting.html" title="IssueReporting"
+             >next</a></li>
+        <li class="right" >
+          <a href="Indirect_Time-of-Flight_and_Coordinates.html" title="Indirect Time-of-Flight and Coordinates"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Instruments</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

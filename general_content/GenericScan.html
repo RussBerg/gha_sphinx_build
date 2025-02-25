@@ -1,0 +1,262 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>GenericScan &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Group Attributes" href="Group_Attributes.html" />
+    <link rel="prev" title="File id attribute for Nexus files" href="File_id_attribute_for_Nexus_files.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Group_Attributes.html" title="Group Attributes"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="File_id_attribute_for_Nexus_files.html" title="File id attribute for Nexus files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">GenericScan</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="genericscan">
+<h1>GenericScan<a class="headerlink" href="#genericscan" title="Link to this heading">¶</a></h1>
+<section id="generic-scan-instrument">
+<h2>Generic Scan Instrument<a class="headerlink" href="#generic-scan-instrument" title="Link to this heading">¶</a></h2>
+<p>This is a DTD for an example generic instrument which performs scans.
+This example is for an omega-two-theta (rotation_angle polar_angle
+in NeXus notation) scan and serves to highlight NeXus scan data storage
+principles:</p>
+<ul class="simple">
+<li><p>Assume np to be the number of scan points</p></li>
+<li><p>Variable data (such as motors) which can vary during the scan are stored as arrays of length np at their proper place in the NXinstrument hierarchy.</p></li>
+<li><p>In NXdata links to all varied positions and the dectector counts are created.</p></li>
+</ul>
+<p>This provides for easy access to the popular table format for scans.
+- In the case of multi dimensional detectors, the PSD data must be stored with the scan variable being the fastest varying dimension(the first) for technical reasons.
+- If you to choose to store PSD scans in separate files or separate entries, it is the users responsibility to process the data in the right order.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">URL: http://www.neutron.anl.gov/nexus/xml/NXscan.xml</span>
+<span class="cm">Editor: Mark Koennecke</span>
+<span class="cm">Version: October 2006</span>
+
+<span class="cm">Instrument Definition example for a simple two axis scan. This example is for</span>
+<span class="cm">an omega-two-theta (rotation_angle polar_angle in NeXus notation)</span>
+<span class="cm">scan and serves to highlight NeXus scan data storage principles:</span>
+<span class="cm">- Assume np to be the number of scan points</span>
+<span class="cm">- Variable data (such as motors) which can vary during the scan are stored as arrays of length np at</span>
+<span class="cm">  their proper place in the NXinstrument hierarchy.</span>
+<span class="cm">- In NXdata links to all varied positions and the dectector counts are created. This</span>
+<span class="cm">  provides for easy access to the popular table format for scans.</span>
+<span class="cm">- In the case of multi dimensional detectors, the PSD data must be stored with the scan</span>
+<span class="cm">  variable being the fastest varying dimension(the first) for technical reasons.</span>
+<span class="cm">- If you to choose to store PSD scans in separate files or separate entries, it is the users</span>
+<span class="cm">  responsibility to process the data in the right order.</span>
+
+<span class="cm">Note:</span>
+<span class="cm">This example is fairly minimal. Feel free to add whatever you think necessary. However, if</span>
+<span class="cm">items are missing which are required for standard data reduction tasks, please consult the</span>
+<span class="cm">editor of this example.</span>
+
+<span class="cm">--&gt;</span>
+
+<span class="nt">&lt;NXroot&gt;</span>
+<span class="w">   </span><span class="nt">&lt;NXentry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Entry name}&quot;</span><span class="nt">&gt;</span>+
+<span class="w">        </span><span class="nt">&lt;title&gt;</span>{Extended<span class="w"> </span>title<span class="w"> </span>for<span class="w"> </span>entry}<span class="nt">&lt;/title&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXsample</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{sample}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;name&gt;</span>{Descriptive<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>sample}<span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;environment&gt;</span>{Type<span class="w"> </span>of<span class="w"> </span>sample<span class="w"> </span>environment}<span class="nt">&lt;/environment&gt;</span>
+<span class="w">            </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">               </span>{polar_angle<span class="w"> </span>to<span class="w"> </span>monochromator}
+<span class="w">            </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">            </span><span class="nt">&lt;rotation_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">               </span>{<span class="w"> </span>sample<span class="w"> </span>rotation}
+<span class="w">            </span><span class="nt">&lt;/rotation_angle&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXsample&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXinstrument</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{name}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;name&gt;</span>{name<span class="w"> </span>of<span class="w"> </span>instrument}<span class="nt">&lt;/name&gt;</span>
+<span class="w">            </span><span class="nt">&lt;NXsource</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{name}&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;name&gt;</span>{name<span class="w"> </span>of<span class="w"> </span>facility}<span class="nt">&lt;/name&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;type&gt;</span>&quot;Reactor&quot;<span class="nt">&lt;/type&gt;</span>
+<span class="w">                </span><span class="nt">&lt;power</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;MW&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span>{reactor<span class="w"> </span>power}<span class="nt">&lt;/power&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXsource&gt;</span>
+<span class="w">            </span><span class="nt">&lt;NXcrystal</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;monochromator&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span><span class="nt">&lt;wavelength</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;Angstrom&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">                  </span>{wavelength<span class="w"> </span>at<span class="w"> </span>each<span class="w"> </span>scan<span class="w"> </span>position}
+<span class="w">                </span><span class="nt">&lt;/wavelength&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXcrystal&gt;</span>
+<span class="w">            </span><span class="nt">&lt;NXdetector</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;primary&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[np]&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">                </span>{Detector<span class="w"> </span>counts<span class="w"> </span>for<span class="w"> </span>each<span class="w"> </span>scan<span class="w"> </span>position}
+<span class="w">              </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">              </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">                 </span>{polar<span class="w"> </span>angle<span class="w"> </span>for<span class="w"> </span>each<span class="w"> </span>scan<span class="w"> </span>position}
+<span class="w">              </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/NXdetector&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXinstrument&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXmonitor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control&quot;</span><span class="nt">&gt;</span>
+<span class="w">           </span><span class="nt">&lt;mode</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>monitor<span class="w"> </span>|<span class="w"> </span>timer<span class="nt">&lt;/mode&gt;</span>
+<span class="w">           </span><span class="nt">&lt;preset</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span>{preset<span class="w"> </span>value<span class="w"> </span>for<span class="w"> </span>monitor<span class="w"> </span>or<span class="w"> </span>timer}
+<span class="w">            </span><span class="nt">&lt;/preset&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">               </span>{Monitor<span class="w"> </span>counts<span class="w"> </span>for<span class="w"> </span>each<span class="w"> </span>scan<span class="w"> </span>position}
+<span class="w">            </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXmonitor&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXdata</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{data}&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[np]&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span>{Link<span class="w"> </span>to<span class="w"> </span>detector<span class="w"> </span>counts}
+<span class="w">            </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">            </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">primary=</span><span class="s">&quot;2&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span>{Link<span class="w"> </span>to<span class="w"> </span>detector<span class="w"> </span>polar_angle}
+<span class="w">           </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">           </span><span class="nt">&lt;rotation_angle</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">primary=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">              </span>{Link<span class="w"> </span>to<span class="w"> </span>sample<span class="w"> </span>rotation_angle}
+<span class="w">           </span><span class="nt">&lt;/rotation_angle&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXdata&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXentry&gt;</span>
+<span class="nt">&lt;/NXroot&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">GenericScan</a><ul>
+<li><a class="reference internal" href="#generic-scan-instrument">Generic Scan Instrument</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="File_id_attribute_for_Nexus_files.html"
+                          title="previous chapter">File id attribute for Nexus files</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Group_Attributes.html"
+                          title="next chapter">Group Attributes</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/GenericScan.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Group_Attributes.html" title="Group Attributes"
+             >next</a></li>
+        <li class="right" >
+          <a href="File_id_attribute_for_Nexus_files.html" title="File id attribute for Nexus files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">GenericScan</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,235 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Archive Definition &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Associating Axes with Data" href="Associating_Axes_with_Data.html" />
+    <link rel="prev" title="2014 How to Find Default Data" href="2014_How_to_find_default_data.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Associating_Axes_with_Data.html" title="Associating Axes with Data"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="2014_How_to_find_default_data.html" title="2014 How to Find Default Data"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Archive Definition</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="archive-definition">
+<h1>Archive Definition<a class="headerlink" href="#archive-definition" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>The <strong>NeXus Archive Definition</strong> proposal is similar to an <strong>Instrument Definition</strong> but describes the required information for NeXus files intended for central archival. It includes essential information not found in the instrument definition, as it is not required for data analysis.</p>
+<p>The Instrument Definitions should enable the creation of archiving software shared among multiple instruments or facilities. The Archive Definition aims to facilitate shared data management tools and emphasizes information useful for data search and retrieval from the archive. The Instrument Definitions and Archive Definition are complementary and do not interfere with each other.</p>
+<p>For data analysis, information such as the data owner’s name or the sample’s name is not necessary. However, before archiving and indexing data, it is essential to define the granularity for indexing. While HDF5 allows extracting a single group from a file in an SRB system, cataloging data at such a fine level may not be practical at a facility level. This definition assumes indexing occurs at the file level.</p>
+<p>Optional parameters are provided for highly recommended but not required information. The definition is primarily designed for <strong>RAW files</strong>, though additional parameters may be necessary for <strong>processed/result</strong> or <strong>simulation files</strong>.</p>
+</section>
+<section id="multiple-nxentry-issue">
+<h2>Multiple NXentry Issue<a class="headerlink" href="#multiple-nxentry-issue" title="Link to this heading">¶</a></h2>
+<p>A NeXus file may contain several NXentry groups, each requiring separate indexing. However, not all NXentry groups need to be indexed. For instance, one entry may contain event data while another holds histograms for the same measurement.</p>
+<ul class="simple">
+<li><p>NXentry groups requiring indexing will have the attribute <cite>index=”yes”</cite>.</p></li>
+<li><p>NXentry groups not requiring indexing will have <cite>index=”no”</cite>.</p></li>
+<li><p>Non-indexed NXentry groups can be associated with an indexed NXentry group using the attribute <cite>index_group</cite>.</p></li>
+</ul>
+<p>If there is only one NXentry group, or if all metadata are identical across entries, the <cite>index</cite> or <cite>index_group</cite> attribute is unnecessary.</p>
+</section>
+<section id="parameter-names">
+<h2>Parameter Names<a class="headerlink" href="#parameter-names" title="Link to this heading">¶</a></h2>
+<p>When extracting metadata, users are not limited to the parameters listed here. Facility, instrument, or sample-specific information may also be extracted.</p>
+<p>Descriptive and consistently meaningful parameter names are preferable. For example, use <cite>temp_control</cite> and <cite>temp_sample</cite> rather than <cite>temp_1</cite> and <cite>temp_2</cite>, which may vary in meaning across experiments.</p>
+</section>
+<section id="too-much-metadata-is-better-than-too-little">
+<h2>Too Much Metadata Is Better Than Too Little<a class="headerlink" href="#too-much-metadata-is-better-than-too-little" title="Link to this heading">¶</a></h2>
+<p>Missing information cannot be extracted later. Providing as much metadata as possible ensures future usability.</p>
+</section>
+<section id="dtd-definition">
+<h2>DTD Definition<a class="headerlink" href="#dtd-definition" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><cite>{Extended title for file}</cite></p></li>
+<li><p><cite>{Unique identifier for the experiment, defined by the facility, possibly linked to proposals (see: proposal_identifier below)}</cite></p></li>
+<li><p><cite>{Brief summary of the experiment, including key objectives.}</cite></p></li>
+<li><p><cite>{Description of the full experiment (document in PDF, LaTeX, etc.)}?</cite></p></li>
+<li><p><cite>{User or Data Acquisition-defined group of NeXus files or NXentry}?</cite></p></li>
+<li><p><cite>{Brief summary of the collection, including grouping criteria.}?</cite></p></li>
+<li><p><cite>{Unique identifier for the measurement, defined by the facility.}?</cite></p></li>
+<li><p><cite>{Starting time of measurement}</cite></p></li>
+<li><p><cite>{Ending time of measurement}</cite></p></li>
+<li><p><cite>{Duration of measurement (end_time - start_time)}?</cite></p></li>
+<li><p><cite>{Actual data collection time, excluding suspensions (e.g., temperature out of range)}?</cite></p></li>
+<li><p><cite>{Revision ID of the file (e.g., due to re-calibration, reprocessing, new analysis, new instrument definition format)}</cite></p></li>
+<li><p><cite>{Name of entry DTD}</cite></p></li>
+<li><p><cite>{Name of entry DTD}?</cite></p></li>
+<li><p><cite>{Name of program used to generate this file}</cite></p></li>
+</ul>
+<p>### User Information
+- <cite>{Name of user responsible for this entry}</cite>
+- <cite>{Role of user (comma-separated list, e.g., “local_contact”, “principal_investigator”, “proposer”, “experimenter”, “funding_agency”)}</cite>
+- <cite>{Facility-based unique identifier for this person (e.g., identification code in the facility’s address/contact database)}</cite></p>
+<p>### Instrument Information
+- <cite>{Name of instrument}</cite>
+- <cite>{Brief description of the instrument}?</cite>
+- <cite>{Name of source}</cite>
+- <cite>{Source type: “Spallation Neutron Source” | “Pulsed Reactor Neutron Source” | “Reactor Neutron Source” | “Synchrotron X-ray Source” | “Pulsed Muon Source” | “Rotating Anode X-ray” | “Fixed Tube X-ray”}</cite>
+- <cite>{Radiation type: neutron | x-ray | muon | electron}</cite></p>
+<p>### Sample Information
+- <cite>{Descriptive name of the sample}</cite>
+- <cite>{Unique identifier for the sample in the experiment}</cite>
+- <cite>{Description of the sample}?</cite>
+- <cite>{Sample type: sample | sample+can | can | calibration sample | normalization sample | simulated data | none | sample environment}</cite>
+- <cite>{Chemical formula (using CIF conventions)}?</cite>
+- <cite>{Date of sample preparation}?</cite>
+- <cite>{Atmosphere during experiment: air | vacuum | inert atmosphere | oxidizing atmosphere | reducing atmosphere | sealed can | other}</cite>
+- <cite>{Sample temperature}?</cite>
+- <cite>{Applied electric field}?</cite>
+- <cite>{Applied magnetic field}?</cite>
+- <cite>{External stress}?</cite>
+- <cite>{Applied pressure}?</cite></p>
+<p>### Additional Metadata
+- <cite>{Public release date of the data (e.g., file_time + X years)}?</cite></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Archive Definition</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#multiple-nxentry-issue">Multiple NXentry Issue</a></li>
+<li><a class="reference internal" href="#parameter-names">Parameter Names</a></li>
+<li><a class="reference internal" href="#too-much-metadata-is-better-than-too-little">Too Much Metadata Is Better Than Too Little</a></li>
+<li><a class="reference internal" href="#dtd-definition">DTD Definition</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="2014_How_to_find_default_data.html"
+                          title="previous chapter">2014 How to Find Default Data</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Associating_Axes_with_Data.html"
+                          title="next chapter">Associating Axes with Data</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/Archive_Definition.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Associating_Axes_with_Data.html" title="Associating Axes with Data"
+             >next</a></li>
+        <li class="right" >
+          <a href="2014_How_to_find_default_data.html" title="2014 How to Find Default Data"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Archive Definition</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

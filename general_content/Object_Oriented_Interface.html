@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Object Oriented Interface &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Objects or Interfaces" href="Objects_or_Interfaces.html" />
+    <link rel="prev" title="NXtranslate" href="NXtranslate.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Objects_or_Interfaces.html" title="Objects or Interfaces"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="NXtranslate.html" title="NXtranslate"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Object Oriented Interface</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="object-oriented-interface">
+<h1>Object Oriented Interface<a class="headerlink" href="#object-oriented-interface" title="Link to this heading">¶</a></h1>
+<p>For object oriented languages (C++, Java, and Python) it would be good
+if there were a common object oriented way of working with NeXus files.
+This page is set up for determining the public methods of a “NeXusFile”
+object.</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">NeXusFile</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="nc">access</span><span class="p">(</span><span class="n">READ</span><span class="o">=</span><span class="n">NXACC_READ</span><span class="p">,</span><span class="w"> </span><span class="n">WRITE</span><span class="o">=</span><span class="n">NXACC_CREATE</span><span class="p">,</span><span class="w"> </span><span class="n">WRITE_HDF4</span><span class="o">=</span><span class="n">NXACC_CREATE4</span><span class="p">,</span>
+<span class="w">                      </span><span class="n">WRITE_HDF5</span><span class="o">=</span><span class="n">NXACC_CREATE5</span><span class="p">,</span><span class="w"> </span><span class="n">READ_WRITE</span><span class="o">=</span><span class="n">NXACC_RDWR</span><span class="p">);</span>
+<span class="w">  </span><span class="k">enum</span><span class="w"> </span><span class="nc">compress</span><span class="p">(</span><span class="n">COMP_LZW</span><span class="o">=</span><span class="n">NX_COMP_LZW</span><span class="p">,</span><span class="n">COMP_HUF</span><span class="o">=</span><span class="n">NX_COMP_HUF</span><span class="p">,</span><span class="n">COMP_RLE</span><span class="o">=</span><span class="n">NX_COMP_RLE</span><span class="p">,</span><span class="n">COMP_NONE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// constructor, default mode is read</span>
+<span class="w">  </span><span class="n">NeXusFile</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">access</span><span class="w"> </span><span class="n">mode</span><span class="o">=</span><span class="n">READ</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// opens the specified absolute path in the file. the path is</span>
+<span class="w">  </span><span class="c1">// a &#39;/&#39; delimited list of the names to open. If any portion of</span>
+<span class="w">  </span><span class="c1">//the path does not exist an exception will be thrown.</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">openPath</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">path</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// creates and opens a group. this throws an exception when fails</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">make_group</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="k">class</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// creates and opens a data. this throws an exception when fails</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">make_data</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>
+<span class="w">                           </span><span class="o">&amp;</span><span class="n">dimensions</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">compress</span><span class="w"> </span><span class="n">comp_type</span><span class="o">=</span><span class="n">COMP_NONE</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>[Peter Peterson](User%3APfpeterson.html “wikilink”), SNS</p>
+<section id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h2>
+<p>01/2015 This is now obsolete. Implementations in C++ and python are
+available.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Object Oriented Interface</a><ul>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NXtranslate.html"
+                          title="previous chapter">NXtranslate</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Objects_or_Interfaces.html"
+                          title="next chapter">Objects or Interfaces</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/Object_Oriented_Interface.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Objects_or_Interfaces.html" title="Objects or Interfaces"
+             >next</a></li>
+        <li class="right" >
+          <a href="NXtranslate.html" title="NXtranslate"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Object Oriented Interface</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

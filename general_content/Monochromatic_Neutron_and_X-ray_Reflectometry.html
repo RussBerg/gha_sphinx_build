@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Monochromatic Neutron and X-ray Reflectometry &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Monochromatic Neutron and X-ray Single Crystal Diffractometer" href="Monochromatic_Neutron_and_X-ray_Single_Crystal_Diffractometer.html" />
+    <link rel="prev" title="Monochromatic Neutron and X-ray Powder Diffraction" href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Monochromatic_Neutron_and_X-ray_Single_Crystal_Diffractometer.html" title="Monochromatic Neutron and X-ray Single Crystal Diffractometer"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html" title="Monochromatic Neutron and X-ray Powder Diffraction"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Monochromatic Neutron and X-ray Reflectometry</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="monochromatic-neutron-and-x-ray-reflectometry">
+<h1>Monochromatic Neutron and X-ray Reflectometry<a class="headerlink" href="#monochromatic-neutron-and-x-ray-reflectometry" title="Link to this heading">¶</a></h1>
+<p><strong>Please add comments to the discussion tab of this page and sign them</strong></p>
+<p>This proposed instrument definition adds a new class (NXspin) and also incorporates a few additions to existing base classes.</p>
+<section id="additions">
+<h2>Additions<a class="headerlink" href="#additions" title="Link to this heading">¶</a></h2>
+<p>### New background</p>
+<p>NXcharacterization type: <cite>specular_offset_background</cite></p>
+<p>The two existing backgrounds are <cite>isotropic_scatter</cite> and <cite>empty_container</cite>. Physically, we are moving the detector/sample slightly away from the specular reflection condition and measuring the strength of the signal rather than putting an isotropic scatter at the sample position or leaving it empty. Note: this simply identifies the location of the background scan, but does not specify how the background was measured.</p>
+<p>### Need to know the sample angle</p>
+<p>Propose adding the following to NXsample:
+- Polar angle of the sample with respect to the beam incident on the monochromator
+- Azimuthal angle of the sample with respect to the beam incident on the monochromator
+- Rotation angle of the sample</p>
+<p>These fields are already used in the ratified NXmonotas, so there should be no problem ratifying them in the base class.</p>
+<p>### Record Spin State</p>
+<p>For polarized neutron reflectometry, the control software allows the user to select and tune a particular spin state. Expressed in terms of the individual filters and flipper currents, it is difficult to determine which spin state is desired. Instead, the instrument component should record the target spin state. Propose NXspin class to record the target spin at the sample or at the detector:
+- 90 for spin up, -90 for spin down
+- Constant usually ignored. 0 in the direction of the beam path.</p>
+<p>### Accurate record of the start and stop of every scan</p>
+<p>We need an accurate record of the start and stop of every measurement in a scan (e.g., to normalize by measurement time, and to correct for He3 polarizer efficiency decay). NXmonitor already stores count duration. Propose adding <cite>count_start_time</cite> as well:
+- Start time for each scan point</p>
+<p>The alternative is to use NXlog and assume a particularly named log corresponds to the NXmonitor, with the same length as the measured points:
+- Start of the measurement of point np
+- Durations of the measurement point np</p>
+<p>The first solution is cleaner.</p>
+</section>
+<section id="full-definition">
+<h2>Full Definition<a class="headerlink" href="#full-definition" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Monochromatic Neutron and X-ray Reflectometry</a><ul>
+<li><a class="reference internal" href="#additions">Additions</a></li>
+<li><a class="reference internal" href="#full-definition">Full Definition</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html"
+                          title="previous chapter">Monochromatic Neutron and X-ray Powder Diffraction</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Monochromatic_Neutron_and_X-ray_Single_Crystal_Diffractometer.html"
+                          title="next chapter">Monochromatic Neutron and X-ray Single Crystal Diffractometer</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/Monochromatic_Neutron_and_X-ray_Reflectometry.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Monochromatic_Neutron_and_X-ray_Single_Crystal_Diffractometer.html" title="Monochromatic Neutron and X-ray Single Crystal Diffractometer"
+             >next</a></li>
+        <li class="right" >
+          <a href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html" title="Monochromatic Neutron and X-ray Powder Diffraction"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Monochromatic Neutron and X-ray Reflectometry</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

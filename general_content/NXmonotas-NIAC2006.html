@@ -1,0 +1,294 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NXmonotas-NIAC2006 &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NXnet Proposal" href="NXnet_Proposal.html" />
+    <link rel="prev" title="NXmonotas example-NIAC2006" href="NXmonotas_example-NIAC2006.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NXnet_Proposal.html" title="NXnet Proposal"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="NXmonotas_example-NIAC2006.html" title="NXmonotas example-NIAC2006"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NXmonotas-NIAC2006</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nxmonotas-niac2006">
+<h1>NXmonotas-NIAC2006<a class="headerlink" href="#nxmonotas-niac2006" title="Link to this heading">¶</a></h1>
+<p>Example:
+<a class="reference external" href="NXmonotas_example-NIAC2006.html">[NXmonotas_example-NIAC2006]</a></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!--</span>
+<span class="cm">URL:     http://www.nexus.anl.gov/classes/xml/NXmonotas.xml</span>
+<span class="cm">Editor:  NIAC</span>
+<span class="cm">NIAC Version: 0.1</span>
+<span class="cm">$Id: monotas.docbook,v 1.1 2005/06/14 16:50:35 pfp Exp $</span>
+<span class="cm">Template of a generic NeXus file containing neutron or x-ray triple-axis data.--&gt;</span>
+
+<span class="nt">&lt;NXentry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of entry}&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;title</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;definition</span><span class="w"> </span><span class="na">URL=</span><span class="s">&quot;http://www.nexus.anl.gov/instruments/xml/NXmonotas.xml&quot;</span>
+<span class="w">      </span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>NXmonotas
+<span class="w">  </span><span class="nt">&lt;/definition&gt;</span>
+<span class="w">  </span><span class="nt">&lt;start_time</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXsample</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sample&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;name</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;unit_cell</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;orientation_matrix</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;sample_orientation</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plane_vector_0</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[3]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Reciprocal<span class="w"> </span>space<span class="w"> </span>vector<span class="w"> </span>of<span class="w"> </span>primary<span class="w"> </span>reflection<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>scattering<span class="w"> </span>plane}
+<span class="w">    </span><span class="nt">&lt;/plane_vector_0&gt;</span>
+<span class="w">    </span><span class="nt">&lt;plane_vector_1</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[3]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Reciprocal<span class="w"> </span>space<span class="w"> </span>vector<span class="w"> </span>of<span class="w"> </span>secondary<span class="w"> </span>reflection<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>scattering<span class="w"> </span>plane}
+<span class="w">    </span><span class="nt">&lt;/plane_vector_1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[:,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Polar<span class="w"> </span>angle<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>sample<span class="w"> </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>beam<span class="w"> </span>incident<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>monochromator}
+<span class="w">    </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;azimuthal_angle</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Azimuthal<span class="w"> </span>angle<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>sample<span class="w"> </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>beam<span class="w"> </span>incident<span class="w"> </span>on<span class="w"> </span>the
+<span class="w">      </span>monochromator}
+<span class="w">    </span><span class="nt">&lt;/azimuthal_angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;rotation_angle</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[:,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Rotation<span class="w"> </span>angle<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>sample}
+<span class="w">    </span><span class="nt">&lt;/rotation_angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Q</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_Float32[nd,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span>{Magnitude<span class="w"> </span>of<span class="w"> </span>momemtum<span class="w"> </span>transfer<span class="w"> </span>vector}?
+<span class="w">     </span><span class="nt">&lt;/Q&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Qh</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[nd,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Reciprocal<span class="w"> </span>space<span class="w"> </span>component<span class="w"> </span>of<span class="w"> </span>scan}?
+<span class="w">    </span><span class="nt">&lt;/Qh&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Qk</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[nd,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Reciprocal<span class="w"> </span>space<span class="w"> </span>component<span class="w"> </span>of<span class="w"> </span>scan}?
+<span class="w">    </span><span class="nt">&lt;/Qk&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Ql</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[nd,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Reciprocal<span class="w"> </span>space<span class="w"> </span>component<span class="w"> </span>of<span class="w"> </span>scan}?
+<span class="w">    </span><span class="nt">&lt;/Ql&gt;</span>
+<span class="w">    </span><span class="nt">&lt;energy_transfer</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;meV&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[nd,np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Energy<span class="w"> </span>transfer<span class="w"> </span>of<span class="w"> </span>scan}
+<span class="w">    </span><span class="nt">&lt;/energy_transfer&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXsample&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXinstrument</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of instrument}&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;NXcollimator</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;premonochromator_collimator&quot;</span><span class="nt">&gt;</span>?
+<span class="w">      </span><span class="nt">&lt;type</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;soller_angle</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXcollimator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXfilter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;premonochromator_filter&quot;</span><span class="nt">&gt;</span>?
+<span class="w">      </span><span class="nt">&lt;description</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXfilter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXcrystal</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;monochromator&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;type</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;energy</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;meV&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{Optimum<span class="w"> </span>diffracted<span class="w"> </span>energy}
+<span class="w">      </span><span class="nt">&lt;/energy&gt;</span>
+<span class="w">      </span><span class="nt">&lt;d_spacing</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;Angstrom&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{The<span class="w"> </span>planar<span class="w"> </span>spacing<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>nominal<span class="w"> </span>reflection}
+<span class="w">      </span><span class="nt">&lt;/d_spacing&gt;</span>
+<span class="w">      </span><span class="nt">&lt;rotation_angle</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{Rotation<span class="w"> </span>angle<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>monochromator}
+<span class="w">      </span><span class="nt">&lt;/rotation_angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXcrystal&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXcollimator</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;presample_collimator&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXcollimator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXfilter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;presample_filter&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXfilter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXcollimator</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;preanalyzer_collimator&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXcollimator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXfilter</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;preanalyzer_filter&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXfilter&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXcrystal</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;analyzer&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;type</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;energy</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[nd,np]&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span>{Optimum<span class="w"> </span>diffracted<span class="w"> </span>energy<span class="w"> </span>for<span class="w"> </span>each<span class="w"> </span>analyzer}
+<span class="w">      </span><span class="nt">&lt;/energy&gt;</span>
+<span class="w">      </span><span class="nt">&lt;d_spacing</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;rotation_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[nd,np]&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXcrystal&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXcollimator</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;predetector_collimator&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXcollimator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXdetector</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;detector&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;counts</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;energy_transfer|Qh|Qk|Ql&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[:]&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{Integer<span class="w"> </span>counts}
+<span class="w">      </span><span class="nt">&lt;/counts&gt;</span>
+<span class="w">      </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[:]&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{Polar<span class="w"> </span>angle<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>detector<span class="w"> </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>beam<span class="w"> </span>incident<span class="w"> </span>on<span class="w"> </span>the
+<span class="w">        </span>monochromator}
+<span class="w">      </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">      </span><span class="nt">&lt;azimuthal_angle</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{Azimuthal<span class="w"> </span>angle<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>detector<span class="w"> </span>with<span class="w"> </span>respect<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>beam<span class="w"> </span>incident<span class="w"> </span>on
+<span class="w">        </span>the<span class="w"> </span>analyzer}
+<span class="w">      </span><span class="nt">&lt;/azimuthal_angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXdetector&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;/NXinstrument&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXmonitor&gt;</span>
+<span class="w">    </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;FLOAT32[np]&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXmonitor&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXtimer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;preset</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;FLOAT32[1|np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;second&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span>{Preset<span class="w"> </span>timer<span class="w"> </span>value.<span class="w"> </span>This<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>vector<span class="w"> </span>if<span class="w"> </span>your<span class="w"> </span>control<span class="w"> </span>software
+<span class="w">      </span>can<span class="w"> </span>allow<span class="w"> </span>different<span class="w"> </span>points<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>sequence<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>counted<span class="w"> </span>for<span class="w"> </span>different
+<span class="w">      </span>lengths.<span class="w">  </span>The<span class="w"> </span>measured<span class="w"> </span>duration<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>necessarily<span class="w"> </span>equal<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>preset
+<span class="w">      </span>since<span class="w"> </span>the<span class="w"> </span>monitor<span class="w"> </span>or<span class="w"> </span>detector<span class="w"> </span>may<span class="w"> </span>reach<span class="w"> </span>their<span class="w"> </span>presets<span class="w"> </span>earlier}?
+<span class="w">    </span><span class="nt">&lt;/preset&gt;</span>
+<span class="w">    </span><span class="nt">&lt;start</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;FLOAT32[np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;second&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span>{Start<span class="w"> </span>times<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>individual<span class="w"> </span>measurements<span class="w"> </span>relative<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>start<span class="w"> </span>of
+<span class="w">      </span>the<span class="w"> </span>scan.<span class="w">  </span>This<span class="w"> </span>field<span class="w"> </span>is<span class="w"> </span>recommend<span class="w"> </span>so<span class="w"> </span>that<span class="w"> </span>for<span class="w"> </span>example<span class="w"> </span>NXlog<span class="w"> </span>entries
+<span class="w">      </span>can<span class="w"> </span>be<span class="w"> </span>plotted<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>same<span class="w"> </span>scale<span class="w"> </span>as<span class="w"> </span>individual<span class="w"> </span>points,<span class="w"> </span>but<span class="w"> </span>it<span class="w"> </span>is
+<span class="w">      </span>not<span class="w"> </span>required<span class="w"> </span>since<span class="w"> </span>many<span class="w"> </span>old<span class="w"> </span>data<span class="w"> </span>sets<span class="w"> </span>do<span class="w"> </span>not<span class="w"> </span>store<span class="w"> </span>it.}?
+<span class="w">    </span><span class="nt">&lt;/start&gt;</span>
+<span class="w">    </span><span class="nt">&lt;duration</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;FLOAT32[np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;second&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span>{Duration<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>individual<span class="w"> </span>measurements<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>scan.<span class="w"> </span>If<span class="w"> </span>absent,<span class="w"> </span>then
+<span class="w">      </span>the<span class="w"> </span>duration<span class="w"> </span>is<span class="w"> </span>assumed<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>preset.}?
+<span class="w">    </span><span class="nt">&lt;/duration&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXtimer&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXdata</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;data&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Qh</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/Qh&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Qk</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/Qk&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Ql</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/Ql&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;energy_transfer</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/energy_transfer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;counts</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXinstrument/detector/counts&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;count_start</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXtimer/start&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;count_duration</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXtimer/duration&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;count_monitor</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXmonitor/data&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;energy</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXinstrument/analyzer/energy&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXdata&gt;</span>
+
+<span class="nt">&lt;/NXentry&gt;</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NXmonotas_example-NIAC2006.html"
+                          title="previous chapter">NXmonotas example-NIAC2006</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NXnet_Proposal.html"
+                          title="next chapter">NXnet Proposal</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/NXmonotas-NIAC2006.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NXnet_Proposal.html" title="NXnet Proposal"
+             >next</a></li>
+        <li class="right" >
+          <a href="NXmonotas_example-NIAC2006.html" title="NXmonotas example-NIAC2006"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NXmonotas-NIAC2006</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

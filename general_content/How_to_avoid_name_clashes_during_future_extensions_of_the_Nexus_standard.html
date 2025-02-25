@@ -1,0 +1,210 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>How to avoid name clashes during future extensions of the Nexus standard &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IndirectDiscuss" href="IndirectDiscuss.html" />
+    <link rel="prev" title="Group Attributes" href="Group_Attributes.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="IndirectDiscuss.html" title="IndirectDiscuss"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Group_Attributes.html" title="Group Attributes"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to avoid name clashes during future extensions of the Nexus standard</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-to-avoid-name-clashes-during-future-extensions-of-the-nexus-standard">
+<h1>How to avoid name clashes during future extensions of the Nexus standard<a class="headerlink" href="#how-to-avoid-name-clashes-during-future-extensions-of-the-nexus-standard" title="Link to this heading">¶</a></h1>
+<p>The current standard allows users to use any name they want for fields and groups within base
+classes. This can cause troubles for future extensions of the standard. Consider the simple case
+where a user has chosen a name for a field within a base class which is not used by the current
+standard. What will happen when the NIAC decides 3 years later that this name will be used for a
+new standard field in the same base class. There are three possible approaches to avoid this
+problem:</p>
+<ul class="simple">
+<li><p>every user defined field must start with a particular prefix</p></li>
+<li><p>use strong typing not only for groups but also for fields</p></li>
+<li><p>store all non-standard fields in an instance of NXcollection</p></li>
+</ul>
+<p>Each of these approaches has its pros and cons which should be discussed in this article.
+Question: I readily agree that there is a potential problem. But what does it tell us that we
+needed 20 years to discover it? MK</p>
+<section id="prefixes-for-user-defined-names">
+<h2>Prefixes for user defined names<a class="headerlink" href="#prefixes-for-user-defined-names" title="Link to this heading">¶</a></h2>
+<p>The most obvious way would be to add a prefix to a field in order to distinguish standard- from
+user-defined fields. For instance we could require users to prefix their own fields with <cite>user__</cite>
+so a user defined angle would have a name like user__tth</p>
+<p>Pros:
+* easy to implement – a paragraph in the documentation would suffice</p>
+<p>Cons:
+* it is virtually impossible to force users to stick to this convention
+* every field name must be parsed before we can tell whether it is a standard or a user defined field
+* users hardly ever read a manual that careful to recognize such a convention</p>
+</section>
+<section id="strong-typing-for-fields">
+<h2>Strong typing for fields<a class="headerlink" href="#strong-typing-for-fields" title="Link to this heading">¶</a></h2>
+<p>A type could be added to each field by adding an attribute like <em>NX_class</em> for groups. Indeed we
+could reuse <em>NX_class</em> for fields. Such an approach might makes names entirely arbitrary as we
+search for fields by type rather than by name (as we are doing it for groups).</p>
+<p>Pros:</p>
+<p>Cons:
+- We break heavily with NeXus: the dictionary is part of NeXus
+- All searches would need to be for type. Types which are encoded in attributes. This becomes only practical with a special tool. Do we like special tools? Given our limited resources to maintain them?</p>
+</section>
+<section id="using-of-nxcollection">
+<h2>Using of NXcollection<a class="headerlink" href="#using-of-nxcollection" title="Link to this heading">¶</a></h2>
+<p>The third approach is to make more extensive use of <em>NXcollection</em>. Every field or group which
+is not defined by the standard will be stored in an instance of <em>NXcollection</em>.</p>
+<p>Pros:
+* like the prefix approach this is easy to do - just add a section in the documentation
+* no need to invent new concepts as <em>NXcollection</em> already exists
+* could use <em>NXcollection</em> as a kind of staging area for future class extensions</p>
+<p>Cons:
+* add an additional hierarchy to the Nexus tree
+* need to define standard name for instances of <em>NXcollection</em> to avoid future name clashes with the collection instance itself</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">How to avoid name clashes during future extensions of the Nexus standard</a><ul>
+<li><a class="reference internal" href="#prefixes-for-user-defined-names">Prefixes for user defined names</a></li>
+<li><a class="reference internal" href="#strong-typing-for-fields">Strong typing for fields</a></li>
+<li><a class="reference internal" href="#using-of-nxcollection">Using of NXcollection</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Group_Attributes.html"
+                          title="previous chapter">Group Attributes</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="IndirectDiscuss.html"
+                          title="next chapter">IndirectDiscuss</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/How_to_avoid_name_clashes_during_future_extensions_of_the_Nexus_standard.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="IndirectDiscuss.html" title="IndirectDiscuss"
+             >next</a></li>
+        <li class="right" >
+          <a href="Group_Attributes.html" title="Group Attributes"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How to avoid name clashes during future extensions of the Nexus standard</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

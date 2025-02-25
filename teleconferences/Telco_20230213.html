@@ -1,0 +1,266 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Telco 20230213 &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Telco 20230314" href="Telco_20230314.html" />
+    <link rel="prev" title="Telco 20230119" href="Telco_20230119.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Telco_20230314.html" title="Telco 20230314"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Telco_20230119.html" title="Telco 20230119"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="teleconferences.html" accesskey="U">Teleconferences</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Telco 20230213</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="telco-20230213">
+<h1>Telco 20230213<a class="headerlink" href="#telco-20230213" title="Link to this heading">¶</a></h1>
+<div class="content docutils container">
+<div class="page docutils container">
+<p class="page-title rubric" id="id1">Telco 20230213</p>
+<p class="rubric" id="telco-20230213-date">Date</p>
+<p>Monday, 13th February, 15:00 UTC</p>
+<p class="rubric" id="telco-20230213-connect">Connect</p>
+<ul class="simple">
+<li><p>ZOOM VC link:
+<a class="reference external" href="https://hu-berlin.zoom.us/j/65272091306pwd=WUxEa0ZtVXp1ZHlsSlVjU2lmclMrQT09">https://hu-berlin.zoom.us/j/65272091306pwd=WUxEa0ZtVXp1ZHlsSlVjU2lmclMrQT09</a></p></li>
+<li><p>Meeting ID: 652 7209 1306</p></li>
+<li><p>Passcode: nexus</p></li>
+</ul>
+<p class="rubric" id="telco-20230213-agenda">Agenda</p>
+<ul class="simple">
+<li><p>Pump-Probe experiments (HZB)</p></li>
+<li><p>Recent issues on Github (especially those labelled with
+“telco”)</p>
+<ul>
+<li><p><a class="reference external" href="https://github.com/nexusformat/definitions/issuesq=is%3Aopen+is%3Aissue">definitions</a></p></li>
+<li><p><a class="reference external" href="https://github.com/nexusformat/code/issuesq=is%3Aopen+is%3Aissue">code</a></p></li>
+</ul>
+</li>
+</ul>
+<p class="rubric" id="telco-20230213-present">Present</p>
+<p>SB, HG, PJ, BW, LG, RO, WdN, PC, CZ + Jack Allen (STFC), Sam
+Tygier(STFC), Christian Schussler(HZB)</p>
+<p class="rubric" id="telco-20230213-minutes">Minutes</p>
+<ul>
+<li><div class="line-block">
+<div class="line">Pump-Probe experiments (HZB)</div>
+<div class="line">Setup: pump Laser + xray probe &#64;3kHz with adjustable delay
+times</div>
+<div class="line">Detector: raw data -&gt; 6-15 paralell on-the-fly processing
+algorithm (logged as different channels)</div>
+<div class="line">BW: NeXus is felxible and allows several ways to store data,
+but the labels should reflect the meaning properly. 2
+solutions in Application Definitions:</div>
+<div class="line">a) define modes and label the data chanles with it</div>
+<div class="line">b) define different Fields for different operations</div>
+<div class="line">SB: can help HG with AppDef development</div>
+</div>
+</li>
+<li><p>Tomography (ISIS)</p>
+<ul class="simple">
+<li><p>After processing(!): 3D array of attenuation values
+They are floatingpoint numbers, so instead of NX_INT,
+NX_FLOAT would be better for storing them
+SB: NX_NUMBER
+PJ: +1
+PC: +1
+Solution: apply modification in the next Code-CAMP following
+a PR</p></li>
+<li><p>imaging data (projections)
+some processing (e.g. cropping) results could also be stored
+in the same structure.
+RO: we have NXprocess for such purpose
+RO: one can store big data in different files which may not
+be shipped
+Conclusion: processing results shall be stored separately,
+but their structure can be similar to that of the raw data.</p></li>
+<li><p>NXtomo_proc/DATA/data: required attributes &#64;offset,
+&#64;scaling, &#64;transformation, but what are they
+SB: documentation is important, NIAC shall not accept poor
+definition files
+SB: NXdata base class also has offset and scaling_factor
+Fields
+BW: MK added &#64;offset, &#64;scaling, &#64;transformation without
+documentation in the nxdl file, but refferrng to 2010 NIAC.
+See:
+<a class="reference external" href="https://github.com/nexusformat/wiki/blob/master/content/NIAC2010.html">minutes of 2010
+NIAC</a>
+and
+<a class="reference external" href="../niac/niac.html">all NIAC
+meetings</a> and
+<a class="reference external" href="http://lns00.psi.ch/nexus2010/">specific details of 2010
+NIAC</a>
+PJ: it seems it was used for something like
+NXtransformations now, but documentation in the nxdl files
+is necessary for proper understanding
+SB action point for Code-CAMP: check the original intent and
+review (maybe depricate it)</p></li>
+</ul>
+</li>
+<li><div class="line-block">
+<div class="line">NeXus Features</div>
+<div class="line">PJ: are they part of the standard</div>
+<div class="line">SB: No, this proposal was welcomed by NIAC and some examples
+were provided, but NIAC never accepted them in form to be
+officially maintained. Note that NXentry has a reserved field
+“features” for being able to refer to them.</div>
+<div class="line">SB: symbols require math which shall be supported and JS was
+chosen for first prototype implementation as JS engines
+provide secure sandbox runtime environment. Similar can also
+be achived by python wasm and other techniques, and it woud
+be great to be able to store machine-interpretable
+formulas/algortihms/codes attached to NeXus definitions and
+data. Note that this is also the primary aim of the Features.</div>
+<div class="line">HG: It would be great to be able to support such features
+supporting FAIR data pipelines.</div>
+</div>
+</li>
+<li><p>Topics for next meeting:</p>
+<ul class="simple">
+<li><p>NXdata: &#64;axes vs. &#64;AXISNAME_indices <a class="reference external" href="https://github.com/nexusformat/definitions/issues/1212">see the
+issue</a></p></li>
+<li><p>CodeCamp: when to organise the next one</p></li>
+</ul>
+</li>
+</ul>
+<p class="rubric" id="telco-20230213-march-telco">March Telco</p>
+<p>Please help to <a class="reference external" href="https://doodle.com/meeting/participate/id/az6or7ra">choose the date by responding to the
+poll</a> by
+Feb 28. We are planning to hold the telco in the regular slot of
+UTC 15:00. Check your local time to avoid scheduling surprises!</p>
+</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Telco_20230119.html"
+                          title="previous chapter">Telco 20230119</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Telco_20230314.html"
+                          title="next chapter">Telco 20230314</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/teleconferences/Telco_20230213.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Telco_20230314.html" title="Telco 20230314"
+             >next</a></li>
+        <li class="right" >
+          <a href="Telco_20230119.html" title="Telco 20230119"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="teleconferences.html" >Teleconferences</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Telco 20230213</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

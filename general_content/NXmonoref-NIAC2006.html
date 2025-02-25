@@ -1,0 +1,338 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NXmonoref-NIAC2006 &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NXmonotas example-NIAC2006" href="NXmonotas_example-NIAC2006.html" />
+    <link rel="prev" title="NXmonoref example-NIAC2006" href="NXmonoref_example-NIAC2006.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NXmonotas_example-NIAC2006.html" title="NXmonotas example-NIAC2006"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="NXmonoref_example-NIAC2006.html" title="NXmonoref example-NIAC2006"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NXmonoref-NIAC2006</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nxmonoref-niac2006">
+<h1>NXmonoref-NIAC2006<a class="headerlink" href="#nxmonoref-niac2006" title="Link to this heading">¶</a></h1>
+<p>The following is the proposed monochromatic reflectometry definition.</p>
+<section id="concerns">
+<h2>Concerns:<a class="headerlink" href="#concerns" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Using classes rather than names in links (e.g., NXdetector) will break if the user adds another detector group to the entry.</p></li>
+<li><p>I don’t record whether the reflectometer is horizontal or vertical geometry, but with slit and angles defined relative to the sample surface, this doesn’t matter.</p></li>
+<li><p>I’m asking the control software to write the wavelength divergence into the file so that the user can read it off directly without performing calculations.</p></li>
+<li><p>Not recording the region of interest used to measure count duration. Could create a virtual detector for this.</p></li>
+<li><p>Normalization by monitor/timer is not currently supported.</p></li>
+<li><p>For backgrounds, don’t know if the nominal Qz should be calculated from the theta or twotheta. The correct choice depends on the source of background.</p></li>
+</ul>
+</section>
+<section id="example">
+<h2>Example:<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p><a class="reference external" href="NXmonoref_example-NIAC2006.html">[NXmonoref_example-NIAC2006]</a></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">Instrument Definition for Monochromatic Source Reflectometers.</span>
+<span class="cm">Editor: Paul Kienzle &lt;pkienzle@nist.gov&gt;</span>
+<span class="cm">Mangled_by: Nick Maliszewskyj &lt;nickm@nist.gov&gt;</span>
+<span class="cm">$Id$</span>
+<span class="cm">See http://www.neutron.anl.gov:8080/NeXus/5 for component definitions.</span>
+
+<span class="cm">2006-02-03 Refined by NIAC group meetings.</span>
+<span class="cm">--&gt;</span>
+
+<span class="nt">&lt;NXentry&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;definition</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="w"> </span><span class="na">URL=</span><span class="s">&quot;http://www.nexus.anl.gov/instruments/xml/monoref.xml&quot;</span><span class="nt">&gt;</span>
+<span class="w">    </span>NXmonoref
+<span class="w">  </span><span class="nt">&lt;/definition&gt;</span>
+<span class="w">  </span><span class="nt">&lt;start_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXcharacterization</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;intensity&quot;</span><span class="nt">&gt;</span>*
+<span class="w">    </span>{Suggested<span class="w"> </span>spectrum<span class="w"> </span>measurement<span class="w"> </span>for<span class="w"> </span>intensity<span class="w"> </span>vs.<span class="w"> </span>wavelength
+<span class="w">     </span>for<span class="w"> </span>a<span class="w"> </span>given<span class="w"> </span>slit<span class="w"> </span>setting.<span class="w">  </span>Warning:<span class="w"> </span>beam<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>not
+<span class="w">     </span>regular,<span class="w"> </span>but<span class="w"> </span>this<span class="w"> </span>effect<span class="w"> </span>is<span class="w"> </span>accomodated<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>spectrum<span class="w"> </span>measurement}
+<span class="w">  </span><span class="nt">&lt;/NXcharacterization&gt;</span>
+<span class="w">  </span><span class="nt">&lt;NXcharacterization</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;background&quot;</span><span class="nt">&gt;</span>*
+<span class="w">    </span>{Suggested<span class="w"> </span>background<span class="w"> </span>measurement}
+<span class="w">  </span><span class="nt">&lt;/NXcharacterization&gt;</span>
+
+
+<span class="w">  </span><span class="nt">&lt;NXsample&gt;</span>
+<span class="w">    </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degrees&quot;</span><span class="nt">&gt;</span>?
+<span class="w">       </span>{Angle<span class="w"> </span>relative<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>scattering<span class="w"> </span>plane,<span class="w"> </span>not<span class="w"> </span>to<span class="w"> </span>gravity.}
+<span class="w">    </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">    </span><span class="nt">&lt;momentum_transfer</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[i]&quot;</span><span class="nt">&gt;</span>{|Q|}?<span class="nt">&lt;/momentum_transfeer&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXsample&gt;</span>
+
+
+<span class="w">  </span><span class="nt">&lt;NXinstrument&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- wavelength selection --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXcrystal</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;monochromator&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="cm">&lt;!-- May want to include fields required to compute the wavelength L, and spread dL --&gt;</span>
+<span class="w">      </span><span class="nt">&lt;wavelength</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;wavelength_spread</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;Angstrom&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXcrystal&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- collimation --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXaperture</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;pre[sample|detector]_slit#&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NXgeometry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;geometry&quot;</span><span class="nt">&gt;</span>?
+<span class="w">        </span><span class="nt">&lt;NXtranslation</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;translation&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;distances</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;mm&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span>{<span class="w"> </span>Location<span class="w"> </span>of<span class="w"> </span>slit<span class="w"> </span>along<span class="w"> </span>beamline<span class="w"> </span>(midway<span class="w"> </span>between<span class="w"> </span>slits
+<span class="w">              </span>if<span class="w"> </span>slits<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>coplanar).<span class="w">  </span>This<span class="w"> </span>is<span class="w"> </span>required<span class="w"> </span>to<span class="w"> </span>compute
+<span class="w">              </span>instrument<span class="w"> </span>resolution.<span class="w"> </span>}
+<span class="w">          </span><span class="nt">&lt;/distances&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXtranslation&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXshape</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;shape&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span><span class="nt">&lt;shape&gt;</span>
+<span class="w">            </span>{<span class="w"> </span>Need<span class="w"> </span>to<span class="w"> </span>add<span class="w"> </span>&quot;nxslit&quot;<span class="w"> </span>to<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>possible<span class="w"> </span>shapes.<span class="w">  </span>If<span class="w"> </span>the
+<span class="w">              </span>shape<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>box,<span class="w"> </span>first<span class="w"> </span>dimension<span class="w"> </span>changes<span class="w"> </span>the<span class="w"> </span>sample<span class="w"> </span>footprint.<span class="w"> </span>}
+<span class="w">          </span><span class="nt">&lt;/shape&gt;</span>
+<span class="w">          </span><span class="nt">&lt;size</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[nshapepars,np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;mm&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXshape&gt;</span>
+<span class="w">      </span><span class="nt">&lt;/NXgeometry&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXaperture&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!--</span>
+<span class="cm">      The polarizer-flipper-guidefield combination selects polarization vectors</span>
+<span class="cm">      in and out of the sample.  A number of scans are required to tune the</span>
+<span class="cm">      instrument so that polarization is either &#39;up&#39; or &#39;down&#39; on the sample.</span>
+<span class="cm">      On correctly tuned instruments the polarization angle selected should</span>
+<span class="cm">      be recorded by the flipper using polar_angle relative to the surface</span>
+<span class="cm">      (0/180 for +/-, or with out of plane polarization, 90/270 for +/-).</span>
+<span class="cm">      The polarization efficiency must be determined from a spectrum scan</span>
+<span class="cm">      and the appropriate correction applied to the data.</span>
+<span class="cm">      Raw values from the instrument, such as time dependent field applied</span>
+<span class="cm">      to flipper coils or current on the current sheet can be recorded for</span>
+<span class="cm">      specialized reduction programs which know how to handle them.</span>
+
+<span class="cm">      In practice, these fields can be dropped because we are tagging the</span>
+<span class="cm">      data entry with polarization ++, etc.</span>
+<span class="cm">      --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXpolarizer</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;presample_polarizer&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXpolarizer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXflipper</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;presample_flipper&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXflipper&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;NXpolarizer</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;predetector_polarizer&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXpolarizer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXflipper</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;predetector_flipper&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/NXflipper&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- detector may be protected by an attenuator and/or a beam stop --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXattenuator&gt;</span>?
+<span class="w">      </span><span class="nt">&lt;attenuator_transmission</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXattenuator&gt;</span>
+<span class="w">    </span><span class="nt">&lt;NXbeam_stop&gt;</span>?
+<span class="w">      </span>{<span class="w"> </span>Need<span class="w"> </span>all<span class="w"> </span>fields<span class="w"> </span>so<span class="w"> </span>that<span class="w"> </span>we<span class="w"> </span>can<span class="w"> </span>calculate<span class="w"> </span>shadow<span class="w"> </span>of<span class="w"> </span>beam<span class="w"> </span>stop<span class="w"> </span>on<span class="w"> </span>detector.<span class="w"> </span>}
+<span class="w">    </span><span class="nt">&lt;/NXbeam_stop&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;NXdetector&gt;</span>
+<span class="w">      </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[np]&gt;</span>
+<span class="s">        { Angle of the detector relative to the scattering plane. }</span>
+<span class="s">      &lt;/polar_angle&gt;</span>
+<span class="s">      &lt;azimuthal_angle type=&quot;</span><span class="err">NX_FLOAT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degrees&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{<span class="w"> </span>Indicate<span class="w"> </span>sense<span class="w"> </span>of<span class="w"> </span>scattering:<span class="w"> </span>0<span class="w"> </span>is<span class="w"> </span>front<span class="w"> </span>surface<span class="w"> </span>of<span class="w"> </span>sample,
+<span class="w">          </span>180<span class="w"> </span>is<span class="w"> </span>back<span class="w"> </span>surface<span class="w"> </span>of<span class="w"> </span>sample.<span class="w">  </span>If<span class="w"> </span>180,<span class="w"> </span>change<span class="w"> </span>the<span class="w"> </span>sign<span class="w"> </span>of<span class="w"> </span>the
+<span class="w">          </span>reflected<span class="w"> </span>angle<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>data.<span class="w">  </span>It<span class="w"> </span>is<span class="w"> </span>also<span class="w"> </span>possible<span class="w"> </span>for<span class="w"> </span>the<span class="w"> </span>beam
+<span class="w">          </span>to<span class="w"> </span>enter<span class="w"> </span>the<span class="w"> </span>substrate<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>side<span class="w"> </span>and<span class="w"> </span>reflect<span class="w"> </span>off<span class="w"> </span>the<span class="w"> </span>back
+<span class="w">          </span>surface<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>film,<span class="w"> </span>in<span class="w"> </span>which<span class="w"> </span>case<span class="w"> </span>negative<span class="w"> </span>angles<span class="w"> </span>can<span class="w"> </span>be
+<span class="w">          </span>interpreted<span class="w"> </span>as<span class="w"> </span>inverting<span class="w"> </span>the<span class="w"> </span>scattering<span class="w"> </span>length<span class="w"> </span>density<span class="w"> </span>profile
+<span class="w">          </span>of<span class="w"> </span>the<span class="w"> </span>film<span class="w"> </span>(after<span class="w"> </span>accounting<span class="w"> </span>for<span class="w"> </span>absorption<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>substrate.<span class="w"> </span>}
+<span class="w">      </span><span class="nt">&lt;/azimuthal_angle&gt;</span>
+<span class="w">      </span><span class="nt">&lt;counts</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/NXdetector&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;/NXinstrument&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXmonitor&gt;</span>?
+<span class="w">    </span><span class="nt">&lt;momentum_transfer</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/momentum_transfer&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;presample_slit1</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/presample_slit1/NXgeometry/NXshape/size&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;FLOAT32[np]&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">1</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;momentum_transfer|presample_slit1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXmonitor&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXtimer&gt;</span>?<span class="nt">&lt;/NXtimer&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXdata&gt;</span>
+<span class="w">    </span><span class="cm">&lt;!-- Scan identification tags for the specific measurement type --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;scan_type</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{<span class="w"> </span>&quot;intensity&quot;|&quot;background&quot;|&quot;specular&quot;|&quot;rock&quot;|&quot;slice&quot;|&quot;area&quot;<span class="w"> </span>}
+<span class="w">    </span><span class="nt">&lt;/scan_type&gt;</span>
+<span class="w">    </span><span class="nt">&lt;polarization_crosssection</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>?
+<span class="w">      </span>{<span class="w"> </span>&quot;++&quot;|&quot;+-&quot;|&quot;-+&quot;|&quot;--&quot;|&quot;+&quot;|&quot;-&quot;<span class="w"> </span>}
+<span class="w">    </span><span class="nt">&lt;/polarization_crosssection&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- Scan variables</span>
+<span class="cm">       *** Note: these are renamed from their original location, which</span>
+<span class="cm">       *** which is a problem with the current API.</span>
+<span class="cm">       *** Maybe require some of these, e.g., theta, two theta, momentum transfer, presample_slit1.</span>
+<span class="cm">     --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;theta</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/polar_angle&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/theta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;twotheta</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXdetector/polar_angle&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/twotheta&gt;</span>
+<span class="w">    </span><span class="nt">&lt;momentum_transfer</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXsample/momentum_transfer&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/momentum_transfer&gt;</span>
+<span class="w">    </span><span class="nt">&lt;presample_slit1</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/presample_slit1/NXgeometry/NXshape/size&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/presample_slit1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;presample_slit2</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/presample_slit2/NXgeometry/NXshape/size&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/presample_slit2&gt;</span>
+<span class="w">    </span><span class="nt">&lt;predetector_slit1</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/predetector_slit1/NXgeometry/NXshape/size&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;predetector_slit1&gt;</span>
+<span class="w">    </span><span class="nt">&lt;predetector_slit2</span><span class="err">&quot;</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/predetector_slit2/NXgeometry/NXshape/size&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;predetector_slit2&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- Counts and monitors --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;counts</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXdetector/counts&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;momentum_transfer|presample_slit1&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;count_start</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXtimer/start&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/count_start&gt;</span>
+<span class="w">    </span><span class="nt">&lt;count_duration</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXtimer/duration&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/count_duration&gt;</span>
+<span class="w">    </span><span class="nt">&lt;monitor</span><span class="w"> </span><span class="na">NAPIlink=</span><span class="s">&quot;NXentry/NXmonitor/data&quot;</span><span class="nt">&gt;</span>?<span class="nt">&lt;/count_monitor&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXdata&gt;</span>
+
+<span class="w">  </span><span class="nt">&lt;NXlog</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>*
+<span class="w">    </span>{<span class="w"> </span>Various<span class="w"> </span>logs<span class="w"> </span>for<span class="w"> </span>temperature,<span class="w"> </span>field,<span class="w"> </span>etc.<span class="w"> </span>which<span class="w"> </span>are<span class="w"> </span>assumed<span class="w"> </span>to
+<span class="w">      </span>be<span class="w"> </span>constant<span class="w"> </span>over<span class="w"> </span>the<span class="w"> </span>duration<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>run.<span class="w">  </span>The<span class="w"> </span>reduction<span class="w"> </span>program
+<span class="w">      </span>should<span class="w"> </span>be<span class="w"> </span>able<span class="w"> </span>to<span class="w"> </span>display<span class="w"> </span>their<span class="w"> </span>values<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>parallel<span class="w"> </span>graph.<span class="w">  </span>Note
+<span class="w">      </span>that<span class="w"> </span>logs<span class="w"> </span>are<span class="w"> </span>not<span class="w"> </span>necessarily<span class="w"> </span>sampled<span class="w"> </span>synchronously<span class="w"> </span>with<span class="w"> </span>the
+<span class="w">      </span>data<span class="w"> </span>points.<span class="w"> </span>}
+<span class="w">  </span><span class="nt">&lt;/NXlog&gt;</span>
+
+<span class="nt">&lt;/NXentry&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">NXmonoref-NIAC2006</a><ul>
+<li><a class="reference internal" href="#concerns">Concerns:</a></li>
+<li><a class="reference internal" href="#example">Example:</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NXmonoref_example-NIAC2006.html"
+                          title="previous chapter">NXmonoref example-NIAC2006</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NXmonotas_example-NIAC2006.html"
+                          title="next chapter">NXmonotas example-NIAC2006</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/NXmonoref-NIAC2006.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NXmonotas_example-NIAC2006.html" title="NXmonotas example-NIAC2006"
+             >next</a></li>
+        <li class="right" >
+          <a href="NXmonoref_example-NIAC2006.html" title="NXmonoref example-NIAC2006"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NXmonoref-NIAC2006</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

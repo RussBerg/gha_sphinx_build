@@ -1,0 +1,180 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>File id attribute for Nexus files &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="GenericScan" href="GenericScan.html" />
+    <link rel="prev" title="Extension of NeXus Coordinate Systems" href="Extension_of_NeXus_Coordinate_Systems.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="GenericScan.html" title="GenericScan"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Extension_of_NeXus_Coordinate_Systems.html" title="Extension of NeXus Coordinate Systems"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">File id attribute for Nexus files</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="file-id-attribute-for-nexus-files">
+<h1>File id attribute for Nexus files<a class="headerlink" href="#file-id-attribute-for-nexus-files" title="Link to this heading">¶</a></h1>
+<p>In its current definition of <cite>NXroot</cite> no attribute is provided to hold a unique ID for a file. Though there is one for
+the filename, this might not be unique and can change over time.
+Several facilities are planning to store files on large storage systems to which access is provided not only via a file
+system but also via web applications.</p>
+<p>The latter ones typically rely on a database holding an index of the files on the storage.
+In such cases a file on the storage system is typically associated with an ID which acts as a primary key for the file.
+Currently this ID is only stored in the database.
+Thus if the names or locations of files on the storage system change there is no way to rebuild the map between IDs and
+files.</p>
+<p>I thus suggest to add an attribute <cite>file_id</cite> to the <cite>NXroot</cite> class which allows facilities to store such a unique key
+for a file directly to the Nexus file.
+The other ID values available are related to a particular instance of <cite>NXentry</cite> and are thus not feasible to identify a
+file.</p>
+<p>In particular if several instances of <cite>NXentry</cite> are stored in a single file (this would make sense for archiving
+purposes as tape libraries can usually handle large files much better than very small ones).</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>NXroot<span class="w"> </span>(base<span class="w"> </span>class,<span class="w"> </span>version<span class="w"> </span>1.0)
+
+<span class="w">    </span>@NX_class
+<span class="w">    </span>@file_time
+<span class="w">    </span>@file_name
+<span class="w">    </span>@file_update_time
+<span class="w">    </span>@NeXus_version
+<span class="w">    </span>@HDF_version
+<span class="w">    </span>@HDF5_Version
+<span class="w">    </span>@XML_version
+<span class="w">    </span>@creator
+<span class="w">    </span>@file_id
+</pre></div>
+</div>
+<p>The <cite>file_id</cite> attribute should be of type <cite>NX_CHAR</cite>.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Extension_of_NeXus_Coordinate_Systems.html"
+                          title="previous chapter">Extension of NeXus Coordinate Systems</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="GenericScan.html"
+                          title="next chapter">GenericScan</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/File_id_attribute_for_Nexus_files.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="GenericScan.html" title="GenericScan"
+             >next</a></li>
+        <li class="right" >
+          <a href="Extension_of_NeXus_Coordinate_Systems.html" title="Extension of NeXus Coordinate Systems"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">File id attribute for Nexus files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

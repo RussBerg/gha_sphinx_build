@@ -1,0 +1,297 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Jnexustut &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Latest News" href="Latest_News.html" />
+    <link rel="prev" title="Java API" href="Java_API.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Latest_News.html" title="Latest News"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Java_API.html" title="Java API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Jnexustut</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="jnexustut">
+<h1>Jnexustut<a class="headerlink" href="#jnexustut" title="Link to this heading">¶</a></h1>
+<section id="the-nexus-for-java-api-tutorial">
+<h2>The NeXus for Java API Tutorial<a class="headerlink" href="#the-nexus-for-java-api-tutorial" title="Link to this heading">¶</a></h2>
+<p>This document explains in more detail how to program with the NeXus API for Java. The intended audience are Java programmers who do not know the C language NeXus API. This document will only explain how to deal with NeXus files. For a general description of NeXus, see the NeXus WWW-pages. For reference, see the jnexus API documentation. Another good source of information is the test driver source code for the NeXus API for Java. It is a more involved example of API usage, and it is documented!</p>
+<p>Before doing anything with the NeXus for Java API, the necessary classes need to be imported. This is done with the statement:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">neutron.nexus.*</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>at the head of your Java file. A NeXus programmer has to deal with the following five concepts:</p>
+<p>### NeXus Files</p>
+<blockquote>
+<div><p>You should have guessed as much.</p>
+</div></blockquote>
+<p>### Groups</p>
+<blockquote>
+<div><p>Groups are NeXus means of structuring data in a file. Groups can hold other groups or datasets. The filesystem analog to groups would be directories.</p>
+</div></blockquote>
+<p>### SDS</p>
+<blockquote>
+<div><p>SDS are scientific datasets. This is an n-dimensional array of numbers stored in the file.</p>
+</div></blockquote>
+<p>### Attributes</p>
+<blockquote>
+<div><p>Attributes are auxiliary information stored in the file. Two types of attributes are possible: global file-wide attributes and attributes linked to an SDS.</p>
+</div></blockquote>
+<p>### Links</p>
+<blockquote>
+<div><p>For organizational reasons, it might be useful to refer to an SDS in more than one group. To avoid duplicating data, it is possible to link an SDS wherever you want. This concept is quite similar to a symbolic link in a Unix file system.</p>
+</div></blockquote>
+<p>All these concepts will be explained in more detail below. A note about error handling: a <code class="docutils literal notranslate"><span class="pre">NexusException</span></code> is thrown whenever an error occurs. This implies that all code samples stated below should be included in a <code class="docutils literal notranslate"><span class="pre">try-catch</span></code> block, as shown here:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// some NeXus for Java calls.</span>
+<span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">NexusException</span><span class="w"> </span><span class="n">ne</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// analyze and treat the error</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For brevity and clarity, this will be left out in the following text.</p>
+<p>### NeXus Files</p>
+<p>A NeXus file is opened by:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NexusFile</span><span class="w"> </span><span class="n">nf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NexusFile</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">NexusFile</span><span class="p">.</span><span class="na">NXACC_CREATE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The first parameter to the constructor is, of course, the file name. The second parameter is the access code valid for the file. Three access codes are supported:</p>
+<ul class="simple">
+<li><p><strong>NXACC_CREATE</strong>: For creating a new NeXus file.</p></li>
+<li><p><strong>NXACC_RDWR</strong>: For opening an existing NeXus file for modification or for appending.</p></li>
+<li><p><strong>NXACC_READ</strong>: Open a file for reading only.</p></li>
+</ul>
+<p>Please note that for all further examples, the name <code class="docutils literal notranslate"><span class="pre">nf</span></code> is assumed for the <code class="docutils literal notranslate"><span class="pre">NexusFile</span></code> object.</p>
+<p>Closing files is accomplished through the <code class="docutils literal notranslate"><span class="pre">finalize</span></code> method. This should be called automatically by the Java garbage collector, but it is safer to explicitly call this method when done with a file:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">nf</span><span class="p">.</span><span class="na">finalize</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Sometimes it is necessary to flush all buffered data to disk before doing, for instance, something else in a program to prevent data loss. This can be done with the <code class="docutils literal notranslate"><span class="pre">flush</span></code> method:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">nf</span><span class="p">.</span><span class="na">flush</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">flush</span></code> has the side effect of closing all open SDS.</p>
+<p>### Groups</p>
+<p>A group (or vGroup) is the NeXus equivalent of a directory. Like a directory hierarchy, a hierarchy of groups can be built in a NeXus file. Unlike directory names, NeXus group names consist of two strings: the <code class="docutils literal notranslate"><span class="pre">groupname</span></code> and the <code class="docutils literal notranslate"><span class="pre">groupclass</span></code>. Both strings are needed to address a NeXus group.</p>
+<p>The API provides functions for all necessary operations on groups. The first is group creation:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">nf</span><span class="p">.</span><span class="na">makegroup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">nxclass</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This corresponds to a <code class="docutils literal notranslate"><span class="pre">mkdir</span></code> in a Unix filesystem.</p>
+<p>To use a group, we need a means of traversing the group hierarchy. For this, the methods:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">nf</span><span class="p">.</span><span class="na">opengroup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">nxclass</span><span class="p">);</span>
+<span class="n">nf</span><span class="p">.</span><span class="na">closegroup</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>are provided. <code class="docutils literal notranslate"><span class="pre">opengroup</span></code> corresponds to a <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">name,class</span></code> and steps into the group <code class="docutils literal notranslate"><span class="pre">name</span></code> with class <code class="docutils literal notranslate"><span class="pre">nxclass</span></code>. <code class="docutils literal notranslate"><span class="pre">closegroup</span></code> corresponds to <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code> and steps one group lower in the group hierarchy.</p>
+<p>NeXus is self-describing. A method is needed to find out about the contents of the current group:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Hashtable</span><span class="w"> </span><span class="n">ha</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nf</span><span class="p">.</span><span class="na">groupdir</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Hashtable</span></code> returned contains pairs of <code class="docutils literal notranslate"><span class="pre">name,</span> <span class="pre">class</span></code> as entries. For datasets, the class name is set to <code class="docutils literal notranslate"><span class="pre">SDS</span></code>. See the following code snippet as an example of how to print the contents of a NeXus group:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Hashtable</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nf</span><span class="p">.</span><span class="na">groupdir</span><span class="p">();</span>
+<span class="n">Enumeration</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="na">keys</span><span class="p">();</span>
+<span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Found in Group&quot;</span><span class="p">);</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">hasMoreElements</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">vname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">nextElement</span><span class="p">();</span>
+<span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">vclass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="w"> </span><span class="n">h</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">vname</span><span class="p">);</span>
+<span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Item: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vname</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; class: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">vclass</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>### SDS</p>
+<p>SDS are scientific datasets used to store n-dimensional arrays of data in various number types in a NeXus file. The following number types are allowed in NeXus files:</p>
+<ul class="simple">
+<li><p><strong>NexusFile.NX_INT8</strong></p></li>
+<li><p><strong>NexusFile.NX_UINT8</strong></p></li>
+<li><p><strong>NexusFile.NX_CHAR</strong></p></li>
+<li><p><strong>NexusFile.NX_INT16</strong></p></li>
+<li><p><strong>NexusFile.NX_UINT16</strong></p></li>
+<li><p><strong>NexusFile.NX_INT32</strong></p></li>
+<li><p><strong>NexusFile.NX_UINT32</strong></p></li>
+<li><p><strong>NexusFile.NX_FLOAT32</strong></p></li>
+<li><p><strong>NexusFile.NX_FLOAT64</strong></p></li>
+</ul>
+<p>These types are defined as constants in <code class="docutils literal notranslate"><span class="pre">NexusFile.java</span></code>.</p>
+<p>When creating a new file, a means is needed for creating a new SDS in the NeXus file. An SDS is fully characterized by its name, its number type (from the list above), the number of dimensions it has (its rank), and its size in each dimension. With this information, an SDS can be created:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">nf</span><span class="p">.</span><span class="na">makedata</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">iDim</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">iDim</span></code> is an integer array holding the size of the dataset in each dimension. A specialty of NeXus (and HDF) is that the first dimension can be unlimited. Simply set the dimension to 0. Data can then be appended in consecutive steps along this dimension. Please note that <code class="docutils literal notranslate"><span class="pre">makedata</span></code> does not automatically open the SDS. Before writing data to it, a call to <code class="docutils literal notranslate"><span class="pre">opendata</span></code> is required.</p>
+<p>To write and read SDS data, methods such as <code class="docutils literal notranslate"><span class="pre">putdata</span></code> and <code class="docutils literal notranslate"><span class="pre">getdata</span></code> are used. Here is an example:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Example data</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">iData</span><span class="o">[][]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">][</span><span class="mi">10</span><span class="o">]</span><span class="p">;</span>
+
+<span class="c1">// Write it</span>
+<span class="n">nf</span><span class="p">.</span><span class="na">putdata</span><span class="p">(</span><span class="n">iData</span><span class="p">);</span>
+
+<span class="c1">// Read it</span>
+<span class="n">nf</span><span class="p">.</span><span class="na">getdata</span><span class="p">(</span><span class="n">iData</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The handling of strings and subsets, compression options, and other specific operations on SDS are described similarly.</p>
+<p>### Attributes</p>
+<p>Attributes are auxiliary information stored in a NeXus file. They can be global (file-level) or specific to an SDS. Attributes are managed with methods like <code class="docutils literal notranslate"><span class="pre">putattr</span></code>, <code class="docutils literal notranslate"><span class="pre">getattr</span></code>, and <code class="docutils literal notranslate"><span class="pre">attrdir</span></code>. Examples for writing and reading attributes are:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Writing an attribute</span>
+<span class="n">nf</span><span class="p">.</span><span class="na">putattr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">);</span>
+
+<span class="c1">// Reading an attribute</span>
+<span class="n">nf</span><span class="p">.</span><span class="na">getattr</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>### Linking</p>
+<p>Linking an SDS into more than one group requires some precautions. First, internal information needed for linking must be retrieved while the SDS is still open:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">NXlink</span><span class="w"> </span><span class="n">nl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nf</span><span class="p">.</span><span class="na">getdataID</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Then, after navigating to the appropriate place for the link in the group hierarchy, the link can be created:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">nf</span><span class="p">.</span><span class="na">makelink</span><span class="p">(</span><span class="n">nl</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This covers the core aspects of using the NeXus API for Java.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Jnexustut</a><ul>
+<li><a class="reference internal" href="#the-nexus-for-java-api-tutorial">The NeXus for Java API Tutorial</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Java_API.html"
+                          title="previous chapter">Java API</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Latest_News.html"
+                          title="next chapter">Latest News</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/Jnexustut.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Latest_News.html" title="Latest News"
+             >next</a></li>
+        <li class="right" >
+          <a href="Java_API.html" title="Java API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Jnexustut</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NIAC Decisions on NeXus Classes &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NIACDesign" href="NIACDesign.html" />
+    <link rel="prev" title="NIACAPI" href="NIACAPI.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NIACDesign.html" title="NIACDesign"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="NIACAPI.html" title="NIACAPI"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="niac.html" >NIAC</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="previous_meetings.html" accesskey="U">previous meetings</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NIAC Decisions on NeXus Classes</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="niac-decisions-on-nexus-classes">
+<h1>NIAC Decisions on NeXus Classes<a class="headerlink" href="#niac-decisions-on-nexus-classes" title="Link to this heading">¶</a></h1>
+</section>
+<section id="id1">
+<h1>NIAC Decisions on NeXus Classes<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<p>This section records NIAC decisions on NeXus base classes and
+application definitions.</p>
+<p>NIAC 2003: Instrument definitions and base classes will be fully self
+describing</p>
+<p>NIAC 2003: Instrument definitions and base classes to go into CVS</p>
+<p>NIAC 2003: analysis item in NXentry to be replaced with definition</p>
+<p>NIAC 2003: NXroot will be defined as</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;NXroot</span><span class="w"> </span><span class="na">file_name=</span><span class="s">&quot;{File name of original NeXus file}&quot;</span>
+<span class="w">     </span><span class="na">file_time=</span><span class="s">&quot;{Date and time of file creation}&quot;</span>
+<span class="w">     </span><span class="na">file_update_time=</span><span class="s">&quot;{Date and time of last file change at close}&quot;</span>
+<span class="w">     </span><span class="na">NeXus_version=</span><span class="s">&quot;{Version of NeXus API used in writing the file}&quot;</span>
+<span class="w">     </span><span class="na">HDF_version=</span><span class="s">&quot;?&quot;</span>
+<span class="w">     </span><span class="na">HDF5_version=</span><span class="s">&quot;?&quot;</span>
+<span class="w">     </span><span class="na">creator=</span><span class="s">&quot;{facility or program where file originated}?&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXentry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{entry name}&quot;</span><span class="nt">&gt;</span>+<span class="nt">&lt;/NXentry&gt;</span>
+<span class="nt">&lt;/NXroot&gt;</span>
+</pre></div>
+</div>
+<p>NIAC 2003: base classes and instrument definitions will not define bit
+length for primitives. This means that NX_UINT, NX_INT or NX_FLOAT
+are all that are allowed for numerical items.</p>
+<p>NIAC 2003: The template for NXentry is</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;NXentry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Entry Name}&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span><span class="nt">&lt;title&gt;</span>{Extended<span class="w"> </span>title<span class="w"> </span>for<span class="w"> </span>entry}<span class="nt">&lt;/title&gt;</span>
+<span class="w">     </span><span class="nt">&lt;definition</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;{DTD version number}&quot;</span><span class="w"> </span><span class="na">URL=</span><span class="s">&quot;{URL of DTD file}&quot;</span><span class="nt">&gt;</span>{Name<span class="w"> </span>of<span class="w"> </span>entry<span class="w"> </span>DTD}<span class="nt">&lt;/definition&gt;</span>
+<span class="w">      </span><span class="nt">&lt;start_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="nt">&gt;</span>{Starting<span class="w"> </span>time<span class="w"> </span>of<span class="w"> </span>measurement}<span class="nt">&lt;/start_time&gt;</span>
+<span class="w">     </span><span class="nt">&lt;end_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="nt">&gt;</span>{Ending<span class="w"> </span>time<span class="w"> </span>of<span class="w"> </span>measurement}<span class="nt">&lt;/end_time&gt;</span>
+<span class="w">     </span><span class="nt">&lt;duration</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;seconds&quot;</span><span class="nt">&gt;</span>{Duration<span class="w"> </span>of<span class="w"> </span>measurement}<span class="nt">&lt;/duration&gt;</span>
+<span class="w">     </span><span class="nt">&lt;experiment_identifier</span>
+<span class="w">        </span><span class="na">type=</span><span class="s">&quot;NX_CHAR[]&quot;</span><span class="nt">&gt;</span>{}<span class="nt">&lt;/experiment_identifier&gt;</span>
+<span class="w">     </span><span class="nt">&lt;run_number</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT&quot;</span><span class="nt">&gt;</span>{Number<span class="w"> </span>of<span class="w"> </span>run<span class="w"> </span>or<span class="w"> </span>scan<span class="w"> </span>stored<span class="w"> </span>in<span class="w"> </span>this<span class="w"> </span>entry}<span class="nt">&lt;/run_number&gt;</span>
+<span class="w">     </span><span class="nt">&lt;run_cycle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR[]&quot;</span><span class="nt">&gt;</span>{}<span class="nt">&lt;/run_cycle&gt;</span>
+<span class="w">     </span><span class="nt">&lt;program_name</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;{Program version number}&quot;</span><span class="nt">&gt;</span>{Name<span class="w"> </span>of<span class="w"> </span>program<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>this<span class="w"> </span>file}<span class="nt">&lt;/program_name&gt;</span>
+<span class="w">     </span><span class="nt">&lt;command_line&gt;</span>{Name<span class="w"> </span>of<span class="w"> </span>command<span class="w"> </span>line<span class="w"> </span>used<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>this<span class="w"> </span>file}<span class="nt">&lt;/command_line&gt;</span>
+<span class="w">     </span><span class="nt">&lt;notes&gt;</span>{Notes<span class="w"> </span>describing<span class="w"> </span>entry}<span class="nt">&lt;/notes&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXuser</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{user}&quot;</span><span class="nt">&gt;&lt;/NXuser&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXsample</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{sample}&quot;</span><span class="nt">&gt;&lt;/NXsample&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXinstrument</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of instrument}&quot;</span><span class="nt">&gt;&lt;/NXinstrument&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXmonitor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of monitor}&quot;</span><span class="nt">&gt;&lt;/NXmonitor&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXdata</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of data block}&quot;</span><span class="nt">&gt;&lt;/NXdata&gt;</span>
+<span class="nt">&lt;/NXentry&gt;</span>
+</pre></div>
+</div>
+<p>NIAC 2003: NXinstrument template consists of at least the following
+groups</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;NXinstrument&gt;</span>
+<span class="w">     </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">short_name=</span><span class="s">”{abbreviated</span><span class="w"> </span><span class="err">name</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">instrument}”</span><span class="nt">&gt;</span>{name<span class="w"> </span>of<span class="w"> </span>instrument}<span class="nt">&lt;/name&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXsource/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NXcrystal/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NXdisk_chopper/&gt;</span>
+<span class="w">      </span><span class="nt">&lt;NXfermi_chopper/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXvelocity_selector/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXguide/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXcollimator/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXaperture/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXfilter/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXattenuator/&gt;</span>
+<span class="w">       </span><span class="nt">&lt;NXpolarizer/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXflipper/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXmirror/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXdetector/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXbeam_stop/&gt;</span>
+<span class="nt">&lt;/NXinstrument&gt;</span>
+</pre></div>
+</div>
+<p>NIAC 2003: Each NXlog will contain information for one variable The
+definition of a NXlog is</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;NXlog</span><span class="w"> </span><span class="na">name=</span><span class="s">”{identifier</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">log}”</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;description&gt;</span>{longer<span class="w"> </span>description<span class="w"> </span>of<span class="w"> </span>what<span class="w"> </span>is<span class="w"> </span>logged}<span class="nt">&lt;/description&gt;</span>
+<span class="w">        </span><span class="nt">&lt;time</span><span class="w"> </span><span class="na">start=</span><span class="s">”{written</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">ISO8601}”</span><span class="w"> </span><span class="na">units=</span><span class="s">””</span><span class="w">  </span><span class="na">type=</span><span class="s">”NX_FLOAT”</span><span class="nt">&gt;</span>{time<span class="w"> </span>axis<span class="w"> </span>for<span class="w"> </span>logged<span class="w"> </span>quantity}
+<span class="w">        </span><span class="nt">&lt;/time&gt;</span>
+<span class="w">       </span><span class="nt">&lt;value</span><span class="w"> </span><span class="na">units=</span><span class="s">”{units</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">logged</span><span class="w"> </span><span class="err">value}”</span><span class="w">  </span><span class="na">type=</span><span class="s">”NX_FLOAT|NX_INT”</span><span class="nt">&gt;</span>{array<span class="w"> </span>of<span class="w"> </span>logged<span class="w"> </span>value,<span class="w"> </span>such<span class="w"> </span>as<span class="w"> </span>temperature}<span class="nt">&lt;/value&gt;</span>
+<span class="w">       </span><span class="nt">&lt;raw_value</span><span class="w"> </span><span class="na">units=</span><span class="s">”{units</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">raw</span><span class="w"> </span><span class="err">values}”</span>
+<span class="w">            </span><span class="na">type=</span><span class="s">”NX_FLOAT|NX_INT”</span><span class="nt">&gt;</span>{array<span class="w"> </span>of<span class="w"> </span>raw<span class="w"> </span>information,<span class="w"> </span>such<span class="w"> </span>as<span class="w"> </span>voltage<span class="w"> </span>on<span class="w"> </span>a<span class="w"> </span>thermocouple}?<span class="nt">&lt;/raw_value&gt;</span>
+<span class="nt">&lt;/NXlog&gt;</span>
+</pre></div>
+</div>
+<p>NIAC 2004: NXcharacterisations is removed from NXentry</p>
+<p>NIAC 2004: End-of-line in NXnote is cr</p>
+<p>NIAC 2005: describe links as NAPIlink in metaDTD</p>
+<p>NIAC 2005: Allow ? and * in definitions to denote groups and fields
+that are desirable but not necessary.</p>
+<p>NIAC 2006: TOF Raw definition ratified</p>
+<p>NIAC 2006: Add synchrotron changes to NXsource</p>
+<p>NIAC 2006: Add NXinsertion_device</p>
+<p>NIAC 2006: Add NXbending_magnet</p>
+<p>NIAC 2007: NXmonopowder ratified</p>
+<p>NIAC 2007: NXpositioner ratified</p>
+<p>NIAC 2007: NXmonitor ratified</p>
+<p>NIAC 2007: All classes ratified will be NeXus 2.0.</p>
+<p>NIAC 2007HMI: ratified NXcone definition (check where this one is)</p>
+<p>NIAC 2007HMI: replace run_number with entry_identifier in NXentry</p>
+<p>NIAC 2007HMI: ratified NXarchive</p>
+<p>NIAC 2007HMI: ratified NXdetector extensions for CCD cameras: 1. extend
+type to include: ccd,pixel,image_plate, cmos 2. add field data_file 3.
+add field flood 4. add field flood_file 5. add field dark 6. add file
+dark_file 7. add field spatial_distortion 8. add field
+spatial_distortion_file</p>
+<p>NIAC 2010: NXcollection ratified</p>
+<p>NIAC 2010: tags scalar, image for datasets</p>
+<p>NIAC 2010: muon application definition ratified with some changes</p>
+<p>NIAC 2012: NXcharacterisation deprecated</p>
+<p>NIAC 2012: add some DECTRICS required fields to NXdetector</p>
+<p>NIAC 2014: NXmx, NXtransformations and variants ratified</p>
+<p>NIAC 2014: Ratified NXarpes, NXCite with addition of URL,
+NXfresnel_zone_plate</p>
+<p>NIAC 2014: Add a default attribute at root and NXentry level to help in
+finding default data to plot</p>
+<p>NIAC 2014: added decimated as a possible enum to acquisition_mode in
+NXdetector</p>
+<p>NIAC 2014: additional field nominal added to NXmonitor to keep the
+nominal flux</p>
+<p>NIAC 2014: “rgbimage”, “rgbaimage”, “hslimage”, “hslaimage”, “cmykimage”
+to be added to the interpretation attribute of datasets to encode 3d
+datasets with colour as added dimension to the 2d image.</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">NIAC Decisions on NeXus Classes</a></li>
+<li><a class="reference internal" href="#id1">NIAC Decisions on NeXus Classes</a></li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NIACAPI.html"
+                          title="previous chapter">NIACAPI</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NIACDesign.html"
+                          title="next chapter">NIACDesign</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/niac/NIACClasses.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NIACDesign.html" title="NIACDesign"
+             >next</a></li>
+        <li class="right" >
+          <a href="NIACAPI.html" title="NIACAPI"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="niac.html" >NIAC</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="previous_meetings.html" >previous meetings</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NIAC Decisions on NeXus Classes</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,332 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Metaformat &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Monochromatic Neutron and X-ray Powder Diffraction" href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html" />
+    <link rel="prev" title="Linking External Files" href="Linking_External_Files.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html" title="Monochromatic Neutron and X-ray Powder Diffraction"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Linking_External_Files.html" title="Linking External Files"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Metaformat</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="metaformat">
+<h1>Metaformat<a class="headerlink" href="#metaformat" title="Link to this heading">¶</a></h1>
+<section id="id1">
+<h2>Metaformat<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p><em>Work is currently in progress to replace Meta-DTDs with</em> [XML schema](Schema.html “wikilink”).</p>
+<p>The contents of NeXus files are defined using XML. The hierarchical
+structure of NeXus files maps very conveniently into XML files with
+NeXus groups and items as the XML entities, and data attributes as XML
+attributes. NeXus utilities are being developed to help people determine
+whether their files are standard-conforming. However, formal XML format
+definitions (DTDs) are difficult for the non-expert to read, so we have
+produced a much simpler meta-DTD format, which produces well-formed
+(DTD-less) XML files that will be converted into DTD files. This page
+describes the rules for producing these files - some examples are
+available below and in the NeXus content section. The utility NXtoDTD
+can be used to generate the skeleton of such a file from an existing
+NeXus file; it outputs the XML tags without the data or any annotation.</p>
+</section>
+<section id="meta-dtd-definition">
+<h2>Meta-DTD Definition<a class="headerlink" href="#meta-dtd-definition" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Each meta-DTD file should begin with a standard XML document tag,
+i.e.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+</pre></div>
+</div>
+<p>This should be followed by a comment block giving the URL of the XML
+file, the name of the editor, the keyword $Id$, which will generate a
+revision number when the file is committed to the
+[SubversionServer](SubversionServer.html “wikilink”), and a brief description
+of the file, e.g.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="cm">&lt;!--</span>
+<span class="cm">URL:     http://www.neutron.anl.gov/nexus/xml/NXgroup.xml</span>
+<span class="cm">Editor:  Jean Dupont &lt;JDupont@some.where&gt;</span>
+<span class="cm">$Id$</span>
+
+<span class="cm">Definition of a fake but well-formed NeXus group.</span>
+
+<span class="cm">--&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Each NeXus group is an XML entity defined by its class, e.g. NXuser,
+NXdata, ….</p></li>
+<li><p>The name of the group is given by the name attribute of the entity.</p></li>
+</ul>
+<p>N.B. XML attributes are the name=“value” pairs located within the
+opening tag of the XML entity, e.g.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;NXsample</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;sample&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<p>All other data items are XML entities defined by their name, e.g.
+&lt;temperature&gt;</p>
+<ul class="simple">
+<li><p>Data attributes are stored as XML attributes. The data type is
+defined as an XML attribute although it is not defined as an HDF
+attribute in the NeXus file itself, e.g.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;temperature</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;K&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>If the value of an attribute is not defined by the DTD, a short
+description is enclosed within quotes and curly braces, e.g.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;NXdetector</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of detector bank}&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Similarly, the value of a data item which is not defined by the DTD
+should be placed within curly braces between the opening and closing
+tag, e.g.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;temperature&gt;</span>{Temperature<span class="w"> </span>of<span class="w"> </span>sample}<span class="nt">&lt;/temperature&gt;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Following the opening tag of a group entity and before the closing
+tag of a data entity, there may be one of three symbols, which have
+the same meanings that they have in regular expressions.
+-   <cite>*</cite> May occur 0 or more times
+-   <cite>+</cite> May occur one or more times (i.e. at least once)
+-   <cite>?</cite> May occur 0 or one times (i.e. no more than once)</p></li>
+</ul>
+<p>e.g.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;NXsample&gt;</span>?
+<span class="w">   </span><span class="nt">&lt;temperature&gt;</span>{Temperature<span class="w"> </span>of<span class="w"> </span>sample}?<span class="nt">&lt;/temperature&gt;</span>
+<span class="nt">&lt;/NXsample&gt;</span>
+</pre></div>
+</div>
+<p>If no symbol is given, the item is mandatory.</p>
+<ul class="simple">
+<li><p>If a data item is an array, add the array dimensions in square
+brackets to the type attribute. Use a colon if the dimension length
+is not defined by the DTD, e.g.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[:]&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+<p>Replace the colon with i, j, … if you wish to match the dimension
+length to other data items within the same group.</p>
+<ul class="simple">
+<li><p>If no data type is specified, it is assumed to be a character string
+(NX_CHAR).</p></li>
+<li><p>The “version” attribute of the “analysis” entity, defined in each
+NXentry group should be set to $Revision$ when the file is first
+written so that the CVS revision number is substituted when the XML
+file is committed to the CVS server, e.g.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="nt">&lt;analysis</span><span class="w"> </span><span class="na">version=</span><span class="s">&quot;$Revision$&quot;</span><span class="nt">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
+<p>The instrument definitions are being constructed out of XML files for
+each of the component groups. If you are interested in defining your own
+definition, please form them from these component parts (remove the XML
+document type at the top of each file). See NXtofnpd.xml for a complete
+example. The following is a colorized version of NXmonitor.xml.</p>
+<section id="nxmonitor-xml">
+<h3>NXmonitor.xml<a class="headerlink" href="#nxmonitor-xml" title="Link to this heading">¶</a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; ?&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">URL: http://www.neutron.anl.gov/nexus/xml/NXmonitor.xml</span>
+<span class="cm">Editor: Ray Osborn &lt;ROsborn@anl.gov&gt;</span>
+<span class="cm">$Id$</span>
+
+<span class="cm">Definition of monitor data. It is similar to the NXdata groups containing</span>
+<span class="cm">monitor data and its associated dimension scale, e.g. time_of_flight or</span>
+<span class="cm">wavelength in pulsed neutron instruments. However, it may also include</span>
+<span class="cm">integrals, or scalar monitor counts, which are often used in both in both pulsed</span>
+<span class="cm">and steady-state instrumentation.</span>
+
+<span class="cm">--&gt;</span>
+<span class="nt">&lt;NXmonitor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of monitor}&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;distance</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;m&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Distance<span class="w"> </span>of<span class="w"> </span>monitor<span class="w"> </span>from<span class="w"> </span>sample}<span class="w"> </span><span class="nt">&lt;/distance&gt;</span>
+<span class="w">        </span><span class="nt">&lt;integral</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Integral<span class="w"> </span>over<span class="w"> </span>monitor<span class="w"> </span>spectrum}?<span class="w"> </span><span class="nt">&lt;/integral&gt;</span>
+<span class="w">        </span><span class="nt">&lt;range</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[2]&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Time-of-flight<span class="w"> </span>range<span class="w"> </span>over<span class="w"> </span>which<span class="w"> </span>the<span class="w"> </span>integral<span class="w"> </span>was<span class="w"> </span>calculated}?<span class="w"> </span><span class="nt">&lt;/range&gt;</span>
+<span class="w">        </span><span class="nt">&lt;type&gt;</span><span class="w"> </span>&quot;Fission<span class="w"> </span>Chamber&quot;|&quot;Scintillator&quot;?<span class="w"> </span><span class="nt">&lt;/type&gt;</span>
+<span class="w">        </span><span class="nt">&lt;height</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;cm&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Height<span class="w"> </span>of<span class="w"> </span>monitor}?<span class="w"> </span><span class="nt">&lt;/height&gt;</span>
+<span class="w">        </span><span class="nt">&lt;width</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;cm&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Width<span class="w"> </span>of<span class="w"> </span>monitor}?<span class="w"> </span><span class="nt">&lt;/width&gt;</span>
+<span class="w">        </span><span class="nt">&lt;time_of_flight</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;microseconds&quot;</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[i]&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Time-of-flight}?<span class="w"> </span><span class="nt">&lt;/time_of_flight&gt;</span>
+<span class="w">        </span><span class="nt">&lt;efficiency</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[i]&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Monitor<span class="w"> </span>efficiency}?<span class="w"> </span><span class="nt">&lt;/efficiency&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[i]&quot;</span><span class="nt">&gt;</span><span class="w"> </span>{Monitor<span class="w"> </span>data}?<span class="w"> </span><span class="nt">&lt;/data&gt;</span>
+<span class="nt">&lt;/NXmonitor&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Metaformat</a><ul>
+<li><a class="reference internal" href="#id1">Metaformat</a></li>
+<li><a class="reference internal" href="#meta-dtd-definition">Meta-DTD Definition</a></li>
+<li><a class="reference internal" href="#example">Example</a><ul>
+<li><a class="reference internal" href="#nxmonitor-xml">NXmonitor.xml</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Linking_External_Files.html"
+                          title="previous chapter">Linking External Files</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html"
+                          title="next chapter">Monochromatic Neutron and X-ray Powder Diffraction</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/Metaformat.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Monochromatic_Neutron_and_X-ray_Powder_Diffraction.html" title="Monochromatic Neutron and X-ray Powder Diffraction"
+             >next</a></li>
+        <li class="right" >
+          <a href="Linking_External_Files.html" title="Linking External Files"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Metaformat</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

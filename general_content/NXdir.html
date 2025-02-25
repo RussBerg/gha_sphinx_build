@@ -1,0 +1,251 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NXdir &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NXgeometry and NXshape - documentation and review" href="NXgeometry_and_NXshape_-_documentation_and_review.html" />
+    <link rel="prev" title="NXdetector documentation" href="NXdetector_documentation.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NXgeometry_and_NXshape_-_documentation_and_review.html" title="NXgeometry and NXshape - documentation and review"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="NXdetector_documentation.html" title="NXdetector documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NXdir</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="nxdir">
+<h1>NXdir<a class="headerlink" href="#nxdir" title="Link to this heading">¶</a></h1>
+<p>NXdir is a console based tool that allows inspecting the contents of a NeXus file.
+It allows for directory-like listing of contents as well as printing out data. If you
+have any questions/comments/bug reports, email Peter Peterson &lt;<a class="reference external" href="mailto:petersonpf&#37;&#52;&#48;ornl&#46;gov">petersonpf<span>&#64;</span>ornl<span>&#46;</span>gov</a>&gt;.</p>
+<section id="news">
+<h2>News<a class="headerlink" href="#news" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>May 7, 2004: New version of NXdir is v0.2.5. This version now supports NX_INT8
+and NX_UINT8 as well as fixes some bugs with reading integers from a NeXus file.</p></li>
+<li><p>Apr 15, 2004: New version of NXdir is v0.2.4. The added feature is writing out
+an NXdata to file (1D and 2D only for now). Let me know if the format should be changed.</p></li>
+<li><p>Mar 17, 2004: New version of NXdir is v0.2.3. This version provides more consistency
+between absolute and relative paths. It also allows for anchoring the path at both ends
+using a /.</p></li>
+<li><p>Mar 01, 2004: First public release of NXdir is v0.2.2 with Linux binary here.</p></li>
+</ul>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>NXdir runs on the command line with a variety of arguments. Below is the online help
+information (note that defaults can be changed during compilation).</p>
+</section>
+<section id="about-nxdir">
+<h2>About NXdir<a class="headerlink" href="#about-nxdir" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><cite>-h</cite> / <cite>–help</cite></p></li>
+<li><p><cite>–version</cite></p></li>
+<li><p>Node Selection:
+- <cite>-p</cite></p></li>
+<li><p>Output Control:
+- <cite>-o/+o</cite>
+- <cite>-l</cite> / <cite>–max-array [value]</cite>
+- <cite>-t</cite> / <cite>–tree-mode</cite>
+- <cite>–path-mode</cite>
+- <cite>–data-mode</cite>
+- <cite>–printline</cite>
+- <cite>–write-data</cite></p></li>
+</ul>
+<p>Some common usages are:</p>
+<ul class="simple">
+<li><p>Print the online help:</p></li>
+</ul>
+<p><strong>nxdir –help</strong></p>
+<ul class="simple">
+<li><p>List everything at the root level of the file: <cite>nxdir lrcs3000.nxs</cite></p></li>
+<li><p>Find the user names in all of the files in the directory:
+<cite>nxdir *.nxs -p NXuser/name -o</cite></p></li>
+<li><p>Find all the data in a file: <cite>nxdir NPDF_E2_R0003000.nx.hdf -p NXdata</cite></p></li>
+<li><p>Print out how the entire file is organized: <cite>nxdir trics058582002.hdf -p “*”</cite> (The asterisk is in quotes so it is not expanded by the shell)</p></li>
+</ul>
+</section>
+<section id="downloads">
+<h2>Downloads<a class="headerlink" href="#downloads" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>NXdir-v0.2.5.tar.gz</p></li>
+<li><p>NXdir-v0.2.4.tar.gz</p></li>
+<li><p>NXdir-v0.2.3.tar.gz</p></li>
+<li><p>NXdir-v0.2.2.tar.gz</p></li>
+<li><p>CHANGES</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>C++ compiler</p></li>
+<li><p>NeXus libraries or</p></li>
+<li><p>Precompiled binary</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<p>Binary: Some binaries can be found above. Download, rename to something you will remember (like nxdir), and move into your path.</p>
+<p>Unix/Linux/Irix/MacOSX: Unpack the tarball, enter the directory, and type <cite>make</cite>. Copy the resulting binary <cite>nxdir</cite> into your path.</p>
+</section>
+<section id="un-installing">
+<h2>Un-installing<a class="headerlink" href="#un-installing" title="Link to this heading">¶</a></h2>
+<p>Remove the file <cite>nxdir</cite>. The installation process did not modify the registry or other system settings in any way.</p>
+</section>
+<section id="frequently-asked-questions-faq">
+<h2>Frequently Asked Questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Link to this heading">¶</a></h2>
+<p><strong>What is NXdir?</strong></p>
+<p>NXdir is a console tool used for inspecting the contents of a NeXus file. It can print out the organization of the file as well as any data enclosed. It is intended to be a cross between the Unix tools <cite>ls</cite> and <cite>grep</cite>. It should help people writing scripts access NeXus files without having to compile in the NeXus API.</p>
+<p><strong>The way NXdir prints arrays is hard to read, could you please change it?</strong></p>
+<p>No, but a format easier for you to read can be added. Please send an example of a two-dimensional array in a format you like.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">NXdir</a><ul>
+<li><a class="reference internal" href="#news">News</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#about-nxdir">About NXdir</a></li>
+<li><a class="reference internal" href="#downloads">Downloads</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#un-installing">Un-installing</a></li>
+<li><a class="reference internal" href="#frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NXdetector_documentation.html"
+                          title="previous chapter">NXdetector documentation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NXgeometry_and_NXshape_-_documentation_and_review.html"
+                          title="next chapter">NXgeometry and NXshape - documentation and review</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/NXdir.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NXgeometry_and_NXshape_-_documentation_and_review.html" title="NXgeometry and NXshape - documentation and review"
+             >next</a></li>
+        <li class="right" >
+          <a href="NXdetector_documentation.html" title="NXdetector documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NXdir</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

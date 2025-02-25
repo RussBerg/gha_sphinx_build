@@ -1,0 +1,528 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NAPI Utility Routines &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NeXpy" href="NeXpy.html" />
+    <link rel="prev" title="NAPI Routines" href="NAPI_Routines.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NeXpy.html" title="NeXpy"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="NAPI_Routines.html" title="NAPI Routines"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NAPI Utility Routines</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="napi-utility-routines">
+<h1>NAPI Utility Routines<a class="headerlink" href="#napi-utility-routines" title="Link to this heading">¶</a></h1>
+<section id="nxuwriteglobals">
+<h2>NXUwriteglobals<a class="headerlink" href="#nxuwriteglobals" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Writes the global attributes defined in the NeXus standard. Note that <code class="docutils literal notranslate"><span class="pre">NeXus_version</span></code>, <code class="docutils literal notranslate"><span class="pre">file_name</span></code>
+and <code class="docutils literal notranslate"><span class="pre">file_time</span></code> are written automatically by the NeXus API. The
+attribute arguments are optional, so the Fortran 90 keyword syntax can be used
+for all of them, <em>e.g.</em>, <code class="docutils literal notranslate"><span class="pre">status</span> <span class="pre">=</span> <span class="pre">NXUwriteglobals</span> <span class="pre">(file_id,</span> <span class="pre">user=&quot;Joe</span>
+<span class="pre">Bloggs&quot;,</span> <span class="pre">email=&quot;JB&#64;some.where&quot;)</span></code>.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUwriteglobals</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">affiliation</span><span class="p">,</span><span class="w"> </span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="n">phone</span><span class="p">,</span><span class="w"> </span><span class="n">fax</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>user</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of user.</p></li>
+<li><p><strong>affiliation</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+User’s affiliation.</p></li>
+<li><p><strong>address</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+User’s address.</p></li>
+<li><p><strong>phone</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+User’s telephone number.</p></li>
+<li><p><strong>fax</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+User’s fax number.</p></li>
+<li><p><strong>email</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+User’s email address.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxuwritegroup">
+<h2>NXUwritegroup<a class="headerlink" href="#nxuwritegroup" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Creates a NeXus group leaving it open for subsequent data output.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUwritegroup</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_name</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>group_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of group.</p></li>
+<li><p><strong>group_class</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Class of group.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxuwritedata">
+<h2>NXUwritedata<a class="headerlink" href="#nxuwritedata" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Creates, opens and writes a NeXus data set in the current group. Data can be a scalar value, or a one-, two-, or three-dimensional array. If higher dimensions are required, use the core API (see <code class="docutils literal notranslate"><span class="pre">NXputdata</span></code>). <code class="docutils literal notranslate"><span class="pre">units</span></code>, <code class="docutils literal notranslate"><span class="pre">data_start</span></code>, and <code class="docutils literal notranslate"><span class="pre">data_size</span></code> are optional parameters. If you want the data set to be compressed, set default compression parameters in <code class="docutils literal notranslate"><span class="pre">NXUsetcompress</span></code>.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUwritedata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="p">,</span><span class="w"> </span><span class="n">data_start</span><span class="p">,</span><span class="w"> </span><span class="n">data_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of data set.</p></li>
+<li><p><strong>data</strong> (type:
+<code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>, <code class="docutils literal notranslate"><span class="pre">integer(:,:)</span></code>, <code class="docutils literal notranslate"><span class="pre">integer(:,:,:)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">real</span></code>, <code class="docutils literal notranslate"><span class="pre">real(:)</span></code>, <code class="docutils literal notranslate"><span class="pre">real(:,:)</span></code>, <code class="docutils literal notranslate"><span class="pre">real(:,:,:)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Data values.</p></li>
+<li><p><strong>units</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>, optional):
+Data units.</p></li>
+<li><p><strong>start</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>, optional):
+Starting indices of data slab.</p></li>
+<li><p><strong>size</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>, optional):
+Length of each dimension of data slab.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxureaddata">
+<h2>NXUreaddata<a class="headerlink" href="#nxureaddata" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Opens and reads a NeXus data set in the current group. Data can be a scalar value, or a one-, two-, or three-dimensional array. If higher dimensions are required, use the core API (see <code class="docutils literal notranslate"><span class="pre">NXgetdata</span></code>). <code class="docutils literal notranslate"><span class="pre">units</span></code>, <code class="docutils literal notranslate"><span class="pre">data_start</span></code>, and <code class="docutils literal notranslate"><span class="pre">data_size</span></code> are optional parameters.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUreaddata</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="p">,</span><span class="w"> </span><span class="n">data_start</span><span class="p">,</span><span class="w"> </span><span class="n">data_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of data set.</p></li>
+<li><p><strong>start</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>, optional):
+Starting indices of data slab.</p></li>
+<li><p><strong>size</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>, optional):
+Length of each dimension of data slab.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data</strong> (type:
+<code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>, <code class="docutils literal notranslate"><span class="pre">integer(:,:)</span></code>, <code class="docutils literal notranslate"><span class="pre">integer(:,:,:)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">real</span></code>, <code class="docutils literal notranslate"><span class="pre">real(:)</span></code>, <code class="docutils literal notranslate"><span class="pre">real(:,:)</span></code>, <code class="docutils literal notranslate"><span class="pre">real(:,:,:)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Data values.</p></li>
+<li><p><strong>units</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>, optional):
+Data units.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxuwritehistogram">
+<h2>NXUwritehistogram<a class="headerlink" href="#nxuwritehistogram" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Creates, opens, and writes a one-dimensional NeXus data item with units. The input data are assumed to be histogram bin boundaries, and the stored data contains the histogram centers, i.e., the stored array has a dimension one less than the data. The <code class="docutils literal notranslate"><span class="pre">histogram_offset</span></code> attribute is automatically set to half the width of the first bin, which allows the regeneration of the bin boundaries by <code class="docutils literal notranslate"><span class="pre">NXUreadhistogram</span></code>.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUwritehistogram</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of histogram.</p></li>
+<li><p><strong>data</strong> (type: <code class="docutils literal notranslate"><span class="pre">real(:),</span> <span class="pre">pointer</span></code>):
+Histogram bin boundaries.</p></li>
+<li><p><strong>units</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>, optional):
+Data units.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxureadhistogram">
+<h2>NXUreadhistogram<a class="headerlink" href="#nxureadhistogram" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Opens and reads a one-dimensional real data set in the current group. The data are assumed to be histogram bin boundaries, which are stored in NeXus files as bin centers with the first bin offset defined as the attribute <code class="docutils literal notranslate"><span class="pre">histogram_offset</span></code>, i.e., the returned array has a dimension one greater than the stored array (see <code class="docutils literal notranslate"><span class="pre">NXUwritehistogram</span></code>). If the <code class="docutils literal notranslate"><span class="pre">histogram_offset</span></code> attribute is not present, it is assumed that the first bin width equals the separation of the first two bin centers.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUreadhistogram</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">units</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of histogram.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data</strong> (type: <code class="docutils literal notranslate"><span class="pre">real(:),</span> <span class="pre">pointer</span></code>):
+Histogram bin boundaries.</p></li>
+<li><p><strong>units</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>, optional):
+Data units.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxusetcompress">
+<h2>NXUsetcompress<a class="headerlink" href="#nxusetcompress" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Sets the compression type to be used in subsequent calls to <code class="docutils literal notranslate"><span class="pre">NXUwritedata</span></code>. The second parameter, which is optional, sets the minimum number of elements in a data set before any compression is performed. This is to prevent inefficient compression of small data sets. The default value is 100.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUsetcompress</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">compress_type</span><span class="p">,</span><span class="w"> </span><span class="n">compress_size</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>compress_type</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Compression algorithm. Options include:
+- <code class="docutils literal notranslate"><span class="pre">NX_COMP_LZW</span></code>: GZIP
+- <code class="docutils literal notranslate"><span class="pre">NX_COMP_HUF</span></code>: Skipping Huffman
+- <code class="docutils literal notranslate"><span class="pre">NX_COMP_RLE</span></code>: Run Length Encoding
+- <code class="docutils literal notranslate"><span class="pre">NX_COMP_NONE</span></code>: No compression</p></li>
+<li><p><strong>compress_size</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Minimum number of elements in data set before compression is attempted.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufindgroup">
+<h2>NXUfindgroup<a class="headerlink" href="#nxufindgroup" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds if the NeXus group exists in the current group and returns its class. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if the group is not found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfindgroup</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_name</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>group_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of group.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>group_class</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Class of group.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufindclass">
+<h2>NXUfindclass<a class="headerlink" href="#nxufindclass" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds if a NeXus group of the requested class exists in the current group and returns its name. <code class="docutils literal notranslate"><span class="pre">find_index</span></code> is used when there is more than one group of the required class; <code class="docutils literal notranslate"><span class="pre">find_index</span> <span class="pre">=</span> <span class="pre">3</span></code> returns the name of the third group found. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if no such group is found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfindclass</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">,</span><span class="w"> </span><span class="n">group_name</span><span class="p">,</span><span class="w"> </span><span class="n">find_index</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>group_class</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Requested class.</p></li>
+<li><p><strong>find_index</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Search index.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>group_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Name of the group with that class.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufinddata">
+<h2>NXUfinddata<a class="headerlink" href="#nxufinddata" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds if a NeXus data set of the requested name exists in the current group. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if the data set is not found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfinddata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Requested data set.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufindattr">
+<h2>NXUfindattr<a class="headerlink" href="#nxufindattr" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds if a NeXus attribute of the current data set exists. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if the attribute is not found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfindattr</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">attr_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>attr_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Requested attribute name.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufindsignal">
+<h2>NXUfindsignal<a class="headerlink" href="#nxufindsignal" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds the NeXus data set in the current group with the required signal attribute, and returns its name, rank, type, and dimensions. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if the signal data set is not found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfindsignal</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">signal</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_rank</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">data_dimensions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>signal</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Required value of signal attribute.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Data set with the required signal attribute.</p></li>
+<li><p><strong>data_rank</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Rank of the data set.</p></li>
+<li><p><strong>data_type</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Type of the data set (see list of valid data types).</p></li>
+<li><p><strong>data_dimensions</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>):
+Dimensions of the data set.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufindaxis">
+<h2>NXUfindaxis<a class="headerlink" href="#nxufindaxis" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds the NeXus data set in the current group with the required axis and primary attributes, and returns its name, rank, type, and dimensions. Note that the axis data set should be one-dimensional. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if the axis data set is not found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfindaxis</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">axis</span><span class="p">,</span><span class="w"> </span><span class="n">primary</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_rank</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">data_dimensions</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>axis</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Required value of axis attribute.</p></li>
+<li><p><strong>primary</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Required value of primary attribute.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data_name</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Data set with the required axis attribute.</p></li>
+<li><p><strong>data_rank</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Rank of the data set.</p></li>
+<li><p><strong>data_type</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer</span></code>):
+Type of the data set (see list of valid data types).</p></li>
+<li><p><strong>data_dimensions</strong> (type: <code class="docutils literal notranslate"><span class="pre">integer(:)</span></code>):
+Dimensions of the data set.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxufindlink">
+<h2>NXUfindlink<a class="headerlink" href="#nxufindlink" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Finds another group to which the currently open data set is linked and leaves it open for getting associated data. <code class="docutils literal notranslate"><span class="pre">group_id</span></code> stores the ID of the original group to enable a subsequent return (see <code class="docutils literal notranslate"><span class="pre">NXUresumelink</span></code>). <code class="docutils literal notranslate"><span class="pre">group_class</span></code> is an optional argument that restricts the search to the specified group class. The returned status is <code class="docutils literal notranslate"><span class="pre">NX_EOD</span></code> if the group is not found.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUfindlink</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>group_class</strong> (type: <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code>):
+Group classes to be searched.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>group_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXlink</span></code>):
+ID of the current group.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxuresumelink">
+<h2>NXUresumelink<a class="headerlink" href="#nxuresumelink" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><p>Returns to the original group from which an <code class="docutils literal notranslate"><span class="pre">NXUfindlink</span></code> call was issued.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXUresumelink</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXhandle</span></code>):
+Identifier of NeXus file.</p></li>
+<li><p><strong>group_id</strong> (type: <code class="docutils literal notranslate"><span class="pre">NXlink</span></code>):
+ID of the original group.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">NAPI Utility Routines</a><ul>
+<li><a class="reference internal" href="#nxuwriteglobals">NXUwriteglobals</a></li>
+<li><a class="reference internal" href="#nxuwritegroup">NXUwritegroup</a></li>
+<li><a class="reference internal" href="#nxuwritedata">NXUwritedata</a></li>
+<li><a class="reference internal" href="#nxureaddata">NXUreaddata</a></li>
+<li><a class="reference internal" href="#nxuwritehistogram">NXUwritehistogram</a></li>
+<li><a class="reference internal" href="#nxureadhistogram">NXUreadhistogram</a></li>
+<li><a class="reference internal" href="#nxusetcompress">NXUsetcompress</a></li>
+<li><a class="reference internal" href="#nxufindgroup">NXUfindgroup</a></li>
+<li><a class="reference internal" href="#nxufindclass">NXUfindclass</a></li>
+<li><a class="reference internal" href="#nxufinddata">NXUfinddata</a></li>
+<li><a class="reference internal" href="#nxufindattr">NXUfindattr</a></li>
+<li><a class="reference internal" href="#nxufindsignal">NXUfindsignal</a></li>
+<li><a class="reference internal" href="#nxufindaxis">NXUfindaxis</a></li>
+<li><a class="reference internal" href="#nxufindlink">NXUfindlink</a></li>
+<li><a class="reference internal" href="#nxuresumelink">NXUresumelink</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="NAPI_Routines.html"
+                          title="previous chapter">NAPI Routines</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NeXpy.html"
+                          title="next chapter">NeXpy</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/NAPI_Utility_Routines.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NeXpy.html" title="NeXpy"
+             >next</a></li>
+        <li class="right" >
+          <a href="NAPI_Routines.html" title="NAPI Routines"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NAPI Utility Routines</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

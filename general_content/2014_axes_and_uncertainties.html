@@ -1,0 +1,413 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2014 axes and uncertainties &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2014 How to Find Default Data" href="2014_How_to_find_default_data.html" />
+    <link rel="prev" title="General Content" href="content.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="2014_How_to_find_default_data.html" title="2014 How to Find Default Data"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="content.html" title="General Content"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">2014 axes and uncertainties</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="axes-and-uncertainties">
+<h1>2014 axes and uncertainties<a class="headerlink" href="#axes-and-uncertainties" title="Link to this heading">¶</a></h1>
+<p>(written for NIAC2014_Meeting)</p>
+<p>In developing the canSAS standard for storing multidimensional reduced small-angle scattering data, a new method for
+identifying the related axes and uncertainties was devised. It is proposed that this will be a good addition to NeXus,
+adding flexibility to data file writers while preserving an obvious path from data to axes and uncertainties.</p>
+<section id="proposal-to-describe-n-dimensional-data-axes">
+<h2>Proposal to describe N-dimensional data (Axes)<a class="headerlink" href="#proposal-to-describe-n-dimensional-data-axes" title="Link to this heading">¶</a></h2>
+<p>(see this from canSAS: )</p>
+<p>NeXus needs a robust method to describe and associate the axes of data with arbitrary dimensions in files. Particularly,
+the existing methods rely on the concept of HDF dimension scales to describe each of the axes. There is no capability in
+NeXus to describe multi-dimensional axes associated with plottable data. The current method of identifying the default
+data in NeXus files by adding attributes to datasets does not work in certain important situations. For example, with
+the current specifications, a dataset with &#64;signal=1 attribute cannot be linked into a group which already has such a
+dataset. Yet, the notion of NXdata to describe the default plot implies the specifications are a property of the NXdata
+group, not the component datasets. An additional concern is that the method should allow great flexibility in the naming
+of fields. The new method should be backwards compatible with and not spoil existing methods in NeXus. We must also
+consider and allow for the common situation when <strong>no axes</strong> are specified.</p>
+<p>### Proposition</p>
+<p>Define the specifications of the default data and any associated axes using attributes attached to the NXdata group.
+Preserve the simplicity of the signal attribute but provide it at the group level. Define how to describe slices of
+multi-dimensional axes associated with the default data.</p>
+<p>### NXdata Attributes</p>
+<p><strong>All attributes potentially containing multiple values (axes and _indices) are to be written as integer or string
+arrays, to avoid string parsing in reading applications.</strong></p>
+<p><strong>signal</strong></p>
+<p><strong>signal</strong>: Defines the name of the default dataset. A field of this name <em>must</em> exist (either dataset or link to dataset).</p>
+<p><strong>axes</strong>: String array that defines the independent data fields used in the default plot for all the dimensions of the signal field. One entry is provided for every dimension in the signal field. The fields named as values (known as <cite>axes</cite>) of this attribute must exist. An axis slice is specified using the <cite>{axisname}_indices</cite> below.</p>
+<p>When no default axis is available for a particular dimension of the plottable data, use a <cite>.</cite> in that position. If there are no axes at all (such as with a stack of images), the <cite>axes</cite> attribute can be omitted.</p>
+<p><strong>{axisname}_indices</strong>: Integer array that defines the indices of the signal field array which need to be used in the <cite>{axisname}</cite> dataset to reference the corresponding axis value. This attribute is to be provided in all situations. However, if the indices attributes are missing, file readers are encouraged to make their best efforts to plot the data.</p>
+<p>The implementation of the <cite>{axisname}_indices</cite> attribute is based on the model of “strict writer, liberal reader.”</p>
+<section id="example-data-structures">
+<h3>Example Data Structures<a class="headerlink" href="#example-data-structures" title="Link to this heading">¶</a></h3>
+<dl>
+<dt>NXroot</dt><dd><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”data”               –&gt; names the default data to be visualized</p>
+<p>&#64;axes=”x”                   –&gt; names the default independent data</p>
+<p>&#64;x_indices=0</p>
+<p>data: float[100]            –&gt; the default dependent data</p>
+<p>x: float[100]               –&gt; the default independent data</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>NXroot</dt><dd><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”data”</p>
+<p>&#64;axes=”time”, “pressure”</p>
+<p>&#64;pressure_indices=1</p>
+<p>&#64;temperature_indices=1</p>
+<p>&#64;time_indices=0</p>
+<p>data: float[1000, 20]</p>
+<p>pressure: float[20]</p>
+<p>temperature: float[20]</p>
+<p>time: float[1000]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>NXroot</dt><dd><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”det”</p>
+<p>&#64;axes=”pressure”, “tof”</p>
+<p>&#64;pressure_indices=0</p>
+<p>&#64;tof_indices=1</p>
+<p>det: float[100, 100000]</p>
+<p>pressure: float[100]</p>
+<p>tof: float[100000]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>NXroot</dt><dd><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”det”</p>
+<p>&#64;axes=”x”, “y”, “tof”</p>
+<p>&#64;tof_indices=2</p>
+<p>&#64;x_indices=0, 1</p>
+<p>&#64;y_indices=0, 1</p>
+<p>det: float[100, 512, 100000]</p>
+<p>tof: float[100000]</p>
+<p>x: float[100, 512]</p>
+<p>y: float[100, 512]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>NXroot</dt><dd><blockquote>
+<div><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”det1”</p>
+<p>&#64;axes=”polar_angle_demand”, “frame_number”, “.”</p>
+<p>&#64;frame_number_indices=1</p>
+<p>&#64;polar_angle_rbv_indices=0, 1</p>
+<p>&#64;time_indices=0, 1</p>
+<p>&#64;polar_angle_demand_indices=0</p>
+<p>polar_angle_rbv: float[50, 5]</p>
+<p>det1: float[50, 5, 1024]</p>
+<p>polar_angle_demand: float[50]</p>
+<p>frame_number: float[5]</p>
+<p>time: float[50, 5]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>Uncertainties</p>
+</dd>
+</dl>
+<p><strong>NOTE:</strong> At NIAC2014, this proposal on uncertainties was not accepted.
+<em>NIAC will see a proposal when experience has been gained with all variations.</em>
+(See this from canSAS.)</p>
+<p>In a scientific data file, it is assumed that uncertainty about the value of the data is expressed in an array of the same shape as the data. The uncertainty of a datum may be expressed as a single value or derived from several components.</p>
+<p>The way that data uncertainties are described in NeXus data files is inconsistent across the base classes and can be improved while also being generalized. Currently, the name of these uncertainties is most often called “errors,” which is incorrect. At best, these are error estimates but actually describe an estimate of one’s uncertainty in the data.</p>
+<p>While uncertainties are properties of the dataset rather than the containing group, it is difficult in some cases, such as with externally-linked datasets, to attach the attributes directly to the dataset.</p>
+<p>### Proposition</p>
+<p>The attribute-based scheme used to describe the axes (see above) can be extended to describe the uncertainties. A subgroup can be created to deposit these constituents. It seems that a new base class would be needed for this subgroup.</p>
+<p>It is a question for debate whether to attach the attribute to the dataset or the NXdata group. For now, this remains an open question.</p>
+<p>### NXdata Attributes</p>
+<p>We must consider the description of uncertainty as an attribute of either a dataset or the containing NXdata group. The value of the attribute should be the same in either case.</p>
+<p>The name of the uncertainty attribute depends on the context:</p>
+<ul class="simple">
+<li><p><strong>Parent NXdata group:</strong> <cite>{name}_uncertainty</cite></p></li>
+<li><p><strong>Dataset:</strong> <cite>uncertainty</cite></p></li>
+</ul>
+<p>Value:
+Defines the name of the dataset with the uncertainty to be used.
+This dataset must exist and have the same shape as the signal dataset.</p>
+<p><strong>Examples:</strong></p>
+<dl class="simple">
+<dt>NXroot</dt><dd><dl class="simple">
+<dt>NXentry</dt><dd><dl class="simple">
+<dt>NXdata</dt><dd><p>&#64;signal=”data”
+&#64;data_axes=”xy”
+&#64;data_uncertainty=”esd”
+data: float[300, 300]
+xy: float[300, 300]
+esd: float[300, 300]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>NXroot</dt><dd><dl class="simple">
+<dt>NXentry</dt><dd><dl class="simple">
+<dt>NXdata</dt><dd><p>&#64;signal=”data”
+&#64;data_axes=”xy”
+&#64;uncertainty=”esd”
+data: float[300, 300]
+xy: float[300, 300]
+esd: float[300, 300]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>Name of the Uncertainty Components Subgroup Attribute:</strong>
+The naming of the uncertainty components subgroup attribute depends on the context:</p>
+<ul class="simple">
+<li><p><strong>Parent NXdata group:</strong>
+<cite>{name}_uncertainty_components</cite>
+- <cite>{name}</cite> is the uncertainty dataset name.
+- <cite>{name}</cite> must exist as a dataset.</p></li>
+<li><p><strong>Dataset:</strong>
+<cite>uncertainty_components</cite> (attached to the uncertainty dataset).</p></li>
+</ul>
+<p><strong>Value:</strong>
+Defines the name of the NXuncertainty subgroup with the uncertainty components.
+This subgroup must exist.</p>
+<p><strong>Examples:</strong></p>
+<dl>
+<dt>NXroot</dt><dd><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”data”</p>
+<p>&#64;data_axes=”xy”</p>
+<p>&#64;data_uncertainty=”esd”</p>
+<p>&#64;esd_uncertainty_components=”esd_uncertainties”</p>
+<p>data: float[300, 300]</p>
+<p>xy: float[300, 300]</p>
+<p>esd: float[300, 300]</p>
+<p>esd_uncertainties: NXuncertainty</p>
+<blockquote>
+<div><p>electronic: float[300, 300]</p>
+<blockquote>
+<div><p>&#64;basis=”Johnson noise”</p>
+</div></blockquote>
+<p>counting_statistics: float[300, 300]</p>
+<blockquote>
+<div><p>&#64;basis=”shot noise”</p>
+</div></blockquote>
+<p>secondary_standard: float[300, 300]</p>
+<blockquote>
+<div><p>&#64;basis=”esd”</p>
+</div></blockquote>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>NXroot</dt><dd><dl>
+<dt>NXentry</dt><dd><dl>
+<dt>NXdata</dt><dd><p>&#64;signal=”data”</p>
+<p>&#64;data_axes=”xy”</p>
+<p>data: float[300, 300]</p>
+<p>xy: float[300, 300]</p>
+<p>esd: float[300, 300]</p>
+<p>&#64;uncertainty=”esd”</p>
+<p>&#64;uncertainty_components=”esd_uncertainties”</p>
+<p>esd_uncertainties: NXuncertainty</p>
+<blockquote>
+<div><p>electronic: float[300, 300]</p>
+<blockquote>
+<div><p>&#64;basis=”Johnson noise”</p>
+</div></blockquote>
+<p>counting_statistics: float[300, 300]</p>
+<blockquote>
+<div><p>&#64;basis=”shot noise”</p>
+</div></blockquote>
+<p>secondary_standard: float[300, 300]</p>
+<blockquote>
+<div><p>&#64;basis=”esd”</p>
+</div></blockquote>
+</div></blockquote>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="topics-for-discussion-on-this">
+<h3>Topics for Discussion on this<a class="headerlink" href="#topics-for-discussion-on-this" title="Link to this heading">¶</a></h3>
+<p>Proposal These are some of the topics to be considered when evaluating
+this proposal.</p>
+<ol class="arabic simple">
+<li><p>There are known advantages and disadvantages to the decision to store attributes on the parent group or on the field itself.</p></li>
+<li><p>Attributes stored on the field will transfer when the field is copied or linked.</p></li>
+<li><p>It may not be possible to add or modify a field attribute which is linked due to conflicts or write permissions.</p></li>
+<li><p>The uncertainty field (and possible complex uncertainties) need to be considered when copying or linking.</p></li>
+<li><p>Uncertainty is not a popular word to spell. Yet errors is not correct in this context.</p></li>
+</ol>
+<p>### *NXuncertainty* Base Class TODO: need to write this section</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">2014 axes and uncertainties</a><ul>
+<li><a class="reference internal" href="#proposal-to-describe-n-dimensional-data-axes">Proposal to describe N-dimensional data (Axes)</a><ul>
+<li><a class="reference internal" href="#example-data-structures">Example Data Structures</a></li>
+<li><a class="reference internal" href="#topics-for-discussion-on-this">Topics for Discussion on this</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="content.html"
+                          title="previous chapter">General Content</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="2014_How_to_find_default_data.html"
+                          title="next chapter">2014 How to Find Default Data</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/2014_axes_and_uncertainties.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="2014_How_to_find_default_data.html" title="2014 How to Find Default Data"
+             >next</a></li>
+        <li class="right" >
+          <a href="content.html" title="General Content"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">2014 axes and uncertainties</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

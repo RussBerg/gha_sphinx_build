@@ -1,0 +1,276 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MonoXSingle &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multi-Method Instruments" href="Multi_Method_Instruments.html" />
+    <link rel="prev" title="MonoXPSD" href="MonoXPSD.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Multi_Method_Instruments.html" title="Multi-Method Instruments"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="MonoXPSD.html" title="MonoXPSD"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MonoXSingle</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="monoxsingle">
+<h1>MonoXSingle<a class="headerlink" href="#monoxsingle" title="Link to this heading">¶</a></h1>
+<section id="monochromatic-single-crystal-diffractometer-with-single-detector">
+<h2>Monochromatic Single Crystal Diffractometer with Single Detector<a class="headerlink" href="#monochromatic-single-crystal-diffractometer-with-single-detector" title="Link to this heading">¶</a></h2>
+<p>Instrument definition for a single crystal diffractometer at a
+monochromatic neutron or X-ray beam. This is the single detector
+version.</p>
+<p>General Notes:</p>
+<ul class="simple">
+<li><p>A Eulerian cradle is assumed. If you do not have this, or you are
+using a rotation camera, feel free to adapt the Nxsample group.</p></li>
+<li><p>If you put measurements for multiple reflections in one file, they
+should go into separate entries.</p></li>
+<li><p>The definition assumes the measurement to be an omega - two-theta or
+omega scan of a given reflection. If this is not the case, i.e. a
+general scan is performed, feel free to make HKL, chi and phi arrays
+with the length of the scan as a dimension. As the NeXus scan
+paradigm of the day requires.</p></li>
+<li><p>This definition is fairly minimal and shall cater for standard data
+reduction needs. If your most favourite items are missing, feel free
+to add them. If you think something is missing which is required for
+standard data reduction tasks, please contact the maintainer of this
+definition.</p></li>
+</ul>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cm">&lt;!-- --&gt;</span>
+
+<span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+<span class="cm">&lt;!--</span>
+<span class="cm">URL:</span>
+<span class="cm">Editor: Mark Koennecke &lt;Mark.Koennecke@psi.ch&gt;</span>
+<span class="cm">version: October 2006</span>
+<span class="cm">$Id$</span>
+
+<span class="cm">Instrument definition for a single crystal diffractometer at a monochromatic</span>
+<span class="cm">neutron or X-ray beam.  This is the single detector version.</span>
+
+<span class="cm">General Notes:</span>
+<span class="cm"> - A Eulerian cradle is assumed. If you do not have this, or you are</span>
+<span class="cm">   using a rotation camera, feel free to adapt the Nxsample group.</span>
+<span class="cm"> - If you put measurements for multiple reflections in one file, they</span>
+<span class="cm">   should go into separate entries.</span>
+<span class="cm"> - The definition assumes the measurement to be an omega - two-theta or</span>
+<span class="cm">   omega scan of a given reflection. If this is not the case,  i.e. a</span>
+<span class="cm">   general scan is performed, feel free to make HKL, chi and phi arrays</span>
+<span class="cm">   with the length of the scan as a dimension. As the  NeXus scan</span>
+<span class="cm">   paradigm of the day requires.</span>
+<span class="cm">- This definition is fairly minimal and shall cater for standard data</span>
+<span class="cm">  reduction needs. If your most favourite items are missing, feel free to</span>
+<span class="cm">  add them. If you think something is missing which is required for standard</span>
+<span class="cm">  data reduction tasks, please contact the maintainer of this definition.</span>
+<span class="cm">- NP is again the number of scan points.</span>
+<span class="cm">--&gt;</span>
+<span class="nt">&lt;NXroot</span><span class="w"> </span><span class="nt">&gt;</span>
+<span class="w">  </span><span class="nt">&lt;NXentry</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Entry Name}&quot;</span><span class="nt">&gt;</span>+
+<span class="w">     </span><span class="nt">&lt;title</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>{Title<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>experiment}<span class="nt">&lt;/title&gt;</span>
+<span class="w">     </span><span class="nt">&lt;start_time</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;ISO8601&quot;</span><span class="nt">&gt;</span>{start<span class="w"> </span>time<span class="w"> </span>of<span class="w"> </span>measurement}
+<span class="w">     </span><span class="nt">&lt;/start_time&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/end_time&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXinstrument</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;instrument&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXcrystal</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of Monochromator Crystal}&quot;</span><span class="nt">&gt;</span>
+<span class="w">       </span><span class="nt">&lt;wavelength</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;Angstroems&quot;</span><span class="nt">&gt;</span>
+<span class="w">               </span>{nominal<span class="w"> </span>wavelength<span class="w"> </span>selected}
+<span class="w">           </span><span class="nt">&lt;/wavelength&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXcrystal&gt;</span>
+<span class="w">        </span><span class="nt">&lt;NXdetector</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of Detector}&quot;</span><span class="nt">&gt;</span>+
+<span class="w">       </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">             </span>{Polar<span class="w"> </span>Angle,<span class="w"> </span>commonly<span class="w"> </span>known<span class="w"> </span>as<span class="w"> </span>two<span class="w"> </span>theta}
+<span class="w">             </span>{Polar<span class="w"> </span>Angle,<span class="w"> </span>or<span class="w"> </span>two<span class="w"> </span>theta<span class="w"> </span>as<span class="w"> </span>an<span class="w"> </span>array<span class="w"> </span>with<span class="w"> </span>values<span class="w"> </span>for<span class="w"> </span>each
+<span class="w">              </span>detector<span class="w"> </span>element}
+<span class="w">           </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">       </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[np]&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="w"> </span><span class="na">axes=</span><span class="s">&quot;polar_angle&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span>{The<span class="w"> </span>counts<span class="w"> </span>detected<span class="w"> </span>in<span class="w"> </span>the<span class="w"> </span>detector}
+<span class="w">       </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/NXdetector&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/NXinstrument&gt;</span>
+<span class="w">     </span><span class="nt">&lt;NXmonitor</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;control&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;mode</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>monitor<span class="w"> </span>|<span class="w"> </span>timer<span class="nt">&lt;/mode&gt;</span>
+<span class="w">        </span><span class="nt">&lt;preset</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span>{preset<span class="w"> </span>value<span class="w"> </span>for<span class="w"> </span>monitor<span class="w"> </span>or<span class="w"> </span>timer}
+<span class="w">        </span><span class="nt">&lt;/preset&gt;</span>
+<span class="w">        </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32&quot;</span><span class="nt">&gt;</span>
+<span class="w">          </span>{Monitor<span class="w"> </span>counts}
+<span class="w">        </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">     </span><span class="nt">&lt;/NXmonitor&gt;</span>
+<span class="w">   </span><span class="nt">&lt;NXsample</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of Sample}&quot;</span><span class="nt">&gt;</span>
+<span class="w">     </span><span class="nt">&lt;name</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_CHAR&quot;</span><span class="nt">&gt;</span>
+<span class="w">      </span>{Descriptive<span class="w"> </span>name<span class="w"> </span>of<span class="w"> </span>sample}
+<span class="w">     </span><span class="nt">&lt;/name&gt;</span>
+<span class="w">     </span><span class="nt">&lt;rotation</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{<span class="w"> </span>Sample<span class="w"> </span>rotation,<span class="w"> </span>aslo<span class="w"> </span>known<span class="w"> </span>as<span class="w"> </span>omega<span class="w"> </span>}
+<span class="w">     </span><span class="nt">&lt;/rotation&gt;</span>
+<span class="w">     </span><span class="nt">&lt;chi</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{<span class="w"> </span>chi<span class="w"> </span>angle<span class="w"> </span>}
+<span class="w">     </span><span class="nt">&lt;/chi&gt;</span>
+<span class="w">     </span><span class="nt">&lt;phi</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[np]&quot;</span><span class="w"> </span><span class="na">units=</span><span class="s">&quot;degree&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span>{<span class="w"> </span>phi<span class="w"> </span>angle<span class="w"> </span>}
+<span class="w">     </span><span class="nt">&lt;/phi&gt;</span>
+<span class="w">     </span><span class="nt">&lt;orientation_matrix</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[3,3]&quot;</span><span class="nt">&gt;</span>
+<span class="w">       </span>{Orientation<span class="w"> </span>matrix<span class="w"> </span>of<span class="w"> </span>single<span class="w"> </span>crystal<span class="w"> </span>according<span class="w"> </span>to<span class="w"> </span>conventions
+<span class="w">        </span>established<span class="w"> </span>by<span class="w"> </span>Busing,<span class="w">  </span>Levy,<span class="w"> </span>1967<span class="w"> </span>}
+<span class="w">      </span><span class="nt">&lt;/orientation_matrix&gt;</span>
+<span class="w">      </span><span class="nt">&lt;miller_indices</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT[3]&quot;</span><span class="nt">&gt;</span>
+<span class="w">       </span>{<span class="w"> </span>Miller<span class="w"> </span>indices<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>target<span class="w"> </span>reflection}
+<span class="w">      </span><span class="nt">&lt;/miller_indices&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/NXsample&gt;</span>
+<span class="w">   </span><span class="nt">&lt;NXdata</span><span class="w"> </span><span class="na">name=</span><span class="s">&quot;{Name of Data Block}&quot;</span><span class="nt">&gt;</span>+
+<span class="w">      </span><span class="nt">&lt;data</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_INT32[np]&quot;</span><span class="w"> </span><span class="na">signal=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">         </span>{Link<span class="w"> </span>to<span class="w"> </span>detector<span class="w"> </span>counts<span class="w"> </span>in<span class="w"> </span>NXdetector}
+<span class="w">      </span><span class="nt">&lt;/data&gt;</span>
+<span class="w">      </span><span class="nt">&lt;polar_angle</span><span class="w"> </span><span class="na">type=</span><span class="s">&quot;NX_FLOAT32[np]&quot;</span><span class="w"> </span><span class="na">axis=</span><span class="s">&quot;1&quot;</span><span class="nt">&gt;</span>
+<span class="w">         </span>{Link<span class="w"> </span>to<span class="w"> </span>polar<span class="w"> </span>angle<span class="w"> </span>data<span class="w"> </span>in<span class="w"> </span>NXdetector}
+<span class="w">      </span><span class="nt">&lt;/polar_angle&gt;</span>
+<span class="w">   </span><span class="nt">&lt;/NXdata&gt;</span>
+<span class="w">  </span><span class="nt">&lt;/NXentry&gt;</span>
+<span class="nt">&lt;/NXroot&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MonoXSingle</a><ul>
+<li><a class="reference internal" href="#monochromatic-single-crystal-diffractometer-with-single-detector">Monochromatic Single Crystal Diffractometer with Single Detector</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="MonoXPSD.html"
+                          title="previous chapter">MonoXPSD</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="Multi_Method_Instruments.html"
+                          title="next chapter">Multi-Method Instruments</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/MonoXSingle.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="Multi_Method_Instruments.html" title="Multi-Method Instruments"
+             >next</a></li>
+        <li class="right" >
+          <a href="MonoXPSD.html" title="MonoXPSD"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MonoXSingle</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>

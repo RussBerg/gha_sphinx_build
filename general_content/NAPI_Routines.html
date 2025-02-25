@@ -1,0 +1,1121 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>NAPI Routines &#8212; nexus wiki 1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d75fae25" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinxdoc.css?v=34905f61" />
+    <link rel="stylesheet" type="text/css" href="../_static/details_summary_hide.css?v=30df4bca" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+    <link rel="stylesheet" href="../_static/blockquote.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/rubric.css" type="text/css" />
+    <script src="../_static/documentation_options.js?v=29a6c3e3"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"/>
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="NAPI Utility Routines" href="NAPI_Utility_Routines.html" />
+    <link rel="prev" title="Muon Time Differential" href="Muon_Time_Differential.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NAPI_Utility_Routines.html" title="NAPI Utility Routines"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="Muon_Time_Differential.html" title="Muon Time Differential"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" accesskey="U">General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NAPI Routines</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="napi-routines">
+<h1>NAPI Routines<a class="headerlink" href="#napi-routines" title="Link to this heading">¶</a></h1>
+<section id="out-of-date">
+<h2>OUT OF DATE<a class="headerlink" href="#out-of-date" title="Link to this heading">¶</a></h2>
+<p>This page is now out of date and has been replaced by <a class="reference external" href="https://manual.nexusformat.org/doxygen/html-c/">[Doxygen generated documentation]</a></p>
+</section>
+<section id="general-initialization-and-shutdown">
+<h2>General Initialization and Shutdown<a class="headerlink" href="#general-initialization-and-shutdown" title="Link to this heading">¶</a></h2>
+<section id="nxopen">
+<h3>NXopen<a class="headerlink" href="#nxopen" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Opens the NeXus file, and creates and initializes the NeXus file structure.
+The returned handle is a pointer to this structure.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXopen</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span><span class="w"> </span><span class="n">access_method</span><span class="p">,</span><span class="w"> </span><span class="n">file_id</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file_name: <em>char **</em>
+Name of NeXus file to be opened.</p></li>
+<li><p>access_method: <em>int</em>
+File Access options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NXACC_READ</span></code>:   Read only</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NXACC_RDWR</span></code>:   Read and write access</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NXACC_CREATE</span></code>:   Create (HDF4) file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NXACC_CREATE4</span></code>:   Create HDF4 file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NXACC_CREATE5</span></code>:   Create HDF5 file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NXACC_CREATEXML</span></code>:   Create XML file</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Output Arguments</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>file_id: <em>NXhandle **</em>
+Identifier of the NeXus file.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxclose">
+<h3>NXclose<a class="headerlink" href="#nxclose" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Closes NeXus file and deletes all associated data structures from memory.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXclose</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Input Arguments</strong></dt><dd><ul class="simple">
+<li><p>file_id</p></li>
+<li><p>NXhandle *</p></li>
+<li><p>Identifier of NeXus file</p></li>
+</ul>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="nxmakegroup">
+<h3>NXmakegroup<a class="headerlink" href="#nxmakegroup" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Creates a NeXus group at the current level in the group hierarchy, defining its name and class. This does not open the new group automatically.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXmakegroup</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_name</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file
+group_name    char *    Name of NeXus group
+group_class   char *    Class of NeXus group</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxopengroup">
+<h3>NXopengroup<a class="headerlink" href="#nxopengroup" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Opens an existing NeXus group for input and output of data.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXopengroup</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_name</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file
+group_name    char *    Name of NeXus group
+group_class   char *    Class of NeXus group</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxopenpath">
+<h3>NXopenpath<a class="headerlink" href="#nxopenpath" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Opens a NeXus group or dataset from a path string. The NeXus item must exist for NXopenpath to work correctly. The path string for NXopenpath has the same form as a unix path string: /group1/group/group2/dataset. Both absolute and relative path are supported.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXopenpath</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">path_string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file
+path_string   char *    path to dataset or group in NeXus file</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxopengrouppath">
+<h3>NXopengrouppath<a class="headerlink" href="#nxopengrouppath" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Opens a NeXus group from a path string. This function is subtly different from NXopenpath in that it only opens the path to the last group; it does not open datasets. The NeXus item must exist for NXopengrouppath to work correctly. The path string for NXopengrouppath has the same form as a unix path string: /group1/group/group2/dataset. Both absolute and relative path are supported.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXopengrouppath</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">path_string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file
+path_string   char *    path to dataset or group in NeXus file</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxclosegroup">
+<h3>NXclosegroup<a class="headerlink" href="#nxclosegroup" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Closes the currently open group. If this group is a top-level group (i.e. with class NXentry), no groups are left open. Otherwise, the next group up in the hierarchy (i.e. the group containing the currently open group) is left open.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXclosegroup</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxmakedata">
+<h3>NXmakedata<a class="headerlink" href="#nxmakedata" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Creates a new NeXus data set with the specified name, type, rank, and dimensions.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXmakedata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">dimensions</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (char *):
+Name of NeXus data set.</p></li>
+<li><p><strong>data_type</strong> (int):
+Data Type:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>:  Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>:  4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>:  8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>:  1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>:   unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>:   2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>:   unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>:   4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>:   unsigned 4-byte integer</p></li>
+</ul>
+</li>
+<li><p><strong>rank</strong> (int):
+Rank of data.</p></li>
+<li><p><strong>dimensions</strong> (int[]):
+Dimensions of data. The array is of size ‘rank’.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxcompmakedata">
+<h3>NXcompmakedata<a class="headerlink" href="#nxcompmakedata" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Creates a new NeXus data set with the specified name, type, rank, and dimensions, compressed using the specified protocol.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXcompmakedata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">dimensions</span><span class="p">[],</span><span class="w"> </span><span class="n">compress_type</span><span class="p">,</span><span class="w"> </span><span class="n">bufsize</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (char *):
+Name of NeXus data set.</p></li>
+<li><p><strong>data_type</strong> (int):
+Data Type:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>:  Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>:  4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>:  8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>:  1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>:   unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>:   2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>:   unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>:   4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>:   unsigned 4-byte integer</p></li>
+</ul>
+</li>
+<li><p><strong>rank</strong> (int):
+Rank of data.</p></li>
+<li><p><strong>dimensions</strong> (int[]):
+Dimensions of data. The array is of size ‘rank’.</p></li>
+<li><p><strong>compress_type</strong> (int):
+Compression algorithm:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_COMP_LZW</span></code>:   GZIP</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_COMP_HUF</span></code>:   Skipping Huffman</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_COMP_RLE</span></code>:   Run Length Encoding</p></li>
+</ul>
+</li>
+<li><p><strong>bufsize</strong> (int[]):
+The typical buffer size for writing.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxopendata">
+<h3>NXopendata<a class="headerlink" href="#nxopendata" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Opens an existing NeXus data set for further processing i.e. reading and writing data or attributes, defining compression algorithms, and obtaining data set information.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXopendata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_name</strong> (char *):
+Name of NeXus data set</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxcompress">
+<h3>NXcompress<a class="headerlink" href="#nxcompress" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Defines a compression algorithm for subsequent calls to NXputdata.
+This routine is now deprecated; please use <cite>NXcompmakedata</cite> instead.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXcompress</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">compress_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>compress_type</strong> (int):
+Compression algorithm:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_COMP_LZW</span></code>:   GZIP</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_COMP_HUF</span></code>:   Skipping Huffman</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_COMP_RLE</span></code>:   Run Length Encoding</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxclosedata">
+<h3>NXclosedata<a class="headerlink" href="#nxclosedata" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Ends access to the currently active data set.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXclosedata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxsetnumberformat">
+<h3>NXsetnumberformat<a class="headerlink" href="#nxsetnumberformat" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Sets the number format when writing to ASCII files.
+When serializing NeXus files to ASCII-XML files, a format for printing numbers is required.
+The NeXus-API has reasonable defaults for this. However, with this function, a desired format can be chosen for special cases.
+Please note that calls to this function will be silently ignored for the binary NeXus formats HDF-4 and HDF-5.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXsetnumberformat</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">,</span><span class="w"> </span><span class="n">format_string</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data_type</strong> (int):
+The NeXus data type for which to change the print format:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>:  Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>:  4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>:  8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>:  1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>:   unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>:   2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>:   unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>:   4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>:   unsigned 4-byte integer</p></li>
+</ul>
+</li>
+<li><p><strong>format_string</strong> (char *):
+An ANSI-C language style format string.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="reading-and-writing">
+<h2>Reading and Writing<a class="headerlink" href="#reading-and-writing" title="Link to this heading">¶</a></h2>
+<section id="nxgetdata">
+<h3>NXgetdata<a class="headerlink" href="#nxgetdata" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Reads data values from the currently open data set.
+Please note that memory overwrite occurs if the caller has not allocated enough memory to hold all the data available.
+Call <code class="docutils literal notranslate"><span class="pre">NXgetinfo</span></code> to determine the required dimension sizes.
+The data set must have been opened by <code class="docutils literal notranslate"><span class="pre">NXopendata</span></code>.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetdata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data</strong> (void *):
+Data values.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxgetslab">
+<h3>NXgetslab<a class="headerlink" href="#nxgetslab" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Reads a subset of the data in the current data set specifying the starting indices and size of each dimension.
+The caller is responsible for allocating enough memory for the data.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetslab</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">[],</span><span class="w"> </span><span class="n">size</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>start[]</strong> (int):
+Indices of starting values in each dimension.</p></li>
+<li><p><strong>size[]</strong> (int):
+Length of slab in each dimension.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data</strong> (void *):
+Data values.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxgetattr">
+<h3>NXgetattr<a class="headerlink" href="#nxgetattr" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Reads attribute values associated with the currently open data set.
+The attribute is defined by its name.
+Attributes are meta-data; data that provides information on the associated data set such as units, long names, etc.
+If no data set is open, it looks for a global attribute (i.e., attributes of the NeXus file).
+The caller is responsible for allocating enough memory for the attribute values.
+Only the first ‘length’ bytes of the attribute are read to prevent memory overwrite.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetattr</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">attr_name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>attr_name</strong> (char *):
+Name of attribute.</p></li>
+<li><p><strong>length</strong> (int *):
+Length of buffer for storing attribute data.</p></li>
+<li><p><strong>type</strong> (int *):
+Attribute Data Type:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>: Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>: 4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>: 8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>: 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>: Unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>: 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>: Unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>: 4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>: Unsigned 4-byte integer</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>value</strong> (void *):
+Value of attribute.</p></li>
+<li><p><strong>length</strong> (int *):
+Actual length of attribute data.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxputdata">
+<h3>NXputdata<a class="headerlink" href="#nxputdata" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Writes data into the specified data set.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXputdata</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data</strong> (void *):
+Data values.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxputslab">
+<h3>NXputslab<a class="headerlink" href="#nxputslab" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Writes a subset of a multidimensional data array, specified by the starting indices and size of each dimension, into the currently open dataset.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXputslab</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">[],</span><span class="w"> </span><span class="n">size</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>data</strong> (void *):
+Data values.</p></li>
+<li><p><strong>start[]</strong> (int):
+Indices of starting values in each dimension.</p></li>
+<li><p><strong>size[]</strong> (int):
+Length of slab in each dimension.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxputattr">
+<h3>NXputattr<a class="headerlink" href="#nxputattr" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Writes an attribute of the currently open data set.
+If no data set is open, a global attribute is generated.
+The attribute has both a name and a value.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXputattr</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">attr_name</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Return Value:</strong></p>
+<ul class="simple">
+<li><p><strong>status</strong> (int):
+Error status.</p></li>
+</ul>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>attr_name</strong> (char *):
+Name of attribute.</p></li>
+<li><p><strong>value</strong> (void *):
+Value of attribute.</p></li>
+<li><p><strong>length</strong> (int):
+Length of data.</p></li>
+<li><p><strong>type</strong> (int):
+Data Type:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>: Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>: 4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>: 8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>: 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>: Unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>: 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>: Unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>: 4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>: Unsigned 4-byte integer</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxflush">
+<h3>NXflush<a class="headerlink" href="#nxflush" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Flushes all data to the NeXus file. Since this command closes and reopens the file, a new file handle is returned. The command leaves the program in the same state, i.e., with the same group and/or data set open.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXflush</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input &amp; Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle *):
+Identifier of NeXus file</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="meta-data-routines">
+<h2>Meta-Data Routines<a class="headerlink" href="#meta-data-routines" title="Link to this heading">¶</a></h2>
+<section id="nxgetinfo">
+<h3>NXgetinfo<a class="headerlink" href="#nxgetinfo" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Gets the rank, dimensions, and data type of the currently open data set.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetinfo</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="n">dimensions</span><span class="p">[],</span><span class="w"> </span><span class="n">data_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Return Value:</strong></p>
+<blockquote>
+<div><p><strong>status</strong> (int):
+Error status.</p>
+</div></blockquote>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p>
+</div></blockquote>
+<p><strong>Output Arguments:</strong></p>
+<blockquote>
+<div><p><strong>rank</strong> (int*):
+Rank of data.</p>
+<p><strong>dimensions</strong> (int[]):
+Dimensions of data.</p>
+<p><strong>data_type</strong> (int*):
+Data Type:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>: Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>: 4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>: 8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>: 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>: Unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>: 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>: Unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>: 4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>: Unsigned 4-byte integer</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxgetgroupinfo">
+<h3>NXgetgroupinfo<a class="headerlink" href="#nxgetgroupinfo" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Returns the number of items in the current group, and the name and class of the current group.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetgroupinfo</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">item_number</span><span class="p">,</span><span class="w"> </span><span class="n">group_name</span><span class="p">,</span><span class="w"> </span><span class="n">group_class</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Return Value:</strong></p>
+<blockquote>
+<div><p>status        int       Error status</p>
+</div></blockquote>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+<p><strong>Output Arguments:</strong></p>
+<blockquote>
+<div><p>item_number   int*      Number of NeXus data items in the current group
+group_name    char*     Name of currently open NeXus group
+group_class   char*     Class of currently open NeXus group</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxinitgroupdir">
+<h3>NXinitgroupdir<a class="headerlink" href="#nxinitgroupdir" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Initializes directory searches of the currently open group. This is required to reset searches using NXgetnextentry that may have been interrupted before completion.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXinitgroupdir</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Return Value:</strong></p>
+<blockquote>
+<div><p>status        int       Error status</p>
+</div></blockquote>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxgetnextentry">
+<h3>NXgetnextentry<a class="headerlink" href="#nxgetnextentry" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Implements a directory search facility on the current group level. The first call initializes the search and returns information on the first data item in the list. Subsequent calls yield information about the remaining items. If the item is a group, its name and class is returned. If it is a data set, its name and type is returned with a class of SDS.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetnextentry</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">class</span><span class="p">,</span><span class="w"> </span><span class="n">data_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Return Value:</strong></p>
+<ul class="simple">
+<li><p><strong>status</strong> (int):
+Error status.</p></li>
+</ul>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>name</strong> (char *):
+Name of NeXus data item (group or set).</p></li>
+<li><p><strong>class</strong> (char *):
+Class of NeXus group (SDS for a data item).</p></li>
+<li><p><strong>data_type</strong> (int *):
+Data Type:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>: Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>: 4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>: 8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>: 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>: Unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>: 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>: Unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>: 4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>: Unsigned 4-byte integer</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxgetattrinfo">
+<h3>NXgetattrinfo<a class="headerlink" href="#nxgetattrinfo" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Returns the number of attributes in the current data set.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetattrinfo</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">attr_number</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Return Value:</strong></p>
+<blockquote>
+<div><p>status        int       Error status</p>
+</div></blockquote>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+<p><strong>Output Arguments:</strong></p>
+<blockquote>
+<div><p>attr_number   int *     Number of attributes in the current data set</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxinitattrdir">
+<h3>NXinitattrdir<a class="headerlink" href="#nxinitattrdir" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Initializes attribute searches of the currently open data set. This is required to reset searches using NXgetnextattr that may have been interrupted before completion.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXinitattrdir</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id       NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxgetnextattr">
+<h3>NXgetnextattr<a class="headerlink" href="#nxgetnextattr" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Implements a search facility of the attributes of the currently open data set. The first call initializes the search and returns information on the first attribute in the list. Subsequent calls yield information about the remaining attributes. This routine returns global attributes if no data set is open.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetnextattr</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">attr_name</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">attr_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>attr_name</strong> (char *):
+Name of next attribute.</p></li>
+<li><p><strong>length</strong> (int *):
+Length of next attribute.</p></li>
+<li><p><strong>attr_type</strong> (int *):
+Data type of next attribute:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>: Character string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>: 4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>: 8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>: 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>: Unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>: 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>: Unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>: 4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>: Unsigned 4-byte integer</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxgetgroupid">
+<h3>NXgetgroupID<a class="headerlink" href="#nxgetgroupid" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Returns the identifier of the currently open group as an NXlink structure.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetgroupID</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">group_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id    NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+<p><strong>Output Arguments:</strong></p>
+<blockquote>
+<div><p>group_id   NXlink    Identifier of NeXus group</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxgetdataid">
+<h3>NXgetdataID<a class="headerlink" href="#nxgetdataid" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Gets the identifier of the currently open data set as an NXlink structure. Returns NX_ERROR if there is no open data set.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXgetdataID</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">data_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<blockquote>
+<div><p>file_id    NXhandle  Identifier of NeXus file</p>
+</div></blockquote>
+<p><strong>Output Arguments:</strong></p>
+<blockquote>
+<div><p>data_id    NXlink    Identifier of NeXus data set</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="nxmakelink">
+<h3>NXmakelink<a class="headerlink" href="#nxmakelink" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Links a data item (group or set) to a NeXus group.
+Returns <code class="docutils literal notranslate"><span class="pre">NX_ERROR</span></code> if the current group level is the root level, since no data item can be linked here.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXmakelink</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">link</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>link</strong> (NXlink *):
+Identifier of linked group.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxsameid">
+<h3>NXsameID<a class="headerlink" href="#nxsameid" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Tests if two data items are the same, i.e., one is linked to the other.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXsameID</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span><span class="w"> </span><span class="n">link1</span><span class="p">,</span><span class="w"> </span><span class="n">link2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+<li><p><strong>link1</strong> (NXlink *):
+Identifier of first item.</p></li>
+<li><p><strong>link2</strong> (NXlink *):
+Identifier of second item.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxopensourcegroup">
+<h3>NXopensourcegroup<a class="headerlink" href="#nxopensourcegroup" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Opens the group from which a linked dataset was linked.
+This is useful for accessing auxiliary information related to the dataset.
+This works only if the linked dataset is currently open.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXopensourcegroup</span><span class="w"> </span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>file_id</strong> (NXhandle):
+Identifier of NeXus file.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="memory-allocation">
+<h2>Memory Allocation<a class="headerlink" href="#memory-allocation" title="Link to this heading">¶</a></h2>
+<section id="nxmalloc">
+<h3>NXmalloc<a class="headerlink" href="#nxmalloc" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Allocates memory to the specified data pointer according to the specified data type, rank, and dimensions.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXmalloc</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="o">**</span><span class="w"> </span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">rank</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">dimensions</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">datatype</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>data</strong> (void **):
+Data pointer.</p></li>
+</ul>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>rank</strong> (int):
+Rank of data.</p></li>
+<li><p><strong>dimensions</strong> (int[]):
+Dimensions of data.</p></li>
+<li><p><strong>datatype</strong> (int):
+Data Type:
+- <code class="docutils literal notranslate"><span class="pre">NX_CHAR</span></code>: Character string</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT32</span></code>: 4-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_FLOAT64</span></code>: 8-byte real</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT8</span></code>: 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT8</span></code>: Unsigned 1-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT16</span></code>: 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT16</span></code>: Unsigned 2-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_INT32</span></code>: 4-byte integer</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NX_UINT32</span></code>: Unsigned 4-byte integer</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxfree">
+<h3>NXfree<a class="headerlink" href="#nxfree" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Frees memory allocated to the specified data pointer.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXfree</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>data</strong> (void **):
+Pointer to the allocated memory.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxinquirefile">
+<h3>NXinquirefile<a class="headerlink" href="#nxinquirefile" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Queries which file is really active.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXinquirefile</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">filename</span><span class="p">,</span><span class="w"> </span><span class="n">filenameLength</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>handle</strong> (NXhandle):
+Handle to a currently open NeXus file.</p></li>
+<li><p><strong>filenameLength</strong> (int):
+Length of filename buffer.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>filename</strong> (char *):
+Buffer to receive the filename.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxlinkexternal">
+<h3>NXlinkexternal<a class="headerlink" href="#nxlinkexternal" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Links an external file. This happens by creating a group which points to an external file. Navigating into such a group automatically opens the external file.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXlinkexternal</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">nxclass</span><span class="p">,</span><span class="w"> </span><span class="n">nxurl</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>handle</strong> (NXhandle):
+Handle to a currently open NeXus file.</p></li>
+<li><p><strong>name</strong> (NXname):
+The name of the group to link the file to.</p></li>
+<li><p><strong>nxclass</strong> (NXname):
+The NeXus class of the group to which the external file is to be linked.</p></li>
+<li><p><strong>nxurl</strong> (NXURL):
+An URL of a format understood by the NeXus-API. The only URL format so far is: <code class="docutils literal notranslate"><span class="pre">nxfile://path-to-file#path-to-group-in-file</span></code>. This consists of two parts: the file path and a path to a group in the file to be mapped into the source file.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="nxisexternalgroup">
+<h3>NXisexternalgroup<a class="headerlink" href="#nxisexternalgroup" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><p>Tests if the group is an external group. If not, <code class="docutils literal notranslate"><span class="pre">NX_ERROR</span></code> is returned. If yes, <code class="docutils literal notranslate"><span class="pre">NX_OK</span></code> is returned and the URL of the external file is copied into <cite>nxurl</cite>.</p>
+<p><strong>Usage:</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NXisexternalgroup</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">nxclass</span><span class="p">,</span><span class="w"> </span><span class="n">nxurl</span><span class="p">,</span><span class="w"> </span><span class="n">nxurllen</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Input Arguments</strong></p>
+<ul class="simple">
+<li><p><strong>handle</strong> (NXhandle):
+Handle to a currently open NeXus file.</p></li>
+<li><p><strong>name</strong> (NXname):
+The name of the group to test.</p></li>
+<li><p><strong>nxclass</strong> (NXname):
+The NeXus class of the group to test.</p></li>
+<li><p><strong>nxurllen</strong> (int):
+Length of the <cite>nxurl</cite> buffer.</p></li>
+</ul>
+<p><strong>Output Arguments:</strong></p>
+<ul class="simple">
+<li><p><strong>nxurl</strong> (char *):
+Buffer to copy the URL into.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">NAPI Routines</a><ul>
+<li><a class="reference internal" href="#out-of-date">OUT OF DATE</a></li>
+<li><a class="reference internal" href="#general-initialization-and-shutdown">General Initialization and Shutdown</a><ul>
+<li><a class="reference internal" href="#nxopen">NXopen</a></li>
+<li><a class="reference internal" href="#nxclose">NXclose</a></li>
+<li><a class="reference internal" href="#nxmakegroup">NXmakegroup</a></li>
+<li><a class="reference internal" href="#nxopengroup">NXopengroup</a></li>
+<li><a class="reference internal" href="#nxopenpath">NXopenpath</a></li>
+<li><a class="reference internal" href="#nxopengrouppath">NXopengrouppath</a></li>
+<li><a class="reference internal" href="#nxclosegroup">NXclosegroup</a></li>
+<li><a class="reference internal" href="#nxmakedata">NXmakedata</a></li>
+<li><a class="reference internal" href="#nxcompmakedata">NXcompmakedata</a></li>
+<li><a class="reference internal" href="#nxopendata">NXopendata</a></li>
+<li><a class="reference internal" href="#nxcompress">NXcompress</a></li>
+<li><a class="reference internal" href="#nxclosedata">NXclosedata</a></li>
+<li><a class="reference internal" href="#nxsetnumberformat">NXsetnumberformat</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reading-and-writing">Reading and Writing</a><ul>
+<li><a class="reference internal" href="#nxgetdata">NXgetdata</a></li>
+<li><a class="reference internal" href="#nxgetslab">NXgetslab</a></li>
+<li><a class="reference internal" href="#nxgetattr">NXgetattr</a></li>
+<li><a class="reference internal" href="#nxputdata">NXputdata</a></li>
+<li><a class="reference internal" href="#nxputslab">NXputslab</a></li>
+<li><a class="reference internal" href="#nxputattr">NXputattr</a></li>
+<li><a class="reference internal" href="#nxflush">NXflush</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#meta-data-routines">Meta-Data Routines</a><ul>
+<li><a class="reference internal" href="#nxgetinfo">NXgetinfo</a></li>
+<li><a class="reference internal" href="#nxgetgroupinfo">NXgetgroupinfo</a></li>
+<li><a class="reference internal" href="#nxinitgroupdir">NXinitgroupdir</a></li>
+<li><a class="reference internal" href="#nxgetnextentry">NXgetnextentry</a></li>
+<li><a class="reference internal" href="#nxgetattrinfo">NXgetattrinfo</a></li>
+<li><a class="reference internal" href="#nxinitattrdir">NXinitattrdir</a></li>
+<li><a class="reference internal" href="#nxgetnextattr">NXgetnextattr</a></li>
+<li><a class="reference internal" href="#nxgetgroupid">NXgetgroupID</a></li>
+<li><a class="reference internal" href="#nxgetdataid">NXgetdataID</a></li>
+<li><a class="reference internal" href="#nxmakelink">NXmakelink</a></li>
+<li><a class="reference internal" href="#nxsameid">NXsameID</a></li>
+<li><a class="reference internal" href="#nxopensourcegroup">NXopensourcegroup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#memory-allocation">Memory Allocation</a><ul>
+<li><a class="reference internal" href="#nxmalloc">NXmalloc</a></li>
+<li><a class="reference internal" href="#nxfree">NXfree</a></li>
+<li><a class="reference internal" href="#nxinquirefile">NXinquirefile</a></li>
+<li><a class="reference internal" href="#nxlinkexternal">NXlinkexternal</a></li>
+<li><a class="reference internal" href="#nxisexternalgroup">NXisexternalgroup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="Muon_Time_Differential.html"
+                          title="previous chapter">Muon Time Differential</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="NAPI_Utility_Routines.html"
+                          title="next chapter">NAPI Utility Routines</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/general_content/NAPI_Routines.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+<div id="google_search" style="display: none">
+	<hr />
+	<h3>Google search</h3>
+	<form method="get" action="https://www.google.com/search">
+		<table border="0" align="center" cellpadding="0">
+			<tr>
+				<td>
+					<input type="text"   name="q" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td align="center" style="font-size:75%">
+					<input type="radio"  name="sitesearch" value="" />global
+					<input type="radio"  name="sitesearch"
+						value="wiki.nexusformat.org"
+						checked />NeXus wiki
+					<input type="submit" value="Go" />
+					<br />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script type="text/javascript">$('#google_search').show(0);</script><!DOCTYPE html>
+<html lang="en">
+<br>
+<head>
+ <a href="http://www.nexusformat.org/">
+   <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus"
+        width="150"
+        height="50"
+   >
+</a>
+</head>
+<body>
+ <br>NeXus is developed as an international standard by scientists and programmers representing major scientific
+ facilities in Europe, Asia, Australia, and North America in order to facilitate greater cooperation in the
+ analysis and visualization of neutron, x-ray, and muon data.</h3>
+</body>
+
+ <br><a href="http://www.nexusformat.org/">Home</a>
+ <br><a href="https://github.com/nexusformat">GitHub Organisation</a></br>
+ © 2025 <a href="http://www.nexusformat.org/NIAC.html">NIAC </html>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="NAPI_Utility_Routines.html" title="NAPI Utility Routines"
+             >next</a></li>
+        <li class="right" >
+          <a href="Muon_Time_Differential.html" title="Muon Time Differential"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">nexus wiki 1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="content.html" >General Content</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">NAPI Routines</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, nexus.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.1.
+    </div>
+  </body>
+</html>
