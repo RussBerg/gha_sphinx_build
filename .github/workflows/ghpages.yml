@@ -64,8 +64,8 @@ jobs:
         run: |
           make html
           ls -lAFgh source/build/html/index.html
-          #mkdir -p source
-          #mv source/build/html/* source
+          mkdir -p docs
+          mv source/build/html/* docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -73,7 +73,7 @@ jobs:
         with:
           publish_branch: gh-pages-served
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: source/build/html/
+          publish_dir: docs/
           force_orphan: true
 
 #      - name: Build User Manual
