@@ -63,16 +63,6 @@ jobs:
           mkdir -p docs
           rsync -av --delete source/_build/html/ docs/
 
-      - name: List Files in root
-        run: |
-          echo "List Files in root"
-          ls -la 
-
-      - name: List Files in docs/
-        run: |
-          echo "List Files in docs/"
-          ls -la docs/
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
