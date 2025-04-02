@@ -72,10 +72,10 @@ jobs:
           echo "List Files in root"
           ls -la 
 
-      - name: List Files in source/_build/html
+      - name: List Files in docs
         run: |
-          echo "List Files in source/_build/html"
-          ls -la source/_build/html
+          echo "List Files in docs"
+          ls -la docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
