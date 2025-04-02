@@ -59,7 +59,7 @@ jobs:
       - name: Build Wiki
         run: |
           make html
-          ls -lAFgh source/_build/html/content/index.html
+          ls -lAFgh source/_build/html/docs/index.html
           mkdir -p build
           mv source/_build/html/* build
 
