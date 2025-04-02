@@ -65,8 +65,7 @@ jobs:
 
       - name: Create .nojekyll file
         run: |
-          touch docs/.nojekyll
-          touch docs/content/.nojekyll
+          touch docs/content/.nojekyll 
 
       - name: List Files in docs
         run: |
