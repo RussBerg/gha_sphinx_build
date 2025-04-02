@@ -62,18 +62,16 @@ jobs:
           ls -lAFgh source/_build/html/index.html
           mkdir -p docs
           rsync -av --delete source/_build/html/ docs/
-          cat docs/index.html
-#          cat build/index.html
 
       - name: List Files in root
         run: |
           echo "List Files in root"
           ls -la 
 
-      - name: List Files in source/_build/html/
+      - name: List Files in docs/
         run: |
-          echo "List Files in source/_build/html/"
-          ls -la source/_build/html/
+          echo "List Files in docs/"
+          ls -la docs/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
