@@ -65,7 +65,17 @@ jobs:
 
       - name: Create .nojekyll file
         run: |
-          touch docs/.nojekyll
+          touch content/.nojekyll
+
+      - name: List Files in root
+        run: |
+          echo "List Files in root"
+          ls -la 
+
+      - name: List Files in docs
+        run: |
+          echo "List Files in content"
+          ls -la ./content
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
