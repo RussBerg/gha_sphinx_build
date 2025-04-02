@@ -155,19 +155,11 @@ def setup(app):
 
     def do_copy():
         print("Sphinx do_copy() function is being called")
-        copy_asset(os.path.join(app.srcdir, 'extra_files'), os.path.join(app.outdir, 'extra_files'))
         copy_asset(os.path.join(app.srcdir, 'pdfs'), os.path.join(app.outdir, 'pdfs'))
 
-    def copy_extra_files(app, exception):
-        print("Sphinx copy_extra_files() function is being called")
-        if exception:
-            return
-
     app.connect('build-finished', lambda app, exception: do_copy())
-    # app.connect('build-finished', fix_hrefs)
     app.add_css_file('details_summary_hide.css')
-    # Sapp.connect('build-finished', copy_extra_files)
-    
+        
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
