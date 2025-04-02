@@ -63,9 +63,9 @@ jobs:
 #          mkdir -p docs
 #          mv source/_build/html/* docs
 
-#      - name: Create .nojekyll file
-#        run: |
-#          touch content/.nojekyll
+      - name: Create .nojekyll file to source/_build/html/content/
+        run: |
+          touch source/_build/html/content/.nojekyll
 
       - name: List Files in root
         run: |
