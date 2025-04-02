@@ -26,7 +26,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.12']
-      max-parallel: 5 
+      max-parallel: 5
     env:
       python_version: ${{ matrix.python-version }}
       python_deploy_version: '3.8' # version to use for deployment

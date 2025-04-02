@@ -21,10 +21,10 @@ import logging
 # add the abs path to the custom extension for collecting the contributor variables from the rst files
 #sys.path.insert(0, os.path.abspath('../../../dev_tools/ext'))
 sys.path.insert(0, os.path.abspath('../dev_tools/ext'))
-sys.path.insert(0, os.path.abspath("content"))
+sys.path.insert(0, os.path.abspath("docs"))
 
 # Specify the master document
-master_doc = "content/index"  # Path relative to the source directory
+master_doc = "docs/index"  # Path relative to the source directory
 
 # -- Project information -----------------------------------------------------
 
@@ -127,7 +127,7 @@ def setup(app):
     def fix_hrefs(app, exception):
 
         # Path to the output HTML files
-        html_output_dir = os.path.join(app.outdir, 'content')
+        html_output_dir = os.path.join(app.outdir, 'docs')
         print(f"fix_hrefs() function is being called, html_output_dir={html_output_dir}")
         # Traverse the directory and process each HTML file
         for root, dirs, files in os.walk(html_output_dir):
@@ -141,7 +141,7 @@ def setup(app):
                 # Replace href="#something.html" with href="something.html"
                 updated_content = content.replace('href="#', 'href="')
 
-                # Write the updated content back to the file
+                # Write the updated docs back to the file
                 with open(file_path, 'w', encoding='utf-8') as f:
                     # print(f"\twriting [{file_path}]")
                     f.write(updated_content)
