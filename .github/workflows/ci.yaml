@@ -60,14 +60,9 @@ jobs:
         run: |
           make html
           ls -lAFgh source/_build/html/index.html
-#          mkdir -p build
-#          mv source/_build/html/* build
-#          ln -s build/content/index.html build/index.html
+          mkdir -p docs
+#          mv source/_build/html/* docs
 #          cat build/index.html
-
-#      - name: Create .nojekyll file
-#        run: |
-#          touch content/.nojekyll
 
       - name: List Files in root
         run: |
@@ -85,6 +80,7 @@ jobs:
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: source/_build/html/
+          #publish_dir: source/_build/html/
+          publish_dir: docs
           force_orphan: true
 
