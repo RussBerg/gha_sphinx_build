@@ -62,7 +62,6 @@ jobs:
           ls -lAFgh source/_build/html/index.html
           mkdir -p docs
           rsync -av --delete source/_build/html/ docs/
-          ln -s docs/content/index.html docs/index.html
           cat docs/index.html
 #          cat build/index.html
 
