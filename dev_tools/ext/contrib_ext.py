@@ -10,7 +10,7 @@ variables_re = re.compile(r"\|(\w+)\| replace::\s(.+)")
 
 
 def extract_contributor_vars(app, docname, source):
-    # Read the RST file docs
+    # Read the RST file content
     content = source[0]
 
     # Extract variables using regular expressions

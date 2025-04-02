@@ -21,10 +21,10 @@ import logging
 # add the abs path to the custom extension for collecting the contributor variables from the rst files
 #sys.path.insert(0, os.path.abspath('../../../dev_tools/ext'))
 sys.path.insert(0, os.path.abspath('../dev_tools/ext'))
-sys.path.insert(0, os.path.abspath("docs"))
+sys.path.insert(0, os.path.abspath("content"))
 
 # Specify the master document
-master_doc = "docs/index"  # Path relative to the source directory
+master_doc = "content/index"  # Path relative to the source directory
 
 # -- Project information -----------------------------------------------------
 
@@ -139,7 +139,7 @@ def setup(app):
     app.add_css_file('details_summary_hide.css')
 
 # The name of an image file (within the static path) to use as favicon of the
-# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
+# content.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 html_favicon = "https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark_square.svg"
     

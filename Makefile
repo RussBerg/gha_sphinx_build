@@ -43,7 +43,7 @@ local ::
 all ::
 	$(MAKE) clean
 	$(MAKE) html
-	@echo "HTML built: `ls -lAFgh source/$(BUILD_DIR)/html/docs/index.html`"
+	@echo "HTML built: `ls -lAFgh source/$(BUILD_DIR)/html/content/index.html`"
 
 
 
