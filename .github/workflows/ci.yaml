@@ -60,10 +60,10 @@ jobs:
         run: |
           make html
           ls -lAFgh source/_build/html/content/index.html
-#          mkdir -p docs
-#          mv source/_build/html/* docs
-#          ln -s content/index.html docs/index.html
-#          cat docs/content/index.html
+          mkdir -p docs
+          mv source/_build/html/* docs
+          ln -s docs/content/index.html docs/index.html
+          cat docs/index.html
 
 #      - name: Create .nojekyll file
 #        run: |
