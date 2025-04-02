@@ -124,28 +124,6 @@ def setup(app):
     print("Sphinx setup() function is being called")
     logging.getLogger('myst').setLevel(logging.CRITICAL)
 
-    def fix_hrefs(app, exception):
-
-        # Path to the output HTML files
-        html_output_dir = os.path.join(app.outdir, 'docs')
-        print(f"fix_hrefs() function is being called, html_output_dir={html_output_dir}")
-        # Traverse the directory and process each HTML file
-        for root, dirs, files in os.walk(html_output_dir):
-            for file in files:
-                if file.endswith('.html'):
-                    file_path = os.path.join(root, file)
-                    with open(file_path, 'r', encoding='utf-8') as f:
-                        # print(f"\treading [{file_path}]")
-                        content = f.read()
-
-                # Replace href="#something.html" with href="something.html"
-                updated_content = content.replace('href="#', 'href="')
-
-                # Write the updated docs back to the file
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    # print(f"\twriting [{file_path}]")
-                    f.write(updated_content)
-
     def copy_asset(source_dir, target_dir):
         if not os.path.exists(source_dir):
             print(f"WARNING: The directory {source_dir} does not exist.")
