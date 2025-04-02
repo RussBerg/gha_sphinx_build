@@ -60,6 +60,7 @@ jobs:
         run: |
           make html
           ls -lAFgh source/_build/html/content/index.html
+          ln -s source/_build/html/content/index.html source/_build/html/index.html
 #          mkdir -p build
 #          mv source/_build/html/* build
 #          ln -s build/content/index.html build/index.html
@@ -85,6 +86,6 @@ jobs:
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: source/_build/html/content/
+          publish_dir: source/_build/html/
           force_orphan: true
 
