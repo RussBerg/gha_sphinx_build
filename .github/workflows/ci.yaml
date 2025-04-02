@@ -61,8 +61,9 @@ jobs:
           make html
           ls -lAFgh source/_build/html/index.html
           mkdir -p docs
-          ls -la docs
-#          mv source/_build/html/* docs/
+          rsync -av --delete source/_build/html/ docs/
+          ln -s docs/content/index.html docs/index.html
+          cat docs/index.html
 #          cat build/index.html
 
       - name: List Files in root
