@@ -134,7 +134,6 @@ def setup(app):
     def do_copy():
         print("Sphinx do_copy() function is being called")
         copy_asset(os.path.join(app.srcdir, 'pdfs'), os.path.join(app.outdir, 'pdfs'))
-        copy_asset(os.path.join(app.srcdir, '_templates'), os.path.join(app.outdir, '_templates'))
 
     app.connect('build-finished', lambda app, exception: do_copy())
     app.add_css_file('details_summary_hide.css')

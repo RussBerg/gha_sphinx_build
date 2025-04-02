@@ -5,7 +5,7 @@
 
 PYTHON = python3
 SPHINX = sphinx-build
-BUILD_DIR = build
+BUILD_DIR = _build
 
 .PHONY: help install clean html all local
 
