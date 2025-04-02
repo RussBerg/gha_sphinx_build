@@ -40,7 +40,6 @@ local ::
 #	$(MAKE) prepare
 	$(MAKE) html
 
-
 all ::
 	$(MAKE) clean
 	$(MAKE) html
