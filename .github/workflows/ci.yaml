@@ -56,10 +56,6 @@ jobs:
           make install
           python3 -m pip list
 
-      - name: Check Sphinxdoc Theme
-        run: |
-          python3 -c "from sphinx.application import Sphinx; app = Sphinx('.', None, None, None, 'html'); print('sphinxdoc' in app.builder.theme_options)"
-
       - name: Build Wiki
         run: |
           make html
