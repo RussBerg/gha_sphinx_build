@@ -69,7 +69,7 @@ jobs:
 
       - name: List Files in docs
         run: |
-          ls -la docs
+          ls -la docs/content
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
