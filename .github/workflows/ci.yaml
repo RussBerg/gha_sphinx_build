@@ -75,7 +75,7 @@ jobs:
       - name: List Files in docs
         run: |
           echo "List Files in content"
-          ls -la ./content
+          ls -la source/_build/html/content/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -83,6 +83,6 @@ jobs:
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: content/
+          publish_dir: source/_build/html/content/
           force_orphan: true
 
