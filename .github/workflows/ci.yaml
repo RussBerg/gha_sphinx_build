@@ -60,22 +60,12 @@ jobs:
         run: |
           make html
           ls -lAFgh source/_build/html/content/index.html
-          mkdir -p docs
-          mv source/_build/html/* docs
+#          mkdir -p docs
+#          mv source/_build/html/* docs
 
       - name: Create .nojekyll file
         run: |
           touch docs/.nojekyll
-
-      - name: List Files in root
-        run: |
-          echo "List Files in root"
-          ls -la 
-
-      - name: List Files in docs
-        run: |
-          echo "List Files in docs"
-          ls -la ./docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
@@ -83,6 +73,6 @@ jobs:
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/
+          publish_dir: content/
           force_orphan: true
 
