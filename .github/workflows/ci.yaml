@@ -61,7 +61,7 @@ jobs:
           make html
           ls -lAFgh source/_build/html/index.html
           mkdir -p docs
-          mv source/_build/html/* docs
+          mv source/_build/html/* docs/
           cat build/index.html
 
       - name: List Files in root
