@@ -96,6 +96,8 @@ html_theme = 'sphinxdoc'
 # html_extra_path = ['md']
 html_file_suffix = ".html"
 
+html_baseurl = "https://russberg.github.io/gha_sphinx_build/content/"
+
 # Add extra files
 #html_extra_path = ['CNAME']
 
