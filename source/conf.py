@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.abspath('../dev_tools/ext'))
 sys.path.insert(0, os.path.abspath("content"))
 
 # Specify the master document
-master_doc = "content/index"  # Path relative to the source directory
+master_doc = "index"  # Path relative to the source directory
 
 # -- Project information -----------------------------------------------------
 
