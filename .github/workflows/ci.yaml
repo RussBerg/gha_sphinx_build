@@ -58,7 +58,7 @@ jobs:
 
       - name: Check Sphinxdoc Theme
         run: |
-          python3 -c "import sphinx; print('sphinxdoc' in sphinx.themes.get_theme_names())"
+          python3 -c "from sphinx.application import Sphinx; app = Sphinx('.', None, None, None, 'html'); print('sphinxdoc' in app.builder.theme_options)"
 
       - name: Build Wiki
         run: |
