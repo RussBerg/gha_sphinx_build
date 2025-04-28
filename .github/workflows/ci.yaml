@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+
   pull_request:
     branches:
       - main
+
   workflow_dispatch:   # allow manual triggering
     inputs:
       deploy:
@@ -62,14 +64,26 @@ jobs:
           ls -lAFgh source/_build/html/index.html
           mkdir -p docs
           rsync -av --delete source/_build/html/ docs/
+#          touch ./docs/.nojekyll
+
+#      - name: Deploy to GitHub Pages
+#        uses: peaceiris/actions-gh-pages@v3
+#        #if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+#        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/fix-jekyll-build' }}
+#        with:
+#          publish_branch: github-pages-wip
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          #publish_dir: source/_build/html/
+#          publish_dir: docs
+#          force_orphan: true
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        with:
-          publish_branch: gh-pages
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          #publish_dir: source/_build/html/
-          publish_dir: docs
-          force_orphan: true
+              uses: peaceiris/actions-gh-pages@v3
+              if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+              with:
+                publish_branch: gh-pages
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                #publish_dir: source/_build/html/
+                publish_dir: docs
+                force_orphan: true
 

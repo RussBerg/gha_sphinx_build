@@ -29,7 +29,8 @@ Introducing new classes
 
 #### Pinholes - *NXpinhole*
 
-![c|A pinhold in the beam.](Pinhole_2.png "fig:c|A pinhold in the beam.") Pinholes are most
+![c|A pinhold in the
+beam.](Pinhole_2.png "fig:c|A pinhold in the beam.") Pinholes are most
 probably the simplest apertures available. The only parameter of
 importance is the diameter of the pinhole and its position with respect
 to the beam (as shown in the image). From this sketch one could easily

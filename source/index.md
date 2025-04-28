@@ -3,7 +3,6 @@ permalink: index.html
 layout: page
 ---
 
-[//]: # (![NeXus Logo]&#40;https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg&#41;)
 <img src="https://raw.githubusercontent.com/nexusformat/NIAC/master/NeXus_Logo/NeXus_Logo_dark.svg" alt="NeXus Logo" width="500">
 
 About the NeXus Data Format
@@ -27,15 +26,15 @@ neutron, x-ray, and muon data.
     * [contributed definitions](https://manual.nexusformat.org/classes/contributed_definitions/index.html): propositions from the community
   * [Utilities](https://manual.nexusformat.org/utilities.html): Software applications that browse, plot, and analyze NeXus data
   * [FAQ](https://manual.nexusformat.org/faq.html): Commonly asked questions about NeXus
-  * [Facilities](Facilities.html "wikilink") using NeXus
+  * [Facilities](content/Facilities.html "wikilink") using NeXus
 
 ## Discussion and Development:
-* Next Meetings: [Autumn NIAC2024](NIAC2024.html "wikilink")
-* Most recent meetings: [Code Camp 2023](CodeCampJune2023.html "wikilink"), [Autumn NIAC2022](NIAC2022.html "wikilink")
-* [Teleconferences](Teleconferences.html "wikilink")
-* [Current Active Projects](ActiveProjects.html "wikilink")
-* [NeXus International Advisory Committee](NIAC.html "wikilink")
-* [Bug / Issue Reporting](IssueReporting.html "wikilink")
+* Next Meetings:
+* Most recent meetings: [Autumn NIAC2024](content/NIAC2024.html "wikilink"), [Code Camp 2023](content/CodeCampJune2023.html "wikilink"), [Autumn NIAC2022](content/NIAC2022.html "wikilink")
+* [Teleconferences](content/Teleconferences.html "wikilink")
+* [Current Active Projects](content/ActiveProjects.html "wikilink")
+* [NeXus International Advisory Committee](content/NIAC.html "wikilink")
+* [Bug / Issue Reporting](content/IssueReporting.html "wikilink")
 * [Mailing Lists](https://manual.nexusformat.org/mailinglist.html)
 * [Show and Tell](https://indico.desy.de/category/1080/) - Series of meetings, each dedicated to a specific NeXus adoption topic
 
@@ -105,9 +104,7 @@ content/NIAC2008_attendees.md
 content/NIAC2008.md
 content/NIAC2009.md
 content/NIAC2010.md
-content/NIAC2011_CodeCamp.md
 content/NIAC2012.md
-content/NIAC2014_CodeCamp.md
 content/NIAC2014.md
 content/NIAC2014_Meeting.md
 content/NIAC2016.md
@@ -124,7 +121,7 @@ content/NIAC2022_spring.md
 content/NIAC2022_spring_minutes.md
 content/NIAC2024.md
 content/NIAC2024_minutes.md
-content/NIAC2-22_fall_minutes.md
+content/NIAC2022_fall_minutes.md
 content/NIACActionItems.md
 content/NIACAPI.md
 content/NIACClasses.md
@@ -168,4 +165,4 @@ content/Update_for_NXflou_application_definition.md
 content/Utilities.md
 content/Workshop_PSI_2010.md
 content/XESraw.md
-LICENSE.md
+```
